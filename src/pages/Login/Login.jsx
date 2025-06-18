@@ -33,6 +33,7 @@ export default function Register() {
 
       // Stocker les datas dans le localstorage
       localStorage.setItem("username", data.username);
+      
 
       // Rediriger vers la page du cv
       navigate("/cv");

@@ -8,7 +8,6 @@ export default function Cv() {
   const [redirect, setRedirect] = useState(false)
   // Je récupère mon username
   const username = localStorage.getItem("username")
-  console.log(document.cookie)
   async function fetchData(){
     // je fais une demande de données pour le cv, si ok status 200, sinon rediriger vers le login avec un message "vous devez vous reconnecter"
     try {
