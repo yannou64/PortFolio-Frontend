@@ -1,0 +1,64 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import "./register.css";
+
+export default function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function submitAction(e) {
+    e.preventDefault();
+    try {
+      const bodycontent = JSON.stringify({ username, email, password });
+      console.log();
+      const response = await fetch("http://localhost:3444/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: bodycontent,
+      });
+
+      // Récupérer les donnees de l'api
+      const data = await response.json();
+
+
+      console.log(data.message);
+    } catch (e) {
+      console.log("Erreur de fetch pour s'enregistrer : ", e.message);
+    }
+  }
+
+  return (
+    <div id="container">
+      <form onSubmit={submitAction}>
+        <input
+          onChange={(e) => setUsername(e.target.value)}
+          className="input input-secondary"
+          type="text"
+          placeholder="username"
+          required
+        />
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          className="input input-secondary"
+          type="email"
+          placeholder="email"
+          required
+        />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          className="input input-secondary"
+          type="password"
+          placeholder="mot de passe"
+          required
+        />
+        <button className="btn btn-secondary" type="submit">
+          S'enregistrer
+        </button>
+      </form>
+      <Link to="/Login">Return to Sign in</Link>
+    </div>
+  );
+}
