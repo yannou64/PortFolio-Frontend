@@ -1,3 +1,8 @@
+:root {
+    --myOrange: #CB6042;
+    --myWhite: #F5F5F5;
+}
+
 * {
     margin: 0;
     padding: 0:
@@ -9,4 +14,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#root {
+   
 }

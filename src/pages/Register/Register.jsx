@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./register.css";
 
@@ -6,6 +6,7 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   async function submitAction(e) {
     e.preventDefault();
@@ -19,14 +20,16 @@ export default function Register() {
         },
         body: bodycontent,
       });
-
+    
       // Récupérer les donnees de l'api
       const data = await response.json();
-
+      if(!response.ok) return navigate(`/ErrorPage/${data.message}`)
 
       console.log(data.message);
+      navigate('/login')
     } catch (e) {
       console.log("Erreur de fetch pour s'enregistrer : ", e.message);
+      navigate(`/ErrorPage/${e.message}`)
     }
   }
 
@@ -58,7 +61,7 @@ export default function Register() {
           S'enregistrer
         </button>
       </form>
-      <Link to="/Login">Return to Sign in</Link>
+      <Link to="/Login">Return to Register</Link>
     </div>
   );
 }
