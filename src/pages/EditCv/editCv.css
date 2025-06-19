@@ -1,0 +1,21 @@
+#EditDisplay {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-top: 80px;
+}
+
+#collectionList {
+    border: solid;
+    height: 80vh;
+    width: 300px;
+}
+
+#formDisplay {
+    border: solid;
+    height: 80vh;
+    width: 60vw;
+}

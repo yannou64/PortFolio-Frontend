@@ -1,10 +1,10 @@
 import "./header.css"
-import { useNavigate, useState } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import EditBtn from "./EditBtn/EditBtn.jsx"
 
 
-export default function Header({username, role}){
+export default function Header({username, role, triggerEditMode, editMode}){
     const navigate = useNavigate()
-    const [editMode, setEditMode] = useState(false)
     
     async function logout(){
         try {
@@ -26,7 +26,7 @@ export default function Header({username, role}){
 
     return(
         <header>
-            {role === "admin" ? <button onClick={()=> setEditMode(true)}>Edit</button> : <button>Me contacter</button>}
+            <EditBtn role={role} editMode={editMode} triggerEditMode={triggerEditMode}/>
             <h1 className="text-white text-2xl">{username}</h1>
             <button onClick={logout}>Logout</button>
         </header>

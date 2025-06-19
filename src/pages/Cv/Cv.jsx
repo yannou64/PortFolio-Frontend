@@ -11,6 +11,7 @@ export default function Cv() {
   const username = localStorage.getItem("username");
   const [role, setRole] = useState("");
   const [token, setToken] = useState("");
+  const [editMode, setEditMode] = useState(false)
 
   async function fetchData() {
     // je fais une demande de données pour le cv, si ok status 200, sinon rediriger vers le login avec un message "vous devez vous reconnecter"
@@ -27,10 +28,15 @@ export default function Cv() {
     }
   }
 
+  // je fais une fonction que je passe au bouton du header pour charger soit le composant 
+  // EditCv ou CvContenu
+  function triggerEditMode(){
+    setEditMode(!editMode)
+  }
+
   useEffect(() => {
     setToken(document.cookie.split("=")[1]);
   }, []);
-
   useEffect(() => {
     if (token) {
       const decoded = jwtDecode(token);
@@ -43,8 +49,8 @@ export default function Cv() {
 
   return (
     <div className="container">
-      <Header username={username} role={role}/>
-      <CvContenu />
+      <Header username={username} role={role} triggerEditMode={triggerEditMode} editMode={editMode}/>
+      {editMode ? <CvContenu /> : <EditCv />}
     </div>
   );
 }
