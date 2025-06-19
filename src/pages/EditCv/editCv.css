@@ -24,6 +24,7 @@
     background-color: var(--myYellow);
     padding: 8px;
     border-radius: 8px;
+    width: 200px;
 }
 
 #formDisplay {
@@ -36,6 +37,6 @@
 }
 
 #collectionList button.selected {
-    color: red;
-    background-color: var(--myGray);
+    color: var(--myWhite);
+    background-color: var(--myOrange);
 }
