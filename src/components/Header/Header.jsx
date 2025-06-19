@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { jwtDecode } from "jwt-decode"
 
-export default function Header(){
+export default function Header({username}){
     const navigate = useNavigate()
     const [role, setRole] = useState("")
     const [token, setToken] = useState("")
@@ -40,7 +40,9 @@ export default function Header(){
 
     return(
         <header>
+            
             {role === "admin" ? <button>Edit</button> : <button>Me contacter</button>}
+            <h1 className="text-white text-2xl">{username}</h1>
             <button onClick={logout}>Logout</button>
         </header>
     )

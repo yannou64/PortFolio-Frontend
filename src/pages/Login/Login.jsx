@@ -6,12 +6,11 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
-  console.log(document.cookie)
+  
   async function submitAction(e) {
     e.preventDefault();
     try {
       // Envoyer les donnée à l'api
-      console.log("requete envoye"); // test
       const response = await fetch("http://localhost:3444/auth/login", {
         method: "POST",
         credentials: "include",
@@ -23,11 +22,9 @@ export default function Register() {
           email,
         }),
       });
-      console.log("requete reçu"); // test
 
       // récupérer les données
       const data = await response.json();
-      console.log(data); //test
 
       if (!response.ok) return navigate(`/ErrorPage/${data.message}`);
 

@@ -11,8 +11,8 @@ header {
 }
 
 header button {
-    height: 80%;
-    width: 100px;
+    height: 60%;
+    width: 120px;
     background-color: var(--myWhite);
     border-radius: 10px;
     color: black;

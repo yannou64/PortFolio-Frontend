@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
 import Header from "../../components/Header/Header"
 import "./cv.css"
+import CvContenu from "../CvContenu/CvContenu"
+import EditCv from "../EditCv/EditCv"
 
 
 export default function Cv() {
@@ -17,7 +19,6 @@ export default function Cv() {
       if(!response.ok) setRedirect(true)
 
       const data = await response.json()
-      console.log(response.status)
       console.log(data.message)
   
     } catch (e) {
@@ -33,8 +34,9 @@ export default function Cv() {
 
   return (
     <div className="container">
-      <Header/>
-      <p>{username}</p>
+      <Header username={username}/>
+      <CvContenu />
+      <EditCv />
     </div>
   );
 }
