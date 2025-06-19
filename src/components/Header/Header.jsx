@@ -1,13 +1,10 @@
 import "./header.css"
-import { useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
-import { jwtDecode } from "jwt-decode"
+import { useNavigate, useState } from "react-router-dom"
 
-export default function Header({username}){
+
+export default function Header({username, role}){
     const navigate = useNavigate()
-    const [role, setRole] = useState("")
-    const [token, setToken] = useState("")
-   
+    const [editMode, setEditMode] = useState(false)
     
     async function logout(){
         try {
@@ -27,21 +24,9 @@ export default function Header({username}){
         }
     }
 
-    useEffect(()=>{
-         setToken(document.cookie.split("=")[1])
-    }, [])
-
-    useEffect(() => {
-        if(token){
-            const decoded = jwtDecode(token)
-            setRole(decoded.role)
-        }
-    }, [token])
-
     return(
         <header>
-            
-            {role === "admin" ? <button>Edit</button> : <button>Me contacter</button>}
+            {role === "admin" ? <button onClick={()=> setEditMode(true)}>Edit</button> : <button>Me contacter</button>}
             <h1 className="text-white text-2xl">{username}</h1>
             <button onClick={logout}>Logout</button>
         </header>
