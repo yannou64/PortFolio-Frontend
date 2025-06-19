@@ -4,18 +4,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 5vw;
     padding-top: 80px;
 }
 
 #collectionList {
-    border: solid;
     height: 80vh;
-    width: 300px;
+    /* width: 300px; */
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+#collectionList button {
+    background-color: var(--myYellow);
+    padding: 8px;
+    border-radius: 8px;
 }
 
 #formDisplay {
-    border: solid;
     height: 80vh;
     width: 60vw;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: var(--myGray);
+    box-shadow: 10px 10px 10px lightgray;
 }
