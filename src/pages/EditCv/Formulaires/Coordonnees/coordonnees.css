@@ -1,0 +1,31 @@
+#coordonneesForm {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#coordonneesForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#coordonneesForm form button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 32px
+}
+
+.formRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 24px;
+}
+
+.formRow input {
+    width: 300px;
+}
