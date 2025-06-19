@@ -11,19 +11,23 @@ import { useState } from "react";
 
 export default function EditCv() {
     const [formActif, setFormActif] = useState("")
-    console.log(formActif)
-  
+
+    function selectForm(e){
+        setFormActif(e.target.id)
+        document.getElementById(e.target.id).classList.toggle('selected')
+    }
+
     return (
     <div id="EditDisplay">
       <div id="collectionList">
-        <button id="Titre" className="btn" onClick={((e)=>setFormActif(e.target.id))}>Titre / Accroche</button>
-        <button id="Coordonnees" className="btn" onClick={(e)=>setFormActif(e.target.id)}>Coordonnées</button>
-        <button id="Experiences" className="btn" onClick={((e)=>setFormActif(e.target.id))}>Expériences</button>
-        <button id="Certifications" className="btn" onClick={((e)=>setFormActif(e.target.id))}>Certifications</button>
-        <button id="Competences" className="btn" onClick={((e)=>setFormActif(e.target.id))}>Compétences</button>
-        <button id="Techno" className="btn" onClick={((e)=>setFormActif(e.target.id))}>Techno / Outils</button>
-        <button id="Interets" className="btn" onClick={((e)=>setFormActif(e.target.id))}>Centres d'intérêts</button>
-        <button id="Langues" className="btn" onClick={((e)=>setFormActif(e.target.id))}>Langues</button>
+        <button id="Titre" className="btn" onClick={selectForm}>Titre / Accroche</button>
+        <button id="Coordonnees" className="btn" onClick={selectForm}>Coordonnées</button>
+        <button id="Experiences" className="btn" onClick={selectForm}>Expériences</button>
+        <button id="Certifications" className="btn" onClick={selectForm}>Certifications</button>
+        <button id="Competences" className="btn" onClick={selectForm}>Compétences</button>
+        <button id="Techno" className="btn" onClick={selectForm}>Techno / Outils</button>
+        <button id="Interets" className="btn" onClick={selectForm}>Centres d'intérêts</button>
+        <button id="Langues" className="btn" onClick={selectForm}>Langues</button>
       </div>
       <div id="formDisplay">
         {formActif === "Titre" && <TitreAccroche />}

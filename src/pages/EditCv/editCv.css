@@ -34,3 +34,8 @@
     background-color: var(--myGray);
     box-shadow: 10px 10px 10px lightgray;
 }
+
+#collectionList button.selected {
+    color: red;
+    background-color: var(--myGray);
+}

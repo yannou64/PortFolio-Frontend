@@ -50,7 +50,7 @@ export default function Cv() {
   return (
     <div className="container">
       <Header username={username} role={role} triggerEditMode={triggerEditMode} editMode={editMode}/>
-      {editMode ? <CvContenu /> : <EditCv />}
+      {!editMode ? <CvContenu /> : <EditCv />}
     </div>
   );
 }
