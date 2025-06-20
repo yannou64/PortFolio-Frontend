@@ -37,11 +37,20 @@ export default function Interets() {
   }
 
   function updateElement(id){
-
+    console.log(`j'update : ${id}`)
   }
 
-  function deleteElement(id){
-
+  async function deleteElement(id){
+    try {
+      const response = await fetch(`${API_URI}/cv/interet/${id}`, {
+        method: "DELETE"
+      })
+      const data = await response.json()
+      if(!response.ok) console.log(data.message)
+    } catch (e) {
+      console.log(`Error to delete : ${e.message}`)
+    }
+    getInterets()
   }
 
   useEffect(() => {
