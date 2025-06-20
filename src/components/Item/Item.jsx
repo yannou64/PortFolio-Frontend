@@ -2,15 +2,15 @@ import "./item.css";
 import { IoTrashBinSharp } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 
-export default function Item({ id, element, updateElement, deleteElement }) {
-  return (
+export default function Item({ item, element, updateElement, deleteElement }) {
+    return (
     <div className="item">
       <div className="item_element">{element}</div>
       <div className="item_actions">
-        <button onClick={()=>updateElement(id)}>
+        <button onClick={() => updateElement(item)}>
           <FaRegEdit />
         </button>
-        <button onClick={()=>deleteElement(id)}>
+        <button onClick={() => deleteElement(item._id)}>
           <IoTrashBinSharp />
         </button>
       </div>
