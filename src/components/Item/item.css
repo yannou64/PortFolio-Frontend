@@ -1,0 +1,13 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item_element{
+    
+}
+
+.item_actions {
+    display: flex;
+    gap: 8px;
+}

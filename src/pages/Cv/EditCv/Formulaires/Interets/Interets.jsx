@@ -1,5 +1,6 @@
 import "./interets.css";
 import { useState, useEffect } from "react";
+import Item from "../../../../../components/Item/Item.jsx";
 
 export default function Interets() {
   const [newInteret, setNewInteret] = useState("");
@@ -35,6 +36,14 @@ export default function Interets() {
     getInterets();
   }
 
+  function updateElement(id){
+
+  }
+
+  function deleteElement(id){
+
+  }
+
   useEffect(() => {
     getInterets();
   }, []);
@@ -52,7 +61,7 @@ export default function Interets() {
         <button className="btn">Add</button>
       </form>
       <div id="interetsList">
-        {interets.map(data => <p key={data._id}>{data.interet}</p>)}
+        {interets.map(data => <Item id={data._id} element={data.interet} updateElement={updateElement} deleteElement={deleteElement}/>)}
       </div>
     </div>
   );
