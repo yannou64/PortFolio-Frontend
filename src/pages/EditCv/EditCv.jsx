@@ -1,5 +1,5 @@
 import "./editCv.css";
-import TitreAccroche from "./Formulaires/TitreAccroche";
+import TitreAccroche from "./Formulaires/TitreAccroche/TitreAccroche";
 import Coordonnees from "./Formulaires/Coordonnees/Coordonnees";
 import Experiences from "./Formulaires/Experiences";
 import Certifications from "./Formulaires/Certifications";

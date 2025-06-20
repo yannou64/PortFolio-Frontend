@@ -1,0 +1,17 @@
+#titreAccrocheForm {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+textarea {
+    height: 200px;
+}
+
+#titreAccrocheForm button{
+    padding-top: 32px
+}

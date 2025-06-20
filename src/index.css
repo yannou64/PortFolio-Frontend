@@ -1,8 +1,12 @@
 :root {
     --myOrange: #CB6042;
+    /* --myOrange: hsl(19, 56%, 40%); */
+    /* --myOrange: #B7410E; */
+    /* --myOrange: #E9967A; */
     --myWhite: #F5F5F5;
     --myGray: #D9D9D9;
     --myYellow: #EEC584;
+    --myIvoiry: #FAEBD7;
 }
 
 * {
