@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header/Header.jsx";
 import "./cv.css";
-import CvContenu from "../CvContenu/CvContenu";
-import EditCv from "../EditCv/EditCv";
+import CvContenu from "../Cv/CvContenu/CvContenu.jsx";
+import EditCv from "../Cv/EditCv/EditCv.jsx";
 import { jwtDecode } from "jwt-decode"
 
 export default function Cv() {

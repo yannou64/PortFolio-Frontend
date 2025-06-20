@@ -34,8 +34,11 @@ export default function EditCv() {
         <button id="Coordonnees" className="btn" onClick={selectForm}>
           Coordonnées
         </button>
-        <button id="Experiences" className="btn" onClick={selectForm}>
-          Expériences
+        <button id="Interets" className="btn" onClick={selectForm}>
+          Centres d'intérêts
+        </button>
+        <button id="Langues" className="btn" onClick={selectForm}>
+          Langues
         </button>
         <button id="Certifications" className="btn" onClick={selectForm}>
           Certifications
@@ -46,22 +49,19 @@ export default function EditCv() {
         <button id="Techno" className="btn" onClick={selectForm}>
           Techno / Outils
         </button>
-        <button id="Interets" className="btn" onClick={selectForm}>
-          Centres d'intérêts
-        </button>
-        <button id="Langues" className="btn" onClick={selectForm}>
-          Langues
+        <button id="Experiences" className="btn" onClick={selectForm}>
+          Expériences
         </button>
       </div>
       <div id="formDisplay">
         {formActif === "Titre" && <TitreAccroche />}
         {formActif === "Coordonnees" && <Coordonnees />}
-        {formActif === "Experiences" && <Experiences />}
         {formActif === "Certifications" && <Certifications />}
         {formActif === "Competences" && <Competences />}
         {formActif === "Techno" && <Techno />}
         {formActif === "Interets" && <Interets />}
         {formActif === "Langues" && <Langues />}
+        {formActif === "Experiences" && <Experiences />}
       </div>
     </div>
   );
