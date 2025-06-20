@@ -5,7 +5,7 @@ import Experiences from "./Formulaires/Experiences";
 import Certifications from "./Formulaires/Certifications";
 import Competences from "./Formulaires/Competences";
 import Techno from "./Formulaires/Techno";
-import Interets from "./Formulaires/Interets";
+import Interets from "./Formulaires/Interets/Interets";
 import Langues from "./Formulaires/Langues";
 import { useState } from "react";
 

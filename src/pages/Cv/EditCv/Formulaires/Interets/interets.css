@@ -1,0 +1,25 @@
+#interetsContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+}
+
+#interetsForm {
+  height: 90%;
+  width: 47%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#interetsList {
+  height: 90%;
+  width: 47%;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: var(--myWhite);
+}
