@@ -27,8 +27,8 @@ export default function Header({username, role, triggerEditMode, editMode}){
     return(
         <header>
             <EditBtn role={role} editMode={editMode} triggerEditMode={triggerEditMode}/>
-            <h1 className="text-white text-2xl">{username}</h1>
-            <button onClick={logout}>Logout</button>
+            <h1>{username}</h1>
+            <button className="btn" onClick={logout}>Logout</button>
         </header>
     )
 }

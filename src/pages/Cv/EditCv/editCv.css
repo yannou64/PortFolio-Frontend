@@ -21,7 +21,7 @@
 }
 
 #collectionList button {
-    background-color: var(--myYellow);
+    background-color: var(--myWhite);
     padding: 8px;
     border-radius: 8px;
     width: 200px;
@@ -32,8 +32,8 @@
     width: 60vw;
     border-radius: 16px;
     padding: 16px;
-    background-color: var(--myIvoiry);
-    box-shadow: 0px 10px 10px lightgray;
+    background-color: var(--myWhite);
+    box-shadow: 5px 5px 10px lightgray;
 }
 
 #collectionList button.selected {

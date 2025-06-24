@@ -1,12 +1,12 @@
 import "./editCv.css";
-import TitreAccroche from "./Formulaires/TitreAccroche/TitreAccroche";
-import Coordonnees from "./Formulaires/Coordonnees/Coordonnees";
-import Experiences from "./Formulaires/Experiences";
-import Certifications from "./Formulaires/Certifications";
-import Competences from "./Formulaires/Competences";
-import Techno from "./Formulaires/Techno";
-import Interets from "./Formulaires/Interets/Interets";
-import Langues from "./Formulaires/Langues";
+import TitreAccroche from "./Formulaires/TitreAccroche/TitreAccroche.jsx";
+import Coordonnees from "./Formulaires/Coordonnees/Coordonnees.jsx";
+import Experiences from "./Formulaires/Experiences/Experiences.jsx";
+import Certifications from "./Formulaires/Certications/Certifications.jsx";
+import Competences from "./Formulaires/Competences/Competences.jsx";
+import Techno from "./Formulaires/Technos/Techno.jsx";
+import Interets from "./Formulaires/Interets/Interets.jsx";
+import Langues from "./Formulaires/Langues/Langues.jsx"
 import { useState } from "react";
 
 export default function EditCv() {
