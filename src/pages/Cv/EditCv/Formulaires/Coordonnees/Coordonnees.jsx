@@ -1,4 +1,4 @@
-import "./coordonnees.css";
+import "./coordonnees.scss";
 import { useState, useEffect } from "react";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdAlternateEmail } from "react-icons/md";

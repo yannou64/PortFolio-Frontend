@@ -1,3 +1,5 @@
+@use "../../../../../variables";
+
 #titreAccrocheForm {
   height: 100%;
   width: 100%;
@@ -6,12 +8,13 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
+  
+  button{
+      padding-top: 32px
+  }
 }
+
 
 textarea {
     height: 200px;
-}
-
-#titreAccrocheForm button{
-    padding-top: 32px
 }

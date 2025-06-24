@@ -1,4 +1,4 @@
-import "./titreAccroche.css";
+import "./titreAccroche.scss";
 import { useState, useEffect } from "react";
 import { GrUpdate } from "react-icons/gr";
 

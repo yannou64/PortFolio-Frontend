@@ -1,4 +1,4 @@
-import "./interets.css";
+import "./interets.scss";
 import { useState, useEffect } from "react";
 import Item from "../../../../../components/Item/Item.jsx";
 

@@ -1,4 +1,4 @@
-import "./item.css";
+import "./item.scss";
 import { IoTrashBinSharp } from "react-icons/io5";
 import { FaRegEdit } from "react-icons/fa";
 

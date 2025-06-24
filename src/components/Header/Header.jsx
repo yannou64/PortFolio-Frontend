@@ -1,4 +1,4 @@
-import "./header.css"
+import "./header.scss"
 import { useNavigate } from "react-router-dom"
 import EditBtn from "./EditBtn/EditBtn.jsx"
 

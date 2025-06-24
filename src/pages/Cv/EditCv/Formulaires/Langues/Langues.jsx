@@ -1,6 +1,6 @@
 import Item from "../../../../../components/Item/Item.jsx";
 import { useState, useEffect } from "react";
-import "./langues.css"
+import "./langues.scss"
 
 export default function Langues() {
   const API_URL = import.meta.env.VITE_API_URL;

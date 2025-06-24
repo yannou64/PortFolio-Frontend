@@ -1,4 +1,4 @@
-import "./cvContenu.css";
+import "./cvContenu.scss";
 import photo from "../../../assets/photoIdentite.png";
 import { useEffect, useState } from "react";
 import { FaPhoneVolume } from "react-icons/fa6";
@@ -10,7 +10,6 @@ import { MdOutlineWhereToVote } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaInternetExplorer } from "react-icons/fa6";
-import { GrUpdate } from "react-icons/gr";
 
 export default function CvContenu() {
   const API_URL = import.meta.env.VITE_API_URL;

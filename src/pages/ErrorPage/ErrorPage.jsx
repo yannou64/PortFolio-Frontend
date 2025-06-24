@@ -1,5 +1,5 @@
 import { useParams, useNavigate} from "react-router-dom"
-import "./errorPage.css"
+import "./errorPage.scss"
 
 export default function ErrorPage(){
     const {error} = useParams()
