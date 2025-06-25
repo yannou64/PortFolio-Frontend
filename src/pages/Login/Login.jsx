@@ -25,15 +25,12 @@ export default function Register() {
 
       // récupérer les données
       const data = await response.json();
-
       if (!response.ok) return navigate(`/ErrorPage/${data.message}`);
 
-      // Stocker les datas dans le localstorage
-      localStorage.setItem("username", data.username);
-      
-
       // Rediriger vers la page du cv
+      console.log(data.message)
       navigate("/cv");
+
     } catch (e) {
       console.log("Erreur lors du fetch login : ", e.message);
     }
@@ -61,7 +58,6 @@ export default function Register() {
           Se connecter
         </button>
       </form>
-      <Link to="/register">Register</Link>
     </div>
   );
 }

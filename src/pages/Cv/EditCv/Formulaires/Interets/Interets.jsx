@@ -1,6 +1,6 @@
 import "./interets.scss";
 import { useState, useEffect } from "react";
-import Item from "../../../../../components/Item/Item.jsx";
+import Item from "../../components/Item/Item.jsx";
 
 export default function Interets() {
   const [interet, setInteret] = useState("");

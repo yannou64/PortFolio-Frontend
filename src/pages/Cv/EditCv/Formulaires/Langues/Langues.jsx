@@ -1,6 +1,6 @@
-import Item from "../../../../../components/Item/Item.jsx";
+import Item from "../../components/Item/Item.jsx";
 import { useState, useEffect } from "react";
-import "./langues.scss"
+import "./langues.scss";
 
 export default function Langues() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -98,12 +98,12 @@ export default function Langues() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({langue, level}),
+        body: JSON.stringify({ langue, level }),
       });
       const data = await response.json();
       if (response.ok) {
         getData();
-        setUpdateMode(false)
+        setUpdateMode(false);
         console.log(data.message);
       } else {
         console.log(data.message);

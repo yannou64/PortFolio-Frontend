@@ -1,32 +1,82 @@
 @use "../../variables";
 
-header {
-    width: 100%;
-    height: 80px;
+header.adminStyle {
+  width: 100%;
+  height: 80px;
+  background-color: variables.$myWhite;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 72px;
+  color: variables.$myOrange;
+  border-bottom: 10px solid variables.$myOrange;
+  padding: 0px 32px;
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  button {
+    height: 60%;
+    width: 120px;
     background-color: variables.$myWhite;
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 72px;
+    border-radius: 10px;
     color: variables.$myOrange;
-    border-bottom: 10px solid variables.$myOrange;
+  }
 
-    h1 {
-        font-size: 2em;
-        font-weight: bold;
+  ul {
+    display: flex;
+    gap: 16px;
+    .icone {
+      color: variables.$myOrange;
     }
+  }
 
-    button {
-        height: 60%;
-        width: 120px;
-        background-color: variables.$myWhite;
-        border-radius: 10px;
-        color: variables.$myOrange;
-    }
+  .btn {
+    box-shadow: -5px 5px 5px variables.$myLightGray;
+  }
 }
 
-.btn{
+header {
+  width: 100%;
+  height: 80px;
+  background-color: variables.$myOrange;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 72px;
+  color: variables.$myWhite;
+  border-bottom: 10px solid variables.$myOrange;
+  padding: 0px 40px;
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  button {
+    height: 60%;
+    width: 120px;
+    background-color: variables.$myWhite;
+    border-radius: 10px;
+    color: variables.$myOrange;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    .icone {
+      color: variables.$myWhite;
+    }
+  }
+
+  .btn {
     box-shadow: -5px 5px 5px variables.$myLightGray;
+  }
 }

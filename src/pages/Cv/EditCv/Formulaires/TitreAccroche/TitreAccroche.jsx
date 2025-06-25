@@ -75,6 +75,7 @@ export default function TitreAccroche() {
         placeholder="Titre"
       />
       <textarea
+      wrap="soft"
         value={accroche}
         onChange={(e) => setAccroche(e.target.value)}
         className="input"
