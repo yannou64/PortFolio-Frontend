@@ -11,7 +11,7 @@ export default function Interets() {
 
   async function getInterets() {
     try {
-      const response = await fetch(`${API_URI}/cv/interets`);
+      const response = await fetch(`${API_URI}/api/cv/interets`);
       const data = await response.json();
       setInterets(data.data);
     } catch (e) {
@@ -22,7 +22,7 @@ export default function Interets() {
   async function addNewSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URI}/cv/newInteret`, {
+      const response = await fetch(`${API_URI}/api/cv/interets`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function Interets() {
     setUpdateMode(true);
 
     try {
-      const response = await fetch(`${API_URI}/cv/interet/${element._id}`);
+      const response = await fetch(`${API_URI}/api/cv/interets/${element._id}`);
       // On récupère les données à hydrater
       const data = await response.json();
       // On hydrate les données
@@ -55,7 +55,7 @@ export default function Interets() {
 
   async function deleteElement(id) {
     try {
-      const response = await fetch(`${API_URI}/cv/interet/${id}`, {
+      const response = await fetch(`${API_URI}/api/cv/interets/${id}`, {
         method: "DELETE",
       });
       const data = await response.json();
@@ -69,7 +69,7 @@ export default function Interets() {
   async function updateSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URI}/cv/interet/${updateInteretId}`, {
+      const response = await fetch(`${API_URI}/api/cv/interets/${updateInteretId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

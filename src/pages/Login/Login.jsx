@@ -11,7 +11,7 @@ export default function Register() {
     e.preventDefault();
     try {
       // Envoyer les donnée à l'api
-      const response = await fetch("http://localhost:3444/auth/login", {
+      const response = await fetch("http://localhost:3444/api/auth/login", {
         method: "POST",
         credentials: "include",
         headers: {

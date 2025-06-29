@@ -28,14 +28,13 @@ export default function Coordonnees() {
   async function fetchInitialDatas() {
     // On récupère les données de la base de donnée
     try {
-      const response = await fetch(`${API_URL}/cv/coordonnees`);
+      const response = await fetch(`${API_URL}/api/cv/coordonnees`);
       const data = await response.json();
       if (!response.ok) {
         console.log(data.message);
         return;
       }
       setId(data.data._id);
-      console.log(data.data._id);
       setNumberPhone(data.data.numberPhone || "");
       setEmail(data.data.email || "");
       setBirthday(data.data.birthday || "");
@@ -53,7 +52,7 @@ export default function Coordonnees() {
   // Fetch update
   async function fetchUpdateDatas() {
     try {
-      const response = await fetch(`${API_URL}/cv/coordonnees/${id}`, {
+      const response = await fetch(`${API_URL}/api/cv/coordonnees/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

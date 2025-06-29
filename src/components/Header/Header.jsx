@@ -19,7 +19,7 @@ export default function Header({menuChoice}) {
 
   async function logout() {
     try {
-      const response = await fetch("http://localhost:3444/auth/logout", {
+      const response = await fetch("http://localhost:3444/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });
