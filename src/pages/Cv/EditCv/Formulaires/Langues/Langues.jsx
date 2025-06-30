@@ -140,7 +140,7 @@ export default function Langues() {
       </form>
       <div id="langList">
         {allLangue.map((item) => (
-          <Item item={item} element={item.langue} updateElement={updateElement} deleteElement={deleteElement} />
+          <Item key={item._id} item={item} element={item.langue} updateElement={updateElement} deleteElement={deleteElement} />
         ))}
       </div>
     </div>
