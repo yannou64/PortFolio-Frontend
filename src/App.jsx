@@ -4,6 +4,8 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import ProjetPortfolio from "./pages/ProjetPortfolio";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import Contact from "./pages/Contact/Contact";
+import Remerciement from "./pages/Remerciement/Remerciement";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cv" element={<ProjetPortfolio />} />
         <Route path="/ErrorPage/:error" element={<ErrorPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact/remerciement" element={<Remerciement />} />
       </Routes>
     </BrowserRouter>
   );

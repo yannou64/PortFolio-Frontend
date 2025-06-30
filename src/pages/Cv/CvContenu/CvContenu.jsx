@@ -70,6 +70,16 @@ export default function CvContenu() {
 
   return (
     <div id="cvContainer">
+      <div id="columnLeft">contenu left</div>
+      <div id="blocCenter">
+        <div id="categories">
+          <button className="btn btn_categorie">Experiences</button>
+          <button className="btn btn_categorie">Compétences</button>
+          <button className="btn btn_categorie">Techno /outils</button>
+          <button className="btn btn_categorie">Certifications</button>
+        </div>
+        <div id="infosCategorie"></div>
+      </div>
       <div id="columnRight">
         <img id="photoIdentite" src={photo} alt="photo d'identité" />
         <div id="coordonnees">
@@ -136,7 +146,6 @@ export default function CvContenu() {
           </ul>
         </div>
       </div>
-      <div id="blocCenter"></div>
     </div>
   );
 }

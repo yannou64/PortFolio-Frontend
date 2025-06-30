@@ -2,7 +2,7 @@
 
 header.adminStyle {
   width: 100%;
-  height: 80px;
+  height: variables.$headerHeight;
   background-color: variables.$myWhite;
   position: absolute;
   top: 0;
@@ -42,7 +42,7 @@ header.adminStyle {
 
 header {
   width: 100%;
-  height: 80px;
+  height: variables.$headerHeight;
   background-color: variables.$myOrange;
   position: absolute;
   top: 0;

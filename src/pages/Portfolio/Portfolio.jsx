@@ -1,7 +1,10 @@
+import avatar from "../../assets/avatar.png"
+
 export default function Portfolio(){
     return (
         <div>
-            <p>Mon futur portfolio</p>
+
+            <img src={avatar} alt="Mon avatar" />
         </div>
     )
 }

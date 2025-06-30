@@ -1,23 +1,28 @@
 @use "../../../variables";
 
+$btnHeigthCategory: 75px;
+$paddingTopBottomContenuCV: 16px;
+$cvBorderRadius: 10px;
+
 #cvContainer {
   width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   font-size: 0.8em;
+  border: solid red;
 
   #columnRight {
-    background-color: lightgray;
-    height: 80vh;
-    border-radius: variables.$cvBorderRadius;
-    margin-top: 80px;
+    border-radius: $cvBorderRadius;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 16px;
-    gap: 48px;
+    padding: $paddingTopBottomContenuCV 0;
+    gap: 40px;
     font-size: 0.8em;
+    border: solid;
+    margin-top: variables.$headerHeight;
 
     h2 {
       margin-bottom: 8px;
@@ -52,5 +57,38 @@
         }
       }
     }
+  }
+
+  #blocCenter {
+    width: 800px;
+    border: solid;
+    margin-top: variables.$headerHeight;
+    display: flex;
+    flex-direction: column;
+
+    #categories {
+      height: calc($btnHeigthCategory + $paddingTopBottomContenuCV*2);
+      border: solid;
+      display: flex;
+      justify-content: space-between;
+      margin-top: $paddingTopBottomContenuCV;
+
+      .btn_categorie{
+        width: 23%;
+        height: $btnHeigthCategory;
+      }
+    }
+
+    #infosCategorie{
+      border: solid red;
+      height: 100%;
+    }
+    
+  }
+
+  #columnLeft {
+    width: 400px;
+    border: solid;
+    margin-top: variables.$headerHeight;
   }
 }

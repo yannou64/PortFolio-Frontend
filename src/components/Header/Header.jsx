@@ -23,8 +23,10 @@ export default function Header({menuChoice}) {
         method: "POST",
         credentials: "include",
       });
-      const data = await response.json();
-      if (!response.ok) return navigate(`/ErrorPage/${data.message}`);
+      if (!response.ok){
+        const data = await response.json();
+        return navigate(`/ErrorPage/${data.message}`);
+      }
       setRole("");
       setUsername("");
       menuChoice("")
@@ -47,7 +49,7 @@ export default function Header({menuChoice}) {
   }, [refresh]);
 
   return (
-    <header className={role === "admin" && "adminStyle"}>
+    <header className={role === "admin" ? "adminStyle" : undefined}>
       <h1 onDoubleClick={() => navigate("/login")}>Yannick Biot</h1>
       <nav>
         <ul>
