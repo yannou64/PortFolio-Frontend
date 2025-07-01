@@ -9,31 +9,28 @@ export default function Certifications() {
   const [isUpdateMode, setIsUpdateMode] = useState(false);
   const [allCertifications, setAllCertifications] = useState([]);
   const [title, setTitle] = useState("");
-  const [urlImage, setUrlImage] = useState("");
   const [categorie, setCategorie] = useState("");
   const [dateObtention, setDateObtention] = useState("");
   const [lieu, setLieu] = useState("");
   const [organisme, setOrganisme] = useState("");
-  const [imageFile, setImageFile] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
   const [imageAperçu, setImageAperçu] = useState("");
 
   async function addCertification(e) {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("imageUrl", imageUrl);
+    formData.append("categorie", categorie);
+    formData.append("dateObtention", dateObtention);
+    formData.append("lieu", lieu);
+    formData.append("organisme", organisme);
+
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications`, {
         method: "POST",
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          urlImage,
-          categorie,
-          dateObtention,
-          lieu,
-          organisme,
-        }),
+        body: formData,
       });
       const data = await response.json();
       if (!response.ok) {
@@ -41,7 +38,7 @@ export default function Certifications() {
       }
       console.log("Certification create");
       setTitle("");
-      setUrlImage("");
+      setImageUrl(null);
       setCategorie("");
       setDateObtention("");
       setLieu("");
@@ -72,7 +69,6 @@ export default function Certifications() {
       });
       const data = await response.json();
       setTitle(data.data.title);
-      setUrlImage(data.data.urlImage);
       setCategorie(data.data.categorie);
       // formattage de la date pour pouvoir l'afficher
       const date = new Date(data.data.dateObtention);
@@ -82,6 +78,12 @@ export default function Certifications() {
       setOrganisme(data.data.organisme);
       setIsUpdateMode(true);
       setIdCompetenceToUpdate(element._id);
+
+      setImageUrl(data.data.urlImage); 
+      setImageAperçu(`${import.meta.env.VITE_API_URL}/${imageUrl}`)
+
+      console.log(data.data)
+
     } catch (e) {
       console.log(`Error in getCertification : ${e.message}`);
     }
@@ -104,26 +106,23 @@ export default function Certifications() {
 
   async function updateCertification(e) {
     e.preventDefault();
+    const formData = new FormData()
+    formData.append("title", title)
+    formData.append("categorie", categorie)
+    formData.append("dateObtention", dateObtention)
+    formData.append("lieu", lieu)
+    formData.append("organisme", organisme)
+    formData.append("imageUrl", imageUrl)
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${idCompetenceToUpdate}`, {
         method: "PUT",
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          urlImage,
-          categorie,
-          dateObtention,
-          lieu,
-          organisme,
-        }),
+        body: formData
       });
       const data = await response.json();
       if (!response.ok) return console.log("Erreur dans fetch de updateCertification : ", data.message);
       setTitle("");
-      setUrlImage("");
+      setImageUrl(null);
       setCategorie("");
       setDateObtention("");
       setLieu("");
@@ -131,25 +130,28 @@ export default function Certifications() {
       setIsUpdateMode(false);
       setIdCompetenceToUpdate("");
       getAllCertifications();
+      
     } catch (e) {
       console.log(`Erreur dans front updateCertification : ${e.message}`);
     }
   }
 
   useEffect(() => {
-    let objectUrl;
-    if (imageFile) {
-      objectUrl = URL.createObjectURL(imageFile);
-      setImageAperçu(objectUrl);
-    } else {
-      setImageAperçu("");
+  let objectUrl;
+  if (imageUrl instanceof File || imageUrl instanceof Blob) {
+    objectUrl = URL.createObjectURL(imageUrl);
+    setImageAperçu(objectUrl);
+  } else if (typeof imageUrl === "string" && imageUrl !== "") {
+    setImageAperçu(`${import.meta.env.VITE_API_URL}/${imageUrl}`);
+  } else {
+    setImageAperçu("");
+  }
+  return () => {
+    if (objectUrl) {
+      URL.revokeObjectURL(objectUrl);
     }
-    return () => {
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
-      }
-    };
-  }, [imageFile]);
+  };
+}, [imageUrl]);
 
   useEffect(() => {
     getAllCertifications();
@@ -172,11 +174,11 @@ export default function Certifications() {
             className="btn_upload"
             type="file"
             accept="image/*"
-            onChange={(e) => setImageFile(e.target.files[0])}
+            onChange={(e) => setImageUrl(e.target.files[0])}
             hidden
           />
-          <label for="imgCompetence">
-            <FaFileDownload size={40} color="gray"/>
+          <label htmlFor="imgCompetence">
+            <FaFileDownload size={40} color="gray" />
           </label>
           <div className="img_container">
             <img src={imageAperçu ? imageAperçu : urlImageDefault} alt="Image certification" />

@@ -26,11 +26,12 @@
     border-radius: 8px;
     width: 200px;
     
-    .selected {
-      color: variables.$myWhite;
-      background-color: variables.$myOrange;
+    &.btn.selected {
+      color: variables.$myOrange;
     }
+    
   }
+  
 }
 
 #formDisplay {
