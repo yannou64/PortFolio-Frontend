@@ -1,6 +1,8 @@
 import "./certifications.scss";
 import { useState, useEffect } from "react";
 import Item from "../../components/Item/Item";
+import urlImageDefault from "../../../../../assets/noImage.jpg";
+import { FaFileDownload } from "react-icons/fa";
 
 export default function Certifications() {
   const [idCompetenceToUpdate, setIdCompetenceToUpdate] = useState("");
@@ -12,6 +14,8 @@ export default function Certifications() {
   const [dateObtention, setDateObtention] = useState("");
   const [lieu, setLieu] = useState("");
   const [organisme, setOrganisme] = useState("");
+  const [imageFile, setImageFile] = useState("");
+  const [imageAperçu, setImageAperçu] = useState("");
 
   async function addCertification(e) {
     e.preventDefault();
@@ -63,7 +67,9 @@ export default function Certifications() {
 
   async function getCertification(element) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${element._id}`, {credentials: "include"});
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${element._id}`, {
+        credentials: "include",
+      });
       const data = await response.json();
       setTitle(data.data.title);
       setUrlImage(data.data.urlImage);
@@ -131,6 +137,21 @@ export default function Certifications() {
   }
 
   useEffect(() => {
+    let objectUrl;
+    if (imageFile) {
+      objectUrl = URL.createObjectURL(imageFile);
+      setImageAperçu(objectUrl);
+    } else {
+      setImageAperçu("");
+    }
+    return () => {
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+    };
+  }, [imageFile]);
+
+  useEffect(() => {
     getAllCertifications();
   }, []);
 
@@ -145,15 +166,21 @@ export default function Certifications() {
           placeholder="nom de la certification"
           required
         />
-        <input
-          type="text"
-          className="input"
-          onChange={(e) => setUrlImage(e.target.value)}
-          value={urlImage}
-          placeholder="url de l'image"
-        />
-        <div className="img_container">
-          <img />
+        <div className="row_img">
+          <input
+            id="imgCompetence"
+            className="btn_upload"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageFile(e.target.files[0])}
+            hidden
+          />
+          <label for="imgCompetence">
+            <FaFileDownload size={40} color="gray"/>
+          </label>
+          <div className="img_container">
+            <img src={imageAperçu ? imageAperçu : urlImageDefault} alt="Image certification" />
+          </div>
         </div>
         <select onChange={(e) => setCategorie(e.target.value)} value={categorie}>
           <option value="" disabled>
@@ -180,21 +207,33 @@ export default function Certifications() {
         <button className="btn">{isUpdateMode ? "Update" : "Add"}</button>
       </form>
       <div id="certificationsList">
-         <p>-- Mes Diplômes --</p>
+        <p>-- Mes Diplômes --</p>
         <ul>
           {allCertifications
-          .filter(item => item.categorie === "Diplôme")
-          .map((item) => (
-            <Item item={item} element={item.title} updateElement={getCertification} deleteElement={deleteElement} />
-          ))}
+            .filter((item) => item.categorie === "Diplôme")
+            .map((item) => (
+              <Item
+                key={item._id}
+                item={item}
+                element={item.title}
+                updateElement={getCertification}
+                deleteElement={deleteElement}
+              />
+            ))}
         </ul>
         <p>-- Mes Certifications --</p>
         <ul>
           {allCertifications
-          .filter(item => item.categorie === "Certification")
-          .map((item) => (
-            <Item item={item} element={item.title} updateElement={getCertification} deleteElement={deleteElement} />
-          ))}
+            .filter((item) => item.categorie === "Certification")
+            .map((item) => (
+              <Item
+                key={item._id}
+                item={item}
+                element={item.title}
+                updateElement={getCertification}
+                deleteElement={deleteElement}
+              />
+            ))}
         </ul>
       </div>
     </div>
