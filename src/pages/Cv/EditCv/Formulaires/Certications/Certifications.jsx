@@ -18,6 +18,7 @@ export default function Certifications() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -62,7 +63,7 @@ export default function Certifications() {
 
   async function getCertification(element) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${element._id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${element._id}`, {credentials: "include"});
       const data = await response.json();
       setTitle(data.data.title);
       setUrlImage(data.data.urlImage);
@@ -83,6 +84,7 @@ export default function Certifications() {
   async function deleteElement(id) {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${id}`, {
+        credentials: "include",
         method: "DELETE",
       });
       const data = await response.json();
@@ -99,6 +101,7 @@ export default function Certifications() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${idCompetenceToUpdate}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -177,8 +180,19 @@ export default function Certifications() {
         <button className="btn">{isUpdateMode ? "Update" : "Add"}</button>
       </form>
       <div id="certificationsList">
+         <p>-- Mes Diplômes --</p>
         <ul>
-          {allCertifications.map((item) => (
+          {allCertifications
+          .filter(item => item.categorie === "Diplôme")
+          .map((item) => (
+            <Item item={item} element={item.title} updateElement={getCertification} deleteElement={deleteElement} />
+          ))}
+        </ul>
+        <p>-- Mes Certifications --</p>
+        <ul>
+          {allCertifications
+          .filter(item => item.categorie === "Certification")
+          .map((item) => (
             <Item item={item} element={item.title} updateElement={getCertification} deleteElement={deleteElement} />
           ))}
         </ul>

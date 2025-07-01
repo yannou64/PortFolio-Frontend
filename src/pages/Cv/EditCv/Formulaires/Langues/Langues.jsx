@@ -34,6 +34,7 @@ export default function Langues() {
     try {
       const response = await fetch(`${API_URL}/api/cv/langues`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -57,6 +58,7 @@ export default function Langues() {
     try {
       const response = await fetch(`${API_URL}/api/cv/langues/${id}`, {
         method: "DELETE",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -75,7 +77,7 @@ export default function Langues() {
 
   async function updateElement(element) {
     try {
-      const response = await fetch(`${API_URL}/api/cv/langues/${element._id}`);
+      const response = await fetch(`${API_URL}/api/cv/langues/${element._id}`, {credentials: "include",});
       const data = await response.json();
       if (response.ok) {
         setLangue(element.langue);
@@ -95,6 +97,7 @@ export default function Langues() {
     try {
       const response = await fetch(`${API_URL}/api/cv/langues/${langueToUpdate._id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

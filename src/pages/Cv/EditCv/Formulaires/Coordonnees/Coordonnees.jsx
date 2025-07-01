@@ -54,6 +54,7 @@ export default function Coordonnees() {
     try {
       const response = await fetch(`${API_URL}/api/cv/coordonnees/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

@@ -24,6 +24,7 @@ export default function Interets() {
     try {
       const response = await fetch(`${API_URI}/api/cv/interets`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,7 +43,7 @@ export default function Interets() {
     setUpdateMode(true);
 
     try {
-      const response = await fetch(`${API_URI}/api/cv/interets/${element._id}`);
+      const response = await fetch(`${API_URI}/api/cv/interets/${element._id}`, {credentials: "include"});
       // On récupère les données à hydrater
       const data = await response.json();
       // On hydrate les données
@@ -57,6 +58,7 @@ export default function Interets() {
     try {
       const response = await fetch(`${API_URI}/api/cv/interets/${id}`, {
         method: "DELETE",
+        credentials: "include",
       });
       const data = await response.json();
       if (!response.ok) console.log(data.message);
@@ -71,6 +73,7 @@ export default function Interets() {
     try {
       const response = await fetch(`${API_URI}/api/cv/interets/${updateInteretId}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

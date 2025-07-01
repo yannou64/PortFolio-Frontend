@@ -30,6 +30,7 @@ export default function TitreAccroche() {
     try {
       const response = await fetch(`${URI_API}/api/cv/titreAccroche/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

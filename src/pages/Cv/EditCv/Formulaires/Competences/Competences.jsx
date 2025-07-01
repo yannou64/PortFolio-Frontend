@@ -30,6 +30,7 @@ export default function Competences() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -55,7 +56,7 @@ export default function Competences() {
   // Supprimer
   async function deleteElement(id) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${id}`, { method: "DELETE" });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${id}`, { method: "DELETE", credentials: "include" });
       const data = await response.json();
       if (!response.ok) return console.log(data.message);
       getAllCompetence();
@@ -68,7 +69,7 @@ export default function Competences() {
   async function getElement(element) {
     try {
       console.log(element._id);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${element._id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${element._id}`, {credentials: "include"});
       const data = await response.json();
       console.log(data);
       if (!response.ok) return console.log("Mauvais retour du backend");
@@ -86,6 +87,7 @@ export default function Competences() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${competenceToChange._id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
