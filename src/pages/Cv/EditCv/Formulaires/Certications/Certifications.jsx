@@ -160,6 +160,8 @@ export default function Certifications() {
   return (
     <div id="certificationsContainer">
       <form id="certificationsForm" onSubmit={isUpdateMode ? updateCertification : addCertification}>
+
+        {/* champ title */}
         <input
           type="text"
           className="input"
@@ -168,6 +170,8 @@ export default function Certifications() {
           placeholder="nom de la certification"
           required
         />
+
+         {/* champ image */}
         <div className="row_img">
           <input
             id="imgCompetence"
@@ -184,14 +188,20 @@ export default function Certifications() {
             <img src={imageAperçu ? imageAperçu : urlImageDefault} alt="Image certification" />
           </div>
         </div>
+
+         {/* champ categorie */}
         <select onChange={(e) => setCategorie(e.target.value)} value={categorie}>
           <option value="" disabled>
-            --choisir--
+            --categorie--
           </option>
           <option value="Diplôme">Diplôme</option>
           <option value="Certification">Certification</option>
         </select>
+
+         {/* champ dateObtention */}
         <input type="date" className="input" onChange={(e) => setDateObtention(e.target.value)} value={dateObtention} />
+        
+         {/* champ lieu */}
         <input
           type="text"
           className="input"
@@ -199,6 +209,8 @@ export default function Certifications() {
           value={lieu}
           placeholder="Lieu d'obtention"
         />
+
+        {/* champ organisme */}
         <input
           type="text"
           className="input"
@@ -206,8 +218,12 @@ export default function Certifications() {
           value={organisme}
           placeholder="Organisme de certification"
         />
+
+         {/* Boutton de soumission */}
         <button className="btn">{isUpdateMode ? "Update" : "Add"}</button>
       </form>
+
+      {/* Liste des certication déjà enregistré dans la bdd */}
       <div id="certificationsList">
         <p>-- Mes Diplômes --</p>
         <ul>
