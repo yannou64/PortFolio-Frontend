@@ -79,11 +79,10 @@ export default function Certifications() {
       setIsUpdateMode(true);
       setIdCompetenceToUpdate(element._id);
 
-      setImageUrl(data.data.urlImage); 
-      setImageAperçu(`${import.meta.env.VITE_API_URL}/${imageUrl}`)
+      setImageUrl(data.data.urlImage);
+      setImageAperçu(`${import.meta.env.VITE_API_URL}/${imageUrl}`);
 
-      console.log(data.data)
-
+      console.log(data.data);
     } catch (e) {
       console.log(`Error in getCertification : ${e.message}`);
     }
@@ -106,18 +105,18 @@ export default function Certifications() {
 
   async function updateCertification(e) {
     e.preventDefault();
-    const formData = new FormData()
-    formData.append("title", title)
-    formData.append("categorie", categorie)
-    formData.append("dateObtention", dateObtention)
-    formData.append("lieu", lieu)
-    formData.append("organisme", organisme)
-    formData.append("imageUrl", imageUrl)
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("categorie", categorie);
+    formData.append("dateObtention", dateObtention);
+    formData.append("lieu", lieu);
+    formData.append("organisme", organisme);
+    formData.append("imageUrl", imageUrl);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${idCompetenceToUpdate}`, {
         method: "PUT",
         credentials: "include",
-        body: formData
+        body: formData,
       });
       const data = await response.json();
       if (!response.ok) return console.log("Erreur dans fetch de updateCertification : ", data.message);
@@ -130,28 +129,27 @@ export default function Certifications() {
       setIsUpdateMode(false);
       setIdCompetenceToUpdate("");
       getAllCertifications();
-      
     } catch (e) {
       console.log(`Erreur dans front updateCertification : ${e.message}`);
     }
   }
 
   useEffect(() => {
-  let objectUrl;
-  if (imageUrl instanceof File || imageUrl instanceof Blob) {
-    objectUrl = URL.createObjectURL(imageUrl);
-    setImageAperçu(objectUrl);
-  } else if (typeof imageUrl === "string" && imageUrl !== "") {
-    setImageAperçu(`${import.meta.env.VITE_API_URL}/${imageUrl}`);
-  } else {
-    setImageAperçu("");
-  }
-  return () => {
-    if (objectUrl) {
-      URL.revokeObjectURL(objectUrl);
+    let objectUrl;
+    if (imageUrl instanceof File || imageUrl instanceof Blob) {
+      objectUrl = URL.createObjectURL(imageUrl);
+      setImageAperçu(objectUrl);
+    } else if (typeof imageUrl === "string" && imageUrl !== "") {
+      setImageAperçu(`${import.meta.env.VITE_API_URL}/${imageUrl}`);
+    } else {
+      setImageAperçu("");
     }
-  };
-}, [imageUrl]);
+    return () => {
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+    };
+  }, [imageUrl]);
 
   useEffect(() => {
     getAllCertifications();
@@ -160,7 +158,6 @@ export default function Certifications() {
   return (
     <div id="certificationsContainer">
       <form id="certificationsForm" onSubmit={isUpdateMode ? updateCertification : addCertification}>
-
         {/* champ title */}
         <input
           type="text"
@@ -171,7 +168,7 @@ export default function Certifications() {
           required
         />
 
-         {/* champ image */}
+        {/* champ image */}
         <div className="row_img">
           <input
             id="imgCompetence"
@@ -189,7 +186,7 @@ export default function Certifications() {
           </div>
         </div>
 
-         {/* champ categorie */}
+        {/* champ categorie */}
         <select onChange={(e) => setCategorie(e.target.value)} value={categorie}>
           <option value="" disabled>
             --categorie--
@@ -198,10 +195,10 @@ export default function Certifications() {
           <option value="Certification">Certification</option>
         </select>
 
-         {/* champ dateObtention */}
+        {/* champ dateObtention */}
         <input type="date" className="input" onChange={(e) => setDateObtention(e.target.value)} value={dateObtention} />
-        
-         {/* champ lieu */}
+
+        {/* champ lieu */}
         <input
           type="text"
           className="input"
@@ -219,7 +216,7 @@ export default function Certifications() {
           placeholder="Organisme de certification"
         />
 
-         {/* Boutton de soumission */}
+        {/* Boutton de soumission */}
         <button className="btn">{isUpdateMode ? "Update" : "Add"}</button>
       </form>
 
@@ -230,13 +227,15 @@ export default function Certifications() {
           {allCertifications
             .filter((item) => item.categorie === "Diplôme")
             .map((item) => (
-              <Item
-                key={item._id}
-                item={item}
-                element={item.title}
-                updateElement={getCertification}
-                deleteElement={deleteElement}
-              />
+              <li>
+                <Item
+                  key={item._id}
+                  item={item}
+                  element={item.title}
+                  updateElement={getCertification}
+                  deleteElement={deleteElement}
+                />
+              </li>
             ))}
         </ul>
         <p>-- Mes Certifications --</p>
@@ -244,13 +243,15 @@ export default function Certifications() {
           {allCertifications
             .filter((item) => item.categorie === "Certification")
             .map((item) => (
-              <Item
-                key={item._id}
-                item={item}
-                element={item.title}
-                updateElement={getCertification}
-                deleteElement={deleteElement}
-              />
+              <li>
+                <Item
+                  key={item._id}
+                  item={item}
+                  element={item.title}
+                  updateElement={getCertification}
+                  deleteElement={deleteElement}
+                />
+              </li>
             ))}
         </ul>
       </div>

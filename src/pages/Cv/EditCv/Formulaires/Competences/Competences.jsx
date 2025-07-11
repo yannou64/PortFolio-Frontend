@@ -140,7 +140,7 @@ export default function Competences() {
           {allCompetences
             .filter((item) => item.categorie === "Soft Skill")
             .map((item) => (
-              <Item item={item} element={item.competence} updateElement={getElement} deleteElement={deleteElement} />
+              <li key={item._id}><Item item={item} element={item.competence} updateElement={getElement} deleteElement={deleteElement} /></li>
             ))}
         </ul>
         <p>-- Mes hards skills --</p>
@@ -148,7 +148,7 @@ export default function Competences() {
           {allCompetences
             .filter((comp) => comp.categorie === "Hard Skill")
             .map((item) => (
-              <Item item={item} element={item.competence} updateElement={getElement} deleteElement={deleteElement} />
+             <li key={item._id}> <Item item={item} element={item.competence} updateElement={getElement} deleteElement={deleteElement} /></li>
             ))}
         </ul>
       </div>

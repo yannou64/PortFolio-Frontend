@@ -7,6 +7,7 @@ import Competences from "./Formulaires/Competences/Competences.jsx";
 import Techno from "./Formulaires/Technos/Techno.jsx";
 import Interets from "./Formulaires/Interets/Interets.jsx";
 import Langues from "./Formulaires/Langues/Langues.jsx"
+import Projet from "./Formulaires/Projets/Projets.jsx"
 import { useState } from "react";
 
 export default function EditCv() {
@@ -49,6 +50,9 @@ export default function EditCv() {
         <button id="Techno" className="btn" onClick={selectForm}>
           Techno / Outils
         </button>
+        <button id="Projet" className="btn" onClick={selectForm}>
+          Projets
+        </button>
         <button id="Experiences" className="btn" onClick={selectForm}>
           Expériences
         </button>
@@ -61,6 +65,7 @@ export default function EditCv() {
         {formActif === "Techno" && <Techno />}
         {formActif === "Interets" && <Interets />}
         {formActif === "Langues" && <Langues />}
+        {formActif === "Projet" && <Projet />}
         {formActif === "Experiences" && <Experiences />}
       </div>
     </div>
