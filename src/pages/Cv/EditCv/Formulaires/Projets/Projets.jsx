@@ -3,19 +3,24 @@ import { MdOutlineAddCircleOutline } from "react-icons/md";
 import imgDefault from "../../../../../assets/noImage.jpg";
 import { useRef, useState, useEffect } from "react";
 import Item from "../../components/Item/Item";
+import { IoTrashBinSharp } from "react-icons/io5";
 
 export default function Projet() {
   const listeProjet = useRef();
   const formProjet = useRef();
+  const alertDoublonTechno = useRef();
   const [intitule, setIntitule] = useState("");
   const [synthese, setSynthese] = useState("");
   const [year, setYear] = useState("");
   const [img, setImg] = useState(null);
+  const [technosProject, setTechnosProject] = useState([]);
   const [imgApercuUrl, setImgApercuUrl] = useState("");
   const [allTechno, setAllTechno] = useState([]);
   const [allProject, setAllProject] = useState([]);
   const [editorMode, setEditorMode] = useState("Add");
   const [idProjectSelected, setIdProjectSelected] = useState("");
+  const [technoDoublonAlert, setTechnoDoublonAlert] = useState(false);
+  const technoSelect = useRef();
 
   // Initialisation des inputs
   function initInput() {
@@ -24,6 +29,7 @@ export default function Projet() {
     setYear("");
     setImg(null);
     setIdProjectSelected("");
+    setTechnosProject([]);
     setEditorMode("Add");
   }
 
@@ -33,6 +39,7 @@ export default function Projet() {
     setSynthese(projet.synthese);
     setYear(projet.year);
     setImg(projet.img);
+    setTechnosProject(projet.technos);
   }
 
   // Affiche le formulaire
@@ -70,7 +77,6 @@ export default function Projet() {
     }
   }
 
-  // Action de Supprimer un projet
   // En appuyant sur icone Delete
   async function askingForDelete(id) {
     try {
@@ -85,21 +91,7 @@ export default function Projet() {
       console.log(`Erreur dans askinForDelete : ${e.message}`);
     }
   }
-  // En appuyant sur le bouton_editor supprimer
-  async function deleteProject() {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${idProjectSelected}`, {
-        method: "DELETE",
-      });
-      const data = await response.json();
-      if (!response.ok) return console.log(`Erreur de status du fetch de deleteProject : ${data.message}`);
-      console.log("projet delete");
-    } catch (e) {
-      console.log(`Erreur dans deleteProjet : ${e.message}`);
-    }
-  }
 
-  // Action de Update un projet
   // En appuyant sur icone Update
   async function askingForUpdate(item) {
     const id = item._id;
@@ -111,27 +103,10 @@ export default function Projet() {
       displayForm("Update");
       hydrateInputs(data.data);
       setIdProjectSelected(id);
+      console.log(technosProject);
+      console.log(technosToDisplay);
     } catch (e) {
       console.log(`Erreur dans askinForDelete : ${e.message}`);
-    }
-  }
-  // En appuyant sur le bouton_editor update
-  async function updateProject(){
-    const formdata = new FormData()
-    formdata.append("intitule", intitule)
-    formdata.append("year", year)
-    formdata.append("synthese", synthese)
-    formdata.append("img", img)
-    try{
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${idProjectSelected}`, {
-        method: "PUT",
-        body: formdata
-      })
-      const data = await response.json()
-      if(!response.ok) return console.log(`Erreur de status dans le fetch de updateProject : ${data.message}`)
-      console.log("update ok")
-    } catch(e) {
-      console.log(`Erreur dans updateProject : ${e.message}`)
     }
   }
 
@@ -159,12 +134,49 @@ export default function Projet() {
   }
 
   // CRUD
+  // En appuyant sur le bouton_editor supprimer
+  async function deleteProject() {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${idProjectSelected}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      if (!response.ok) return console.log(`Erreur de status du fetch de deleteProject : ${data.message}`);
+      console.log("projet delete");
+    } catch (e) {
+      console.log(`Erreur dans deleteProjet : ${e.message}`);
+    }
+  }
+
+  // En appuyant sur le bouton_editor update
+  async function updateProject() {
+    const formdata = new FormData();
+    formdata.append("intitule", intitule);
+    formdata.append("year", year);
+    formdata.append("synthese", synthese);
+    formdata.append("technos", JSON.stringify(technosProject));
+    formdata.append("img", img);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${idProjectSelected}`, {
+        method: "PUT",
+        body: formdata,
+      });
+      const data = await response.json();
+      if (!response.ok) return console.log(`Erreur de status dans le fetch de updateProject : ${data.message}`);
+      console.log("update ok");
+    } catch (e) {
+      console.log(`Erreur dans updateProject : ${e.message}`);
+    }
+  }
+
+  // En appuyant sur le bouton_editor enregistrer
   async function createProject() {
     // On construit le formData
     const formData = new FormData();
     formData.append("intitule", intitule);
     formData.append("synthese", synthese);
     formData.append("year", year);
+    formData.append("technos", JSON.stringify(technosProject));
     formData.append("img", img);
 
     try {
@@ -201,11 +213,29 @@ export default function Projet() {
     }
   }
 
+  async function deleteTechno(id) {
+    console.log(id);
+    setTechnosProject((oldArray) => oldArray.filter((value) => value !== id));
+  }
+
+  function addATechno() {
+    setTechnosProject((oldArray) => {
+      if (oldArray?.includes(technoSelect.current.value)) {
+        alertDoublonTechno.current.value = "test";
+        setTechnoDoublonAlert(true);
+        return oldArray;
+      }
+      setTechnoDoublonAlert(false);
+      return oldArray == [] ? [technoSelect.current.value] : [...oldArray, technoSelect.current.value];
+    });
+  }
+
   // UseEffect
   useEffect(() => {
     getAllProjet();
     getAllTechno();
-  }, []);
+    console.log(technosProject);
+  }, [technosProject]);
 
   // UseEffect pour la gestion du rendu de l'aperçu image
   useEffect(() => {
@@ -261,7 +291,10 @@ export default function Projet() {
 
             {/* champ Img */}
             <label htmlFor="input_img" className="container_img">
-              <img src={imgApercuUrl && imgApercuUrl !== "" ? imgApercuUrl : imgDefault} alt="Image représentant le projet" />
+              <img
+                src={imgApercuUrl && imgApercuUrl !== "" ? imgApercuUrl : imgDefault}
+                alt="Image représentant le projet"
+              />
             </label>
             <input
               type="file"
@@ -297,20 +330,35 @@ export default function Projet() {
             />
           </div>
           <div id="rightPart">
-            <div id="liste_techno"></div>
+            <div id="liste_techno">
+              <ul>
+                {technosProject.map((idTechno) => {
+                  const technoObj = allTechno.find((techno) => techno._id === idTechno);
+                  return (
+                    <li key={idTechno}>
+                      {technoObj ? technoObj.techno : "Techno inconnue"}
+                      <IoTrashBinSharp onClick={() => deleteTechno(idTechno)} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
             <div id="select_row">
               {/* champ Techno */}
-              <select>
+              <select ref={technoSelect}>
                 <option value="" disabled>
                   --techno--
                 </option>
                 {allTechno.map((element) => (
-                  <option value={element.techno} key={element._id}>
+                  <option value={element._id} key={element._id}>
                     {element.techno}
                   </option>
                 ))}
               </select>
-              <MdOutlineAddCircleOutline size={40} />
+              <MdOutlineAddCircleOutline size={40} onClick={addATechno} />
+            </div>
+            <div id="alert_techno" style={{ display: technoDoublonAlert ? "inline" : "none" }} ref={alertDoublonTechno}>
+              Cette techno fait déjà partie du projet
             </div>
           </div>
         </div>

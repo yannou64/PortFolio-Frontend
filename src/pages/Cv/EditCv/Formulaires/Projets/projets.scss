@@ -15,7 +15,7 @@
     
     &_display {
       padding: 16px;
-      width: 250px;
+      min-width: 350px;
       min-height: 300px;
       background-color: white;
       border-radius: 10px;
@@ -78,11 +78,17 @@
         gap: 22px;
         
         #liste_techno{
+          padding: 16px;
             height: 250px;
             width: 90%;
             background-color: white;
             border-radius: 5px;
             border: solid 1px lightgray;
+
+            ul li {
+              display: flex;
+              justify-content: space-between;
+            }
         }
     
         #select_row{
@@ -94,6 +100,10 @@
                 width: 100%;
                 background-color: white;
             }
+        }
+        
+        #alert_techno{
+          color: variables.$myOrange;
         }
       }
     }
