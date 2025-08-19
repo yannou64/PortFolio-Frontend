@@ -1,4 +1,5 @@
 @use "../../variables";
+$animationMenuTimer: 0.2s;
 
 header.adminStyle {
   width: 100%;
@@ -57,22 +58,203 @@ header {
   h1 {
     font-size: 2em;
     font-weight: bold;
+
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+    }
+
+     @media (max-width: 400px) {
+      font-size: 1.5rem;
+    }
+   
   }
 
-  button {
-    height: 60%;
-    width: 120px;
-    background-color: variables.$myWhite;
-    border-radius: 10px;
-    color: variables.$myOrange;
-  }
-
-  ul {
-    display: flex;
+  #burger-menu {
+    width: variables.$headerHeight;
+    height: variables.$headerHeight;
+    display: none;
+    justify-content: center;
     align-items: center;
-    gap: 24px;
-    .icone {
-      color: variables.$myWhite;
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+
+    .burger-icon {
+      height: 30px;
+      width: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .burger-line {
+        height: 5px;
+        width: 100%;
+        border-radius: 2px;
+        background-color: variables.$myWhite;
+      }
+
+      &.open .burger-line:nth-child(1) {
+        animation: firstLineAnimation $animationMenuTimer ease-in-out forwards;
+
+        @keyframes firstLineAnimation {
+          0% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+          }
+          25% {
+            transform: translateY(17px) rotate(0deg) scale(1);
+          }
+          50% {
+            transform: translateY(17px) rotate(0deg) scale(0);
+          }
+          75% {
+            transform: translateY(17px) rotate(45deg) scale(0);
+          }
+          100% {
+            transform: translateY(17px) rotate(45deg) scale(1);
+          }
+        }
+      }
+
+      &.open .burger-line:nth-child(2) {
+        animation: secondeLineAnimation $animationMenuTimer ease-in-out forwards;
+
+        @keyframes secondeLineAnimation {
+          0% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+          }
+          25%,
+          100% {
+            transform: translateY(0px) rotate(0deg) scale(0);
+          }
+        }
+      }
+
+      &.open .burger-line:nth-child(3) {
+        animation: thirdLineAnimation $animationMenuTimer ease-in-out forwards;
+        @keyframes thirdLineAnimation {
+          0% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+          }
+          25% {
+            transform: translateY(-17px) rotate(0deg) scale(1);
+          }
+          50% {
+            transform: translateY(-17px) rotate(0deg) scale(0);
+          }
+          75% {
+            transform: translateY(-17px) rotate(-45deg) scale(0);
+          }
+          100% {
+            transform: translateY(-17px) rotate(-45deg) scale(1);
+          }
+        }
+      }
+
+      &.close .burger-line:nth-child(1) {
+        animation: firstLineAnimationClose $animationMenuTimer ease-in-out forwards;
+        @keyframes firstLineAnimationClose {
+          0% {
+            transform: translateY(17px) rotate(0deg) scale(0);
+          }
+          50% {
+            transform: translateY(17px) rotate(0deg) scale(1);
+          }
+          100% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+          }
+        }
+      }
+
+      &.close .burger-line:nth-child(2) {
+        animation: secondLineAnimationClose $animationMenuTimer ease-in-out forwards;
+        @keyframes secondLineAnimationClose {
+          0% {
+            transform: translateY(0px) rotate(0deg) scale(0);
+          }
+          50% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+          }
+          100% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+          }
+        }
+      }
+
+      &.close .burger-line:nth-child(3) {
+        animation: thirdLineAnimationClose $animationMenuTimer ease-in-out forwards;
+        @keyframes thirdLineAnimationClose {
+          0% {
+            transform: translateY(-17px) rotate(0deg) scale(0);
+          }
+          50% {
+            transform: translateY(-17px) rotate(0deg) scale(1);
+          }
+          100% {
+            transform: translateY(0px) rotate(0deg) scale(1);
+          }
+        }
+      }
+    }
+  }
+
+  nav {
+    display: flex;
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      width: 100%;
+
+      li {
+        .icone {
+          color: variables.$myWhite;
+          
+          @media(max-width: 768px){
+            width: 50px;
+          }
+        }
+
+          p {
+            display: none;
+            color: variables.$myWhite;
+
+            @media(max-width: 768px){
+              display: flex;
+            }
+          }
+        
+
+        @media (max-width: 768px) {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          width: 100%;
+          justify-content: flex-start;
+          padding-left: 24px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+      position: absolute;
+      padding-top: 3rem;
+      top: variables.$headerHeight;
+      left: 0;
+      padding-bottom: 2rem;
+      width: 100%;
+      background-color: variables.$myOrange;
+      font-size: 1.5rem;
     }
   }
 
