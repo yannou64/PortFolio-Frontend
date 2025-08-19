@@ -11,32 +11,15 @@ import { GrProjects } from "react-icons/gr";
 export default function Header({ menuChoice }) {
   const navigate = useNavigate();
   const iconeSize = 40;
+  
   // constantes d'état pour les données admin si existe
   const [role, setRole] = useState("");
   const [username, setUsername] = useState("");
+  
   // constantes pour cibler des éléments du DOM
   const burger = useRef();
   const burger_icone = useRef();
   const nav = useRef()
-
-  async function logout() {
-    try {
-      const response = await fetch("http://localhost:3444/api/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      if (!response.ok) {
-        const data = await response.json();
-        return navigate(`/ErrorPage/${data.message}`);
-      }
-      setRole("");
-      setUsername("");
-      menuChoice("");
-      setRefresh((prev) => !prev);
-    } catch (e) {
-      navigate(`/ErrorPage/${e}`);
-    }
-  }
 
   // Gestion du bouton burger qui apparait lorsque le display à une largeur < 768 px
   useEffect(() => {
@@ -107,19 +90,39 @@ export default function Header({ menuChoice }) {
     }
   }, []);
 
+   // Fonction de logout
+  async function logout() {
+    try {
+      const response = await fetch("http://localhost:3444/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        return navigate(`/ErrorPage/${data.message}`);
+      }
+      setRole("");
+      setUsername("");
+      menuChoice("");
+    } catch (e) {
+      navigate(`/ErrorPage/${e}`);
+    }
+  }
+
   return (
     // Si admin identifié on charge le style adminStyle
     <header className={role === "admin" ? "adminStyle" : ""}>
       {/* Pour accéder à la page login, on double clique sur le h1 */}
       <h1 onDoubleClick={() => navigate("/login")}>Yannick Biot</h1>
       {/* Le bouton burger est visible en dessous de 768 px */}
-      <button ref={burger} id="burger-menu" aria-label="Menu principal" aria-expanded="false" aria-controls="main-nav">
+      <button ref={burger} id="burger-menu">
         <span ref={burger_icone} className="burger-icon close">
           <div className="burger-line"></div>
           <div className="burger-line"></div>
           <div className="burger-line"></div>
         </span>
       </button>
+      {/* En cliquant sur les icones on va appeler la fonction menuChoice qui va render le composant associé à l'id de l'icone */}
       <nav ref={nav}>
         <ul>
           <li>
@@ -140,7 +143,6 @@ export default function Header({ menuChoice }) {
             />
             <p>Télécharger mon CV</p>
           </li>
-          {/* En cliquant sur les icone on va appeler la fonction menuChoice qui va render le composant associé  */}
           {role === "admin" && (
             <li>
               <MdEditSquare
