@@ -1,13 +1,15 @@
 import avatar from "../../../assets/avatar.png";
-import logoLinkedin from "../../../assets/iconeLinkedin.png"
-import logoGithub from "../../../assets/iconeGithub.png"
-import logoInsta from "../../../assets/iconeInstagram.png"
-import "./hero.scss"
+import logoLinkedin from "../../../assets/iconeLinkedin.png";
+import logoGithub from "../../../assets/iconeGithub.png";
+import logoInsta from "../../../assets/iconeInstagram.png";
+import "./hero.scss";
 
 export default function Hero() {
   return (
     <section id="hero">
-      <img src={avatar} alt="Mon avatar" />
+      <div className="containerImage">
+        <img src={avatar} alt="Mon avatar" />
+      </div>
       <div id="accroche">
         <h1 class="titre">Développeur web junior</h1>
         <p class="texte">

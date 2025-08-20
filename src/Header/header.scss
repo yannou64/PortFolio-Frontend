@@ -8,6 +8,7 @@ $animationMenuTimer: 0.3s;
 // Style du header en mode User
 header {
   width: 100%;
+  max-width: variables.$maxWidth;
   height: variables.$headerHeight;
   background-color: variables.$myOrange;
   position: absolute;
@@ -19,7 +20,7 @@ header {
   color: variables.$myWhite;
   border-bottom: 10px solid variables.$myOrange;
   padding: 0px 40px;
-
+  
   @media (max-width: 768px){
     padding: 0px 0px 0px 16px;
   }

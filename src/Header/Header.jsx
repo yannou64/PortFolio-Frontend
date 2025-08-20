@@ -7,19 +7,30 @@ import { jwtDecode } from "jwt-decode";
 import { MdEditSquare } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import { GrProjects } from "react-icons/gr";
+import { getIsAdmin, subscribeToAuth } from "../auth.js";
 
 export default function Header() {
   const navigate = useNavigate();
   const iconeSize = 40;
-  
+
+  // constante d'identification
+  const [isAdmin, setIsAdmin] = useState(getIsAdmin());
+
   // constantes d'état pour les données admin si existe
   const [role, setRole] = useState("");
   const [username, setUsername] = useState("");
-  
+
   // constantes pour cibler des éléments du DOM
   const burger = useRef();
   const burger_icone = useRef();
-  const nav = useRef()
+  const nav = useRef();
+
+  // Gestion de l'identification
+  useEffect(() => {
+    // Ajoute le isAdmin à la listeners pour provoquer le re-render de ce composant si 
+    // isAmin change d'état -> stocké dans auth.js
+    subscribeToAuth(setIsAdmin);
+  }, []);
 
   // Gestion du bouton burger qui apparait lorsque le display à une largeur < 768 px
   useEffect(() => {
@@ -77,23 +88,9 @@ export default function Header() {
     };
   }, []);
 
-  // Récupération des données admin si existe
-  useEffect(() => {
-    try {
-      const cookieToken = document.cookie.split("=")[1];
-      const decoded = jwtDecode(cookieToken);
-      setRole(decoded.role);
-      console.log(decoded.role);
-      setUsername(decoded.username);
-    } catch (e) {
-      console.log(e.message);
-    }
-  }, []);
-
-
   return (
     // Si admin identifié on charge le style adminStyle
-    <header className={role === "admin" ? "adminStyle" : ""}>
+    <header className={isAdmin === true ? "adminStyle" : ""}>
       {/* Pour accéder à la page login, on double clique sur le h1 */}
       <h1 onDoubleClick={() => navigate("/login")}>Yannick Biot</h1>
       {/* Le bouton burger est visible en dessous de 768 px */}
@@ -112,42 +109,27 @@ export default function Header() {
               id="menu_portfolio"
               className="icone"
               size={iconeSize - 6}
-              onClick={()=>navigate("/")}
+              onClick={() => navigate("/portfolio")}
             />
             <p>Consulter les projets</p>
           </li>
           <li>
-            <TbFileCv
-              id="menu_cv"
-              className="logo_cv icone"
-              size={iconeSize}
-              onClick={()=>navigate("/Cv")}
-            />
+            <TbFileCv id="menu_cv" className="logo_cv icone" size={iconeSize} onClick={() => navigate("/cv")} />
             <p>Télécharger mon CV</p>
           </li>
-          {role === "admin" && (
+          {isAdmin === true && (
             <li>
-              <MdEditSquare
-                id="menu_edit"
-                className="icone"
-                size={iconeSize}
-                onClick={()=>navigate("/ProjetPortfolio")}
-              />
+              <MdEditSquare id="menu_edit" className="icone" size={iconeSize} onClick={() => navigate("/edition")} />
             </li>
           )}
-          {role === "admin" && (
+          {isAdmin === true && (
             <li>
-              <IoMdLogOut id="menu_logout" className="icone" size={iconeSize} />
+              <IoMdLogOut id="menu_logout" className="icone" size={iconeSize} onClick={() => navigate("/logout")} />
             </li>
           )}
-          {role !== "admin" && (
+          {isAdmin !== true && (
             <li>
-              <TfiEmail
-                id="menu_contact"
-                className="icone"
-                size={iconeSize}
-                onClick={()=>navigate("/contact")}
-              />
+              <TfiEmail id="menu_contact" className="icone" size={iconeSize} onClick={() => navigate("/contact")} />
               <p>Me contacter</p>
             </li>
           )}
