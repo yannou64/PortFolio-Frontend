@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { TbFileCv } from "react-icons/tb";
 import { IoMdLogOut } from "react-icons/io";
-import { jwtDecode } from "jwt-decode";
 import { MdEditSquare } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import { GrProjects } from "react-icons/gr";
@@ -114,7 +113,7 @@ export default function Header() {
             <p>Consulter les projets</p>
           </li>
           <li>
-            <TbFileCv id="menu_cv" className="logo_cv icone" size={iconeSize} onClick={() => navigate("/cv")} />
+            <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank"><TbFileCv id="menu_cv" className="logo_cv icone" size={iconeSize} /></a>
             <p>Télécharger mon CV</p>
           </li>
           {isAdmin === true && (
