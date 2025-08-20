@@ -28,7 +28,7 @@ export default function Coordonnees() {
   async function fetchInitialDatas() {
     // On récupère les données de la base de donnée
     try {
-      const response = await fetch(`${API_URL}/api/cv/coordonnees`);
+      const response = await fetch(`${API_URL}/api/edition/coordonnees`);
       const data = await response.json();
       if (!response.ok) {
         console.log(data.message);
@@ -52,7 +52,7 @@ export default function Coordonnees() {
   // Fetch update
   async function fetchUpdateDatas() {
     try {
-      const response = await fetch(`${API_URL}/api/cv/coordonnees/${id}`, {
+      const response = await fetch(`${API_URL}/api/edition/coordonnees/${id}`, {
         method: "PUT",
         credentials: "include",
         headers: {

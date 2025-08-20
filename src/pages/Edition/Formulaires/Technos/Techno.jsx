@@ -18,7 +18,7 @@ export default function Techno() {
   // Add missing functions to prevent errors
   async function getAllTechnos() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/technos`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos`);
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de Status de la réponse du fetch getAllTechno : ${data.message}`);
       setAllTechnos(data.data);
@@ -36,7 +36,7 @@ export default function Techno() {
     formData.append("level", level);
     formData.append("logo", logoFile);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/technos/${technoIdToUpdate}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${technoIdToUpdate}`, {
         method: "PUT",
         body: formData,
       });
@@ -56,7 +56,7 @@ export default function Techno() {
 
   async function getTechno(techno) {
     try {
-      // const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/technos/${techno._id}`)
+      // const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${techno._id}`)
       // const data = await response.json()
       // if(!response.ok) return console.log(`Erreur de Status de la réponse du fetch getTechno : ${data.message}`);
       setTechno(techno.techno);
@@ -73,7 +73,7 @@ export default function Techno() {
 
   async function deleteTechno(id) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/technos/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${id}`, {
         method: "DELETE",
       });
       const data = await response.json();
@@ -95,7 +95,7 @@ export default function Techno() {
     formData.append("logo", logoFile);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/technos`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos`, {
         method: "POST",
         credentials: "include",
         body: formData,
