@@ -17,6 +17,7 @@ function App() {
       <div className="container">
         <Header />
         <Routes>
+        <Route path="/" element={<Portfolio />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/error" element={<ErrorPage />} />

@@ -12,7 +12,7 @@ export default function Register() {
     e.preventDefault();
     try {
       // Envoyer les donnée à l'api pour vérifier les données d'identification
-      const response = await fetch("http://localhost:3444/api/auth/login", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {
