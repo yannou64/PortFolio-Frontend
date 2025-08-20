@@ -1,7 +1,7 @@
 import "./certifications.scss";
 import { useState, useEffect } from "react";
 import Item from "../../components/Item/Item";
-import urlImageDefault from "../../../../../assets/noImage.jpg";
+import urlImageDefault from "../../../../assets/noImage.jpg";
 import { FaFileDownload } from "react-icons/fa";
 
 export default function Certifications() {

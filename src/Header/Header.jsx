@@ -8,7 +8,7 @@ import { MdEditSquare } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import { GrProjects } from "react-icons/gr";
 
-export default function Header({ menuChoice }) {
+export default function Header() {
   const navigate = useNavigate();
   const iconeSize = 40;
   
@@ -90,24 +90,6 @@ export default function Header({ menuChoice }) {
     }
   }, []);
 
-   // Fonction de logout
-  async function logout() {
-    try {
-      const response = await fetch("http://localhost:3444/api/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
-      if (!response.ok) {
-        const data = await response.json();
-        return navigate(`/ErrorPage/${data.message}`);
-      }
-      setRole("");
-      setUsername("");
-      menuChoice("");
-    } catch (e) {
-      navigate(`/ErrorPage/${e}`);
-    }
-  }
 
   return (
     // Si admin identifié on charge le style adminStyle
@@ -130,7 +112,7 @@ export default function Header({ menuChoice }) {
               id="menu_portfolio"
               className="icone"
               size={iconeSize - 6}
-              onClick={(e) => menuChoice(e.currentTarget.id)}
+              onClick={()=>navigate("/ProjetPortfolio")}
             />
             <p>Consulter les projets</p>
           </li>
@@ -139,7 +121,7 @@ export default function Header({ menuChoice }) {
               id="menu_cv"
               className="logo_cv icone"
               size={iconeSize}
-              onClick={(e) => menuChoice(e.currentTarget.id)}
+              onClick={()=>navigate("/Cv")}
             />
             <p>Télécharger mon CV</p>
           </li>
@@ -149,7 +131,7 @@ export default function Header({ menuChoice }) {
                 id="menu_edit"
                 className="icone"
                 size={iconeSize}
-                onClick={(e) => menuChoice(e.currentTarget.id)}
+                onClick={()=>navigate("/ProjetPortfolio")}
               />
             </li>
           )}
@@ -164,7 +146,7 @@ export default function Header({ menuChoice }) {
                 id="menu_contact"
                 className="icone"
                 size={iconeSize}
-                onClick={(e) => menuChoice(e.currentTarget.id)}
+                onClick={()=>navigate("/contact")}
               />
               <p>Me contacter</p>
             </li>

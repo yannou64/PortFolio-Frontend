@@ -1,7 +1,7 @@
 import "./techno.scss";
 import { useState, useEffect } from "react";
 import { FaFileDownload } from "react-icons/fa";
-import apercuDefault from "../../../../../assets/noImage.jpg";
+import apercuDefault from "../../../../assets/noImage.jpg";
 import Item from "../../components/Item/Item";
 
 export default function Techno() {

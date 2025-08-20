@@ -1,6 +1,6 @@
 import "./projets.scss";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import imgDefault from "../../../../../assets/noImage.jpg";
+import imgDefault from "../../../../assets/noImage.jpg";
 import { useRef, useState, useEffect } from "react";
 import Item from "../../components/Item/Item";
 import { IoTrashBinSharp } from "react-icons/io5";

@@ -1,6 +1,6 @@
-@use "../../../../../variables";
+@use "../../../../variables";
 
-#competencesContainer {
+#certificationsContainer {
   height: 100%;
   width: 100%;
   display: flex;
@@ -17,13 +17,19 @@
   }
 }
 
-#competencesForm {
+#certificationsForm {
   height: 90%;
   width: 47%;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  .row_img{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 
   button {
     box-shadow: 0px 1px 2px variables.$myLightGray;
@@ -33,9 +39,25 @@
     color: variables.$myOrange;
     text-align: center;
   }
+
+  .img_container{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 100%;
+    }
+
+    .btn_upload{
+        color: red;
+    }
+  }
 }
 
-#competencesList {
+#certificationsList {
   height: 90%;
   width: 47%;
   padding: 16px;

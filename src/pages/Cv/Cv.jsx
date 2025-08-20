@@ -1,5 +1,5 @@
-import "./cvContenu.scss";
-import photo from "../../../assets/photoIdentite.png";
+import "./cv.scss";
+import photo from "../../assets/photoIdentite.png";
 import { useEffect, useState } from "react";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdAlternateEmail } from "react-icons/md";
@@ -11,7 +11,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaInternetExplorer } from "react-icons/fa6";
 
-export default function CvContenu() {
+export default function Cv() {
   const API_URL = import.meta.env.VITE_API_URL;
   const [coordonnees, setCoordonnees] = useState("");
   const [interets, setInterets] = useState([]);
