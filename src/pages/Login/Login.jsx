@@ -25,11 +25,10 @@ export default function Register() {
 
       // récupérer les données
       const data = await response.json();
-      if (!response.ok) return navigate(`/ErrorPage/${data.message}`);
+      if (!response.ok) return navigate(`/`);
 
       // Rediriger vers la page du cv
-      console.log(data.message)
-      navigate("/cv");
+      navigate("/editCv");
 
     } catch (e) {
       console.log("Erreur lors du fetch login : ", e.message);
@@ -37,11 +36,10 @@ export default function Register() {
   }
 
   return (
-    <div id="container">
-      <form onSubmit={submitAction}>
+      <form onSubmit={submitAction} id="container-login">
         <input
           onChange={(e) => setEmail(e.target.value)}
-          className="input input-primary"
+          className="input "
           type="email"
           placeholder="email"
           required
@@ -49,15 +47,14 @@ export default function Register() {
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
-          className="input input-primary"
+          className="input"
           type="password"
           placeholder="mot de passe"
           required
         />
-        <button className="btn btn-primary" type="submit">
+        <button className="btn" type="submit">
           Se connecter
         </button>
       </form>
-    </div>
   );
 }

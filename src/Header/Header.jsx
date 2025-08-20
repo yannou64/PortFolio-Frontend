@@ -112,7 +112,7 @@ export default function Header() {
               id="menu_portfolio"
               className="icone"
               size={iconeSize - 6}
-              onClick={()=>navigate("/ProjetPortfolio")}
+              onClick={()=>navigate("/")}
             />
             <p>Consulter les projets</p>
           </li>
@@ -137,7 +137,7 @@ export default function Header() {
           )}
           {role === "admin" && (
             <li>
-              <IoMdLogOut id="menu_logout" className="icone" onClick={logout} size={iconeSize} />
+              <IoMdLogOut id="menu_logout" className="icone" size={iconeSize} />
             </li>
           )}
           {role !== "admin" && (
