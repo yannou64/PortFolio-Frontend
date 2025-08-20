@@ -39,6 +39,7 @@ export default function Techno() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${technoIdToUpdate}`, {
         method: "PUT",
         body: formData,
+        credentials: "include"
       });
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de Status de la réponse du fetch updateTechno : ${data.message}`);
@@ -75,6 +76,7 @@ export default function Techno() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${id}`, {
         method: "DELETE",
+        credentials: "include"
       });
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de Status de la réponse du fetch deleteTechno : ${data.message}`);
@@ -83,8 +85,6 @@ export default function Techno() {
       console.log(`CatchErreur front dans getAllTechno : ${e.message}`);
     }
   }
-
-  async function updateSubmit() {}
 
   async function addSubmit(e) {
     e.preventDefault();
