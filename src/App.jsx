@@ -6,7 +6,7 @@ import Login from "./pages/Login/Login";
 import Logout from "./pages/Logout/Logout"
 import Portfolio from "./pages/Portfolio/Portfolio";
 import Cv from "./pages/Cv/Cv"
-import EditCv from "./pages/EditCv/EditCv";
+import EditCv from "./pages/Edition/Edition";
 import Contact from "./pages/Contact/Contact";
 import Remerciement from "./pages/Remerciement/Remerciement";
 

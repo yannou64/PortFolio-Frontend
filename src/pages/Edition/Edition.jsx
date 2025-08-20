@@ -1,4 +1,4 @@
-import "./editCv.scss";
+import "./edition.scss";
 import TitreAccroche from "./Formulaires/TitreAccroche/TitreAccroche.jsx";
 import Coordonnees from "./Formulaires/Coordonnees/Coordonnees.jsx";
 import Experiences from "./Formulaires/Experiences/Experiences.jsx";
