@@ -1,10 +1,10 @@
-import avatar from "../../assets/avatar.png"
+import Hero from "./hero/Hero.jsx"
 
-export default function Portfolio(){
-    return (
-        <div>
-
-            <img src={avatar} alt="Mon avatar" />
-        </div>
-    )
+export default function Portfolio() {
+  return (
+    <>
+        <Hero />
+      
+    </>
+  );
 }
