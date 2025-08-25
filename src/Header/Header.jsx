@@ -1,6 +1,7 @@
 import "./header.scss";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+// Pour la certification je n'utiliserais pas les Link pour garder une sémantique html plus visible
 import { TbFileCv } from "react-icons/tb";
 import { IoMdLogOut } from "react-icons/io";
 import { MdEditSquare } from "react-icons/md";
@@ -15,25 +16,20 @@ export default function Header() {
   // constante d'identification
   const [isAdmin, setIsAdmin] = useState(getIsAdmin());
 
-  // constantes d'état pour les données admin si existe
-  const [role, setRole] = useState("");
-  const [username, setUsername] = useState("");
-
   // constantes pour cibler des éléments du DOM
   const burger = useRef();
   const burger_icone = useRef();
   const nav = useRef();
 
-  // Gestion de l'identification
+  // Gestion de isAdmin
   useEffect(() => {
-    // Ajoute le isAdmin à la listeners pour provoquer le re-render de ce composant si 
-    // isAmin change d'état -> stocké dans auth.js
+    // Ajoute le isAdmin à listeners (auth.js) pour provoquer le re-render de ce composant si isAdmin change d'état
     subscribeToAuth(setIsAdmin);
   }, []);
 
-  // Gestion du bouton burger qui apparait lorsque le display à une largeur < 768 px
+  // Gestion du bouton burger qui apparait sur mobile
   useEffect(() => {
-    // Lorsque on clique sur burger-menu, on déclenche une action sur .burger-icon (changement de forme) et nav (apparait ou disparait)
+    // Clique #burger-menu (mobile): on déclenche une action sur .burger-icon (changement de forme) et nav (apparait ou disparait)
     const burgerClick = () => {
       // Par défaut icone_burger possède la class "close", la class change en "open" au premier clique et vice versa ensuite
       // Au clique on vérifie si burger_icone à la class "open" pour adapter le comportement de nav et burger_icone
@@ -49,7 +45,14 @@ export default function Header() {
       }
     };
 
-    //fonction pour réinitialiser le navigateur au resize
+    // Avant d'ajouter un listener on vérifie que le composant à bien été chargé correctement
+    const burgerEl = burger.current;
+    if (burgerEl) {
+      //Listener pour click sur bouton burger
+      burgerEl.addEventListener("click", burgerClick);
+    }
+
+    // Resize : pour réinitialiser le navigateur au resize
     const checkDisplayNavigateur = () => {
       console.log("test");
       if (window.innerWidth > 768) {
@@ -66,15 +69,6 @@ export default function Header() {
         }
       }
     };
-
-    const burgerEl = burger.current;
-
-    // Avant d'ajouter un listener on vérifie que le composant à bien été chargé correctement
-    if (burgerEl) {
-      //Listener pour click sur bouton burger
-      burgerEl.addEventListener("click", burgerClick);
-    }
-
     // listener pour le resizing afin de résoudre le bug ou le nav est display: none apèrs un resize
     window.addEventListener("resize", checkDisplayNavigateur);
 
@@ -113,11 +107,19 @@ export default function Header() {
             <p>Consulter les projets</p>
           </li>
           <li>
-            <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank"><TbFileCv id="menu_cv" className="logo_cv icone" size={iconeSize} /></a>
+            <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank">
+              <TbFileCv
+                id="menu_cv"
+                className="logo_cv icone"
+                alt="Lien vers le telechargement de CV"
+                size={iconeSize}
+              />
+            </a>
             <p>Télécharger mon CV</p>
           </li>
           {isAdmin === true && (
             <li>
+              <a href=""></a>
               <MdEditSquare id="menu_edit" className="icone" size={iconeSize} onClick={() => navigate("/edition")} />
             </li>
           )}
