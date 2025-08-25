@@ -14,7 +14,7 @@ export default function Competences() {
   async function getAllCompetence() {
     try {
       console.log("envoie getAll");
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/competences`);
       const data = await response.json();
       if (!response.ok) return console.log(data.message);
       setAllCompetences(data.data);
@@ -28,7 +28,7 @@ export default function Competences() {
     e.preventDefault();
     console.log(categorie);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/competences`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -56,7 +56,7 @@ export default function Competences() {
   // Supprimer
   async function deleteElement(id) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${id}`, { method: "DELETE", credentials: "include" });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/competences/${id}`, { method: "DELETE", credentials: "include" });
       const data = await response.json();
       if (!response.ok) return console.log(data.message);
       getAllCompetence();
@@ -69,7 +69,7 @@ export default function Competences() {
   async function getElement(element) {
     try {
       console.log(element._id);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${element._id}`, {credentials: "include"});
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/competences/${element._id}`, {credentials: "include"});
       const data = await response.json();
       console.log(data);
       if (!response.ok) return console.log("Mauvais retour du backend");
@@ -85,7 +85,7 @@ export default function Competences() {
   async function updateElement(e) {
     e.preventDefault()
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/competences/${competenceToChange._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/competences/${competenceToChange._id}`, {
         method: "PUT",
         credentials: "include",
         headers: {

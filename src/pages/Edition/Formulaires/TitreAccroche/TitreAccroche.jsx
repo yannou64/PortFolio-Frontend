@@ -12,7 +12,7 @@ export default function TitreAccroche() {
   // Les fonctions de mon composants
   async function fetchGetData() {
     try {
-      const response = await fetch(`${URI_API}/api/cv/titreAccroche`);
+      const response = await fetch(`${URI_API}/api/edition/titreAccroche`);
       if (response.ok) {
         const data = await response.json();
         setId(data.data._id);
@@ -28,7 +28,7 @@ export default function TitreAccroche() {
   async function fetchUpdateData() {
     console.log(title);
     try {
-      const response = await fetch(`${URI_API}/api/cv/titreAccroche/${id}`, {
+      const response = await fetch(`${URI_API}/api/edition/titreAccroche/${id}`, {
         method: "PUT",
         credentials: "include",
         headers: {

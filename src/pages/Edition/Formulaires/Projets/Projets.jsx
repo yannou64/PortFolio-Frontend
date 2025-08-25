@@ -80,7 +80,7 @@ export default function Projet() {
   // En appuyant sur icone Delete
   async function askingForDelete(id) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${id}`);
       const data = await response.json();
       if (!response.ok) return console.log("Erreur de status dans askingForDelete : ", data.message);
       setEditorMode("Delete");
@@ -96,7 +96,7 @@ export default function Projet() {
   async function askingForUpdate(item) {
     const id = item._id;
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${id}`);
       const data = await response.json();
       if (!response.ok) return console.log("Erreur de status dans askingForUpdate : ", data.message);
       setEditorMode("Update");
@@ -137,8 +137,9 @@ export default function Projet() {
   // En appuyant sur le bouton_editor supprimer
   async function deleteProject() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${idProjectSelected}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${idProjectSelected}`, {
         method: "DELETE",
+        credentials: "include"
       });
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de status du fetch de deleteProject : ${data.message}`);
@@ -157,9 +158,10 @@ export default function Projet() {
     formdata.append("technos", JSON.stringify(technosProject));
     formdata.append("img", img);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet/${idProjectSelected}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${idProjectSelected}`, {
         method: "PUT",
         body: formdata,
+        credentials: "include"
       });
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de status dans le fetch de updateProject : ${data.message}`);
@@ -180,9 +182,10 @@ export default function Projet() {
     formData.append("img", img);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet`, {
         method: "POST",
         body: formData,
+        credentials: "include"
       });
       const data = await response.json();
       console.log(data.message);
@@ -193,7 +196,7 @@ export default function Projet() {
 
   async function getAllProjet() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/portfolio/projet`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet`);
       const data = await response.json();
       if (!response.ok) return console.log("Erreur de status dans getAllProjet: ", data.message);
       setAllProject(data.data);
@@ -204,7 +207,7 @@ export default function Projet() {
 
   async function getAllTechno() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/technos`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos`);
       const data = await response.json();
       if (!response.ok) return console.log(`problème de status dans getAllTechno : ${response.status}`);
       setAllTechno(data.data);

@@ -13,7 +13,7 @@ export default function Langues() {
   // Afficher les langues dans la bdd
   async function getData() {
     try {
-      const response = await fetch(`${API_URL}/api/cv/langues`);
+      const response = await fetch(`${API_URL}/api/edition/langues`);
       const data = await response.json();
       if (response.ok) {
         setAllLangue(data.data);
@@ -32,7 +32,7 @@ export default function Langues() {
   async function addSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/api/cv/langues`, {
+      const response = await fetch(`${API_URL}/api/edition/langues`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -56,7 +56,7 @@ export default function Langues() {
 
   async function deleteElement(id) {
     try {
-      const response = await fetch(`${API_URL}/api/cv/langues/${id}`, {
+      const response = await fetch(`${API_URL}/api/edition/langues/${id}`, {
         method: "DELETE",
         credentials: "include",
         headers: {
@@ -77,7 +77,7 @@ export default function Langues() {
 
   async function updateElement(element) {
     try {
-      const response = await fetch(`${API_URL}/api/cv/langues/${element._id}`, {credentials: "include",});
+      const response = await fetch(`${API_URL}/api/edition/langues/${element._id}`, {credentials: "include",});
       const data = await response.json();
       if (response.ok) {
         setLangue(element.langue);
@@ -95,7 +95,7 @@ export default function Langues() {
   async function updateSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch(`${API_URL}/api/cv/langues/${langueToUpdate._id}`, {
+      const response = await fetch(`${API_URL}/api/edition/langues/${langueToUpdate._id}`, {
         method: "PUT",
         credentials: "include",
         headers: {

@@ -27,7 +27,7 @@ export default function Certifications() {
     formData.append("organisme", organisme);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/certifications`, {
         method: "POST",
         credentials: "include",
         body: formData,
@@ -52,7 +52,7 @@ export default function Certifications() {
 
   async function getAllCertifications() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/certifications`);
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de fetch dans getAllCertifications : ${data.message}`);
       setAllCertifications(data.data);
@@ -64,7 +64,7 @@ export default function Certifications() {
 
   async function getCertification(element) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${element._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/certifications/${element._id}`, {
         credentials: "include",
       });
       const data = await response.json();
@@ -90,7 +90,7 @@ export default function Certifications() {
 
   async function deleteElement(id) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/certifications/${id}`, {
         credentials: "include",
         method: "DELETE",
       });
@@ -113,7 +113,7 @@ export default function Certifications() {
     formData.append("organisme", organisme);
     formData.append("imageUrl", imageUrl);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cv/certifications/${idCompetenceToUpdate}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/certifications/${idCompetenceToUpdate}`, {
         method: "PUT",
         credentials: "include",
         body: formData,

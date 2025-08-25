@@ -1,0 +1,39 @@
+@use "../../../../../variables.scss";
+
+.vignette{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+
+    > div {
+        width: 90%;
+        
+    }
+
+    h3{
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .listeTechno{
+        display: flex;
+    }
+
+    a{
+        border: solid 0.1px variables.$myLightGray;
+        width: 25%;
+        border-radius: 15px;
+        box-shadow: 10px 10px 10px variables.$myLightGray;
+        padding: 4px;
+        aspect-ratio: 1/1;
+        overflow: hidden;
+
+        img{
+            display: block;;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+    }
+}

@@ -20,7 +20,7 @@ export default function Cv() {
   // Récupérer les coordonnées
   async function getCoordonnees() {
     try {
-      const response = await fetch(`${API_URL}/api/cv/coordonnees`);
+      const response = await fetch(`${API_URL}/api/edition/coordonnees`);
       const data = await response.json();
       if (response.ok) {
         setCoordonnees(data.data);
@@ -35,7 +35,7 @@ export default function Cv() {
   // Récupérer les centres d'intérêts
   async function getInterets() {
     try {
-      const response = await fetch(`${API_URL}/api/cv/interets`);
+      const response = await fetch(`${API_URL}/api/edition/interets`);
       const data = await response.json();
       if (response.ok) {
         setInterets(data.data);
@@ -50,7 +50,7 @@ export default function Cv() {
   // Récupérer les langues
   async function getLangues() {
     try {
-      const response = await fetch(`${API_URL}/api/cv/langues`);
+      const response = await fetch(`${API_URL}/api/edition/langues`);
       const data = await response.json();
       if (response.ok) {
         setLangues(data.data);
