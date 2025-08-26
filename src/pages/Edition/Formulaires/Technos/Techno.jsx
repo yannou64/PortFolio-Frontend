@@ -48,6 +48,7 @@ export default function Techno() {
       setImageApercuUrl("");
       setImageFile("");
       setCategorie("");
+      setAlt_img("")
       getAllTechnos();
       setUpdateMode(false);
     } catch (e) {
@@ -62,6 +63,7 @@ export default function Techno() {
       // if(!response.ok) return console.log(`Erreur de Status de la réponse du fetch getTechno : ${data.message}`);
       setTitre(techno.titre);
       setCategorie(techno.categorie);
+      setAlt_img(techno.alt_img)
       setNiveau(techno.niveau);
       setImageApercuUrl(`${import.meta.env.VITE_API_URL}/${techno.image}`);
       setImageFile(techno.image);
@@ -80,6 +82,11 @@ export default function Techno() {
       });
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de Status de la réponse du fetch deleteTechno : ${data.message}`);
+      setTitre("");
+      setNiveau("");
+      setImageApercuUrl("");
+      setAlt_img("");
+      setCategorie("");
       getAllTechnos();
     } catch (e) {
       console.log(`CatchErreur front dans getAllTechno : ${e.message}`);
@@ -94,7 +101,7 @@ export default function Techno() {
     formData.append("niveau", niveau);
     formData.append("image", imageFile);
     formData.append("alt_img", alt_img);
-
+    console.log(alt_img)
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos`, {
         method: "POST",
@@ -193,7 +200,7 @@ export default function Techno() {
           <Item
             key={item._id}
             item={item}
-            element={item.techno}
+            element={item.titre}
             updateElement={getTechno}
             deleteElement={deleteTechno}
           />
