@@ -9,11 +9,14 @@ export default function Projet() {
   const listeProjet = useRef();
   const formProjet = useRef();
   const alertDoublonTechno = useRef();
-  const [intitule, setIntitule] = useState("");
-  const [synthese, setSynthese] = useState("");
-  const [year, setYear] = useState("");
-  const [img, setImg] = useState(null);
+  // Constante des champs
+  const [titre_projet, setTitre_projet] = useState("");
+  const [image_projet, setImage_projet] = useState(null);
+  const [alt_img_projet, setAlt_img_projet] = useState("")
+  const [description_projet, setDescription_projet] = useState("");
+  const [is_favoris_projet, setIs_favoris_projet] = useState(false)
   const [technosProject, setTechnosProject] = useState([]);
+  //
   const [imgApercuUrl, setImgApercuUrl] = useState("");
   const [allTechno, setAllTechno] = useState([]);
   const [allProject, setAllProject] = useState([]);
@@ -24,10 +27,11 @@ export default function Projet() {
 
   // Initialisation des inputs
   function initInput() {
-    setIntitule("");
-    setSynthese("");
-    setYear("");
-    setImg(null);
+    setTitre_projet("");
+    setImage_projet(null);
+    setAlt_img_projet("");
+    setDescription_projet("");
+    setIs_favoris_projet(false)
     setIdProjectSelected("");
     setTechnosProject([]);
     setEditorMode("Add");
@@ -35,21 +39,22 @@ export default function Projet() {
 
   // hydratation des inputs à partir d'un projet
   function hydrateInputs(projet) {
-    setIntitule(projet.intitule);
-    setSynthese(projet.synthese);
-    setYear(projet.year);
-    setImg(projet.img);
+    setTitre_projet(projet.titre_projet);
+    setImage_projet(projet.image_projet);
+    setAlt_img_projet(projet.alt_img_projet)
+    setDescription_projet(projet.synthese_projet);
+    setIs_favoris_projet(projet.is_favoris_projet)
     setTechnosProject(projet.technos);
   }
 
-  // Affiche le formulaire
+  // Affiche le formulaire et cache la liste des projets
   function displayForm(mode) {
     updateFormButton(mode);
     listeProjet.current.style.display = "none";
     formProjet.current.style.display = "flex";
   }
 
-  // Affiche la liste de projet
+  // Affiche la liste de projet et cache le formulaire
   function displayProjetsList() {
     updateFormButton(editorMode);
     initInput();
@@ -77,7 +82,8 @@ export default function Projet() {
     }
   }
 
-  // En appuyant sur icone Delete
+  // En appuyant sur icone Delete de la liste des projets, on va récupérer le projet concerné et hydrater les champs pour afficher le formulaire complété
+  // avec le bouton supprimé qui apparait (Sécurité)
   async function askingForDelete(id) {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${id}`);
@@ -92,7 +98,8 @@ export default function Projet() {
     }
   }
 
-  // En appuyant sur icone Update
+  // En appuyant sur icone Update de la liste des projets, on va récupérer le projet concerné et hydrater les champs pour afficher le formulaire complété
+  // avecle bouton update pour valider les modifications
   async function askingForUpdate(item) {
     const id = item._id;
     try {
@@ -103,14 +110,12 @@ export default function Projet() {
       displayForm("Update");
       hydrateInputs(data.data);
       setIdProjectSelected(id);
-      console.log(technosProject);
-      console.log(technosToDisplay);
     } catch (e) {
       console.log(`Erreur dans askinForDelete : ${e.message}`);
     }
   }
 
-  // Submit à partir d'un des bouton_editor
+  // Submit du bouton de soumission du formulaire en fonction de editorMode indiquant si on lance une action d'ajout, de suppression, ou de modification
   async function handleSubmit(e) {
     e.preventDefault();
     switch (editorMode) {
@@ -126,6 +131,7 @@ export default function Projet() {
       default:
         console.log("Erreur dans le contenu de editorMode :", editorMode);
     }
+    // On réinitialise l'affichage sur la liste des projets
     await getAllProjet();
     await getAllTechno();
     displayProjetsList();
