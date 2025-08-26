@@ -1,7 +1,7 @@
 @use "../../variables";
 
 #EditDisplay {
-  height: 100vh;
+  height: calc(100vh - variables.$headerHeight);
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -25,6 +25,7 @@
     padding: 8px;
     border-radius: 8px;
     width: 200px;
+    box-shadow: 2px 2px 2px variables.$myLightGray;
     
     &.btn.selected {
       color: variables.$myOrange;

@@ -3,65 +3,54 @@ import { useState } from "react";
 import "./register.scss";
 
 export default function Register() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const [identifiant, setIdentifiant] = useState("");
+  const [mdp, setMdp] = useState("");
+  const navigate = useNavigate();
 
   async function submitAction(e) {
     e.preventDefault();
     try {
-      const bodycontent = JSON.stringify({ username, email, password });
-      console.log();
-      const response = await fetch("http://localhost:3444/auth/register", {
+      const bodycontent = JSON.stringify({ identifiant, mdp });
+      const response = await fetch(import.meta.env.VITE_API_URL + "/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: bodycontent,
       });
-    
+
       // Récupérer les donnees de l'api
       const data = await response.json();
-      if(!response.ok) return navigate(`/ErrorPage/${data.message}`)
-
-      console.log(data.message);
-      navigate('/login')
+      if (!response.ok) return navigate(`/Error/${data.message}`);
+      navigate("/login");
     } catch (e) {
       console.log("Erreur de fetch pour s'enregistrer : ", e.message);
-      navigate(`/ErrorPage/${e.message}`)
+      navigate(`/Error/${e.message}`);
     }
   }
 
   return (
-    <div id="container">
+    <div id="container_register">
       <form onSubmit={submitAction}>
         <input
-          onChange={(e) => setUsername(e.target.value)}
-          className="input input-secondary"
+          onChange={(e) => setIdentifiant(e.target.value)}
+          className="input"
           type="text"
           placeholder="username"
           required
         />
         <input
-          onChange={(e) => setEmail(e.target.value)}
-          className="input input-secondary"
-          type="email"
-          placeholder="email"
-          required
-        />
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          className="input input-secondary"
+          onChange={(e) => setMdp(e.target.value)}
+          className="input"
           type="password"
           placeholder="mot de passe"
           required
         />
-        <button className="btn btn-secondary" type="submit">
+        <button className="btn" type="submit">
           S'enregistrer
         </button>
       </form>
-      <Link to="/Login">Return to Register</Link>
+      <Link to="/Login" className="login_return">Return to Login</Link>
     </div>
   );
 }

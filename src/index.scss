@@ -21,4 +21,13 @@ body {
     padding: 8px;
     white-space: pre-wrap;
   }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding-top: variables.$headerHeight;
+  }
 }

@@ -13,14 +13,14 @@ import Remerciement from "./pages/Remerciement/Remerciement";
 
 function App() {
   return (
-    <BrowserRouter className="container">
+    <BrowserRouter>
       <Header />
       <main>
         <Routes>
           <Route path="/" element={<Portfolio />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/error" element={<ErrorPage />} />
+          <Route path="/error/:message" element={<ErrorPage />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/cv" element={<Cv />} />

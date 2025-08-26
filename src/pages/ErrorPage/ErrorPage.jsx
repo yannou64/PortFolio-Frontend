@@ -1,14 +1,18 @@
-import { useParams, useNavigate} from "react-router-dom"
-import "./errorPage.scss"
+import { useParams, useNavigate } from "react-router-dom";
+import "./errorPage.scss";
 
-export default function ErrorPage(){
-    const {error} = useParams()
-    const navigate = useNavigate()
+export default function ErrorPage() {
+  const { message } = useParams();
+  const navigate = useNavigate();
 
-    return (
-        <div className="container">
-            <div>Erreur : {error}</div>
-            <button className="btn btn-primary" onClick={()=>navigate("/login")}>Retour</button>
-        </div>
-    )
+  return (
+    <div className="container_errorPage">
+      <div className="box">
+        <div>Erreur : {message}</div>
+        <button className="btn btn-primary" onClick={() => navigate("/login")}>
+          Retour
+        </button>
+      </div>
+    </div>
+  );
 }

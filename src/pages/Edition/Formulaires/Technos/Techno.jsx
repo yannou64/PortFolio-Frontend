@@ -6,16 +6,15 @@ import Item from "../../components/Item/Item";
 
 export default function Techno() {
   const [updateMode, setUpdateMode] = useState(false);
-  const [techno, setTechno] = useState("");
+  const [titre, setTitre] = useState("");
   const [categorie, setCategorie] = useState("");
-  const [level, setLevel] = useState("");
+  const [niveau, setNiveau] = useState("");
   const [allTechnos, setAllTechnos] = useState([]);
   const [technoIdToUpdate, setTechnoIdToUpdate] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [imageApercuUrl, setImageApercuUrl] = useState("");
+  const [alt_img, setAlt_img] = useState("");
 
-  const [logoFile, setLogoFile] = useState(null);
-  const [logoApercuUrl, setLogoApercuUrl] = useState("");
-
-  // Add missing functions to prevent errors
   async function getAllTechnos() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos`);
@@ -31,25 +30,26 @@ export default function Techno() {
   async function updateTechno(e) {
     e.preventDefault(e);
     const formData = new FormData();
-    formData.append("techno", techno);
+    formData.append("titre", titre);
     formData.append("categorie", categorie);
-    formData.append("level", level);
-    formData.append("logo", logoFile);
+    formData.append("niveau", niveau);
+    formData.append("image", imageFile);
+    formData.append("alt_img", alt_img);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${technoIdToUpdate}`, {
         method: "PUT",
         body: formData,
-        credentials: "include"
+        credentials: "include",
       });
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de Status de la réponse du fetch updateTechno : ${data.message}`);
-      setTechno("");
-      setLevel("");
-      setLogoApercuUrl("");
-      setLogoFile("")
+      setTitre("");
+      setNiveau("");
+      setImageApercuUrl("");
+      setImageFile("");
       setCategorie("");
       getAllTechnos();
-      setUpdateMode(false)
+      setUpdateMode(false);
     } catch (e) {
       console.log(`CatchErreur front dans getTechno : ${e.message}`);
     }
@@ -60,11 +60,11 @@ export default function Techno() {
       // const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${techno._id}`)
       // const data = await response.json()
       // if(!response.ok) return console.log(`Erreur de Status de la réponse du fetch getTechno : ${data.message}`);
-      setTechno(techno.techno);
+      setTitre(techno.titre);
       setCategorie(techno.categorie);
-      setLevel(techno.level);
-      setLogoApercuUrl(`${import.meta.env.VITE_API_URL}/${techno.logo}`);
-      setLogoFile(techno.logo)
+      setNiveau(techno.niveau);
+      setImageApercuUrl(`${import.meta.env.VITE_API_URL}/${techno.image}`);
+      setImageFile(techno.image);
       setUpdateMode(true);
       setTechnoIdToUpdate(techno._id);
     } catch (e) {
@@ -76,7 +76,7 @@ export default function Techno() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos/${id}`, {
         method: "DELETE",
-        credentials: "include"
+        credentials: "include",
       });
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de Status de la réponse du fetch deleteTechno : ${data.message}`);
@@ -89,10 +89,11 @@ export default function Techno() {
   async function addSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("techno", techno);
+    formData.append("titre", titre);
     formData.append("categorie", categorie);
-    formData.append("level", level);
-    formData.append("logo", logoFile);
+    formData.append("niveau", niveau);
+    formData.append("image", imageFile);
+    formData.append("alt_img", alt_img);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos`, {
@@ -103,9 +104,10 @@ export default function Techno() {
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur dans fetch addSubmit : ${data.message}`);
       console.log("add techno success");
-      setTechno("");
-      setLevel("");
-      setLogoApercuUrl("");
+      setTitre("");
+      setNiveau("");
+      setImageApercuUrl("");
+      setAlt_img("");
       setCategorie("");
       getAllTechnos();
     } catch (e) {
@@ -120,36 +122,46 @@ export default function Techno() {
   return (
     <div id="technoContainer">
       <form onSubmit={updateMode ? updateTechno : addSubmit} id="technoForm">
-        {/* Champ competence */}
+        {/* Champ titre */}
         <input
-          value={techno}
-          onChange={(e) => setTechno(e.target.value)}
+          value={titre}
+          onChange={(e) => setTitre(e.target.value)}
           className="input w-full"
           type="text"
           placeholder="Entrez la compétence"
           required
         />
 
-        {/* Champ logo */}
-        <div id="logo_row">
-          <label htmlFor="logo">
+        {/* Champ image */}
+        <div id="image_row">
+          <label htmlFor="image">
             <FaFileDownload size={40} color="gray" />
           </label>
           <input
-            id="logo"
+            id="image"
             type="file"
             accept="image/*"
             hidden
             onChange={(e) => {
-              setLogoFile(e.target.files[0]);
+              setImageFile(e.target.files[0]);
               const objectUrl = URL.createObjectURL(e.target.files[0]);
-              setLogoApercuUrl(objectUrl);
+              setImageApercuUrl(objectUrl);
             }}
           />
-          <div id="logo_container">
-            <img src={logoApercuUrl ? logoApercuUrl : apercuDefault} alt="Image représentant la techno" />
+          <div id="image_container">
+            <img src={imageApercuUrl ? imageApercuUrl : apercuDefault} alt="Image représentant la techno" />
           </div>
         </div>
+
+        {/* Champ alt_img */}
+        <input
+          type="text"
+          value={alt_img}
+          onChange={(e) => setAlt_img(e.target.value)}
+          placeholder="Description de l'image"
+          className="input w-full"
+          required
+        />
 
         {/* Champ categorie */}
         <select onChange={(e) => setCategorie(e.target.value)} value={categorie}>
@@ -161,8 +173,8 @@ export default function Techno() {
           <option value="Design / Organisation">Organisation / Design</option>
         </select>
 
-        {/* Champ level */}
-        <select onChange={(e) => setLevel(e.target.value)} value={level}>
+        {/* Champ niveau */}
+        <select onChange={(e) => setNiveau(e.target.value)} value={niveau}>
           <option value="" disabled>
             --Niveau--
           </option>

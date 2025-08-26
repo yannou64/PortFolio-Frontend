@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./login.scss";
-import {setAdmin} from "../../auth.js"
+import { setAdmin } from "../../auth.js";
 
 export default function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [identifiant, setIdentifiant] = useState("");
+  const [mdp, setMdp] = useState("");
   const navigate = useNavigate();
 
   async function submitAction(e) {
@@ -19,20 +19,16 @@ export default function Register() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          password,
-          email,
+          mdp,
+          identifiant,
         }),
       });
-      // si response.ok 
-      //     mise à jours status admin  
-      //     redirection vers la page edition 
-      // sinon 
-      //     redirection vers la page error
+      const data = await response.json()
       if (response.ok) {
-        setAdmin(true)
+        setAdmin(true);
         navigate("/edition");
       } else {
-        return navigate(`/error`);
+        return navigate(`/error/${data.message}`);
       }
     } catch (e) {
       console.log("Erreur lors du fetch login : ", e.message);
@@ -40,25 +36,27 @@ export default function Register() {
   }
 
   return (
-    <form onSubmit={submitAction} id="container-login">
-      <input
-        onChange={(e) => setEmail(e.target.value)}
-        className="input "
-        type="email"
-        placeholder="email"
-        required
-        autoComplete="off"
-      />
-      <input
-        onChange={(e) => setPassword(e.target.value)}
-        className="input"
-        type="password"
-        placeholder="mot de passe"
-        required
-      />
-      <button className="btn" type="submit">
-        Se connecter
-      </button>
-    </form>
+    <div id="container_login">
+      <form onSubmit={submitAction}>
+        <input
+          onChange={(e) => setIdentifiant(e.target.value)}
+          className="input "
+          type="text"
+          placeholder="identifiant"
+          required
+          autoComplete="off"
+        />
+        <input
+          onChange={(e) => setMdp(e.target.value)}
+          className="input"
+          type="password"
+          placeholder="mot de passe"
+          required
+        />
+        <button className="btn" type="submit">
+          Se connecter
+        </button>
+      </form>
+    </div>
   );
 }
