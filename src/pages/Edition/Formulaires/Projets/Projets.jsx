@@ -15,7 +15,7 @@ export default function Projet() {
   const [alt_img_projet, setAlt_img_projet] = useState("")
   const [description_projet, setDescription_projet] = useState("");
   const [is_favoris_projet, setIs_favoris_projet] = useState(false)
-  const [technosProject, setTechnosProject] = useState([]);
+  const [technos_projet, setTechnos_projet] = useState([]);
   //
   const [imgApercuUrl, setImgApercuUrl] = useState("");
   const [allTechno, setAllTechno] = useState([]);
@@ -33,7 +33,7 @@ export default function Projet() {
     setDescription_projet("");
     setIs_favoris_projet(false)
     setIdProjectSelected("");
-    setTechnosProject([]);
+    setTechnos_projet([]);
     setEditorMode("Add");
   }
 
@@ -42,9 +42,9 @@ export default function Projet() {
     setTitre_projet(projet.titre_projet);
     setImage_projet(projet.image_projet);
     setAlt_img_projet(projet.alt_img_projet)
-    setDescription_projet(projet.synthese_projet);
+    setDescription_projet(projet.description_projet);
     setIs_favoris_projet(projet.is_favoris_projet)
-    setTechnosProject(projet.technos);
+    setTechnos_projet(projet.technos_projet);
   }
 
   // Affiche le formulaire et cache la liste des projets
@@ -158,11 +158,13 @@ export default function Projet() {
   // En appuyant sur le bouton_editor update
   async function updateProject() {
     const formdata = new FormData();
-    formdata.append("intitule", intitule);
-    formdata.append("year", year);
-    formdata.append("synthese", synthese);
-    formdata.append("technos", JSON.stringify(technosProject));
-    formdata.append("img", img);
+    formdata.append("titre_projet", titre_projet);
+    formdata.append("image_projet", image_projet);
+    formdata.append("alt_img_projet", alt_img_projet);
+    formdata.append("description_projet", description_projet);
+    formdata.append("is_favoris_projet", is_favoris_projet);
+    formdata.append("technos_projet", JSON.stringify(technos_projet));
+    console.log(image_projet)
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${idProjectSelected}`, {
         method: "PUT",
@@ -180,17 +182,17 @@ export default function Projet() {
   // En appuyant sur le bouton_editor enregistrer
   async function createProject() {
     // On construit le formData
-    const formData = new FormData();
-    formData.append("intitule", intitule);
-    formData.append("synthese", synthese);
-    formData.append("year", year);
-    formData.append("technos", JSON.stringify(technosProject));
-    formData.append("img", img);
-
+    const formdata = new FormData();
+    formdata.append("titre_projet", titre_projet);
+    formdata.append("image_projet", image_projet);
+    formdata.append("alt_img_projet", alt_img_projet);
+    formdata.append("description_projet", description_projet);
+    formdata.append("is_favoris_projet", is_favoris_projet);
+    formdata.append("technos_projet", JSON.stringify(technos_projet));
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet`, {
         method: "POST",
-        body: formData,
+        body: formdata,
         credentials: "include"
       });
       const data = await response.json();
@@ -224,11 +226,11 @@ export default function Projet() {
 
   async function deleteTechno(id) {
     console.log(id);
-    setTechnosProject((oldArray) => oldArray.filter((value) => value !== id));
+    setTechnos_projet((oldArray) => oldArray.filter((value) => value !== id));
   }
 
   function addATechno() {
-    setTechnosProject((oldArray) => {
+    setTechnos_projet((oldArray) => {
       if (oldArray?.includes(technoSelect.current.value)) {
         alertDoublonTechno.current.value = "test";
         setTechnoDoublonAlert(true);
@@ -243,17 +245,16 @@ export default function Projet() {
   useEffect(() => {
     getAllProjet();
     getAllTechno();
-    console.log(technosProject);
-  }, [technosProject]);
+  }, [technos_projet]);
 
   // UseEffect pour la gestion du rendu de l'aperçu image
   useEffect(() => {
     let objectUrl;
-    if (img instanceof File || img instanceof Blob) {
-      objectUrl = URL.createObjectURL(img);
+    if (image_projet instanceof File || image_projet instanceof Blob) {
+      objectUrl = URL.createObjectURL(image_projet);
       setImgApercuUrl(objectUrl);
-    } else if (typeof img === "string" && img !== "") {
-      setImgApercuUrl(`${import.meta.env.VITE_API_URL}/${img}`);
+    } else if (typeof image_projet === "string" && image_projet !== "") {
+      setImgApercuUrl(`${import.meta.env.VITE_API_URL}/${image_projet}`);
     } else {
       setImgApercuUrl("");
     }
@@ -262,7 +263,7 @@ export default function Projet() {
         URL.revokeObjectURL(objectUrl);
       }
     };
-  }, [img]);
+  }, [image_projet]);
 
   return (
     <div id="container_Projets">
@@ -273,7 +274,7 @@ export default function Projet() {
               <li key={element._id}>
                 <Item
                   item={element}
-                  element={element.intitule}
+                  element={element.titre_projet}
                   updateElement={askingForUpdate}
                   deleteElement={askingForDelete}
                 />
@@ -293,12 +294,11 @@ export default function Projet() {
               type="text"
               className="input"
               placeholder="Intitulé de projet"
-              value={intitule}
-              onChange={(e) => setIntitule(e.target.value)}
+              value={titre_projet}
+              onChange={(e) => setTitre_projet(e.target.value)}
               required
             />
-
-            {/* champ Img */}
+            {/* champ image_projet */}
             <label htmlFor="input_img" className="container_img">
               <img
                 src={imgApercuUrl && imgApercuUrl !== "" ? imgApercuUrl : imgDefault}
@@ -312,40 +312,34 @@ export default function Projet() {
               accept="image/*"
               onChange={(e) => {
                 if (e.target.files && e.target.files[0]) {
-                  setImg(e.target.files[0]);
+                  setImage_projet(e.target.files[0]);
                 } else {
-                  setImg(null);
+                  setImage_projet(null);
                 }
               }}
             />
-
-            {/* champ Synthese */}
+            {/* champ alt_img_projet */}
+            <input type="text" className="input" placeholder="Description de l'image" onChange={(e)=> setAlt_img_projet(e.target.value)} value={alt_img_projet}></input>
+            {/* champ description_projet */}
             <textarea
-              id="synthese"
+              id="description"
               placeholder="synthèse du projet"
-              value={synthese}
-              onChange={(e) => setSynthese(e.target.value)}
+              value={description_projet}
+              onChange={(e) => setDescription_projet(e.target.value)}
+              className="input"
               required
             ></textarea>
-
-            {/* champ Year */}
-            <input
-              className="input"
-              type="number"
-              placeholder="Année de réalisation"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              required
-            />
+            {/* champ is_favoris_projet */}
+           <label><input type="checkbox" value={is_favoris_projet} onChange={(e)=>setIs_favoris_projet(e.target.value)}/>  Mettre en favoris </label>
           </div>
           <div id="rightPart">
             <div id="liste_techno">
               <ul>
-                {technosProject.map((idTechno) => {
+                {technos_projet.map((idTechno) => {
                   const technoObj = allTechno.find((techno) => techno._id === idTechno);
                   return (
                     <li key={idTechno}>
-                      {technoObj ? technoObj.techno : "Techno inconnue"}
+                      {technoObj ? technoObj.titre : "Techno inconnue"}
                       <IoTrashBinSharp onClick={() => deleteTechno(idTechno)} />
                     </li>
                   );
@@ -354,13 +348,13 @@ export default function Projet() {
             </div>
             <div id="select_row">
               {/* champ Techno */}
-              <select ref={technoSelect}>
+              <select ref={technoSelect} className="input">
                 <option value="" disabled>
                   --techno--
                 </option>
                 {allTechno.map((element) => (
                   <option value={element._id} key={element._id}>
-                    {element.techno}
+                    {element.titre}
                   </option>
                 ))}
               </select>
