@@ -1,12 +1,11 @@
 import "./contact.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MyButton from "../Portfolio/components/MyButton/MyButton";
 
 export default function Contact() {
-  const [userContact, setUserContact] = useState("");
-  const [sujet, setSujet] = useState("");
+  const [emailContact, setEmailContact] = useState("");
   const [message, setMessage] = useState("");
-  const [fromWho, setFromWho] = useState("");
   const navigate = useNavigate();
 
   async function onSubmit(e) {
@@ -18,10 +17,8 @@ export default function Contact() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userContact,
-        sujet,
+        emailContact,
         message,
-        fromWho,
       }),
     });
     if (!response.ok) {
@@ -32,31 +29,16 @@ export default function Contact() {
   }
 
   return (
-    <div className="container_contact">
+    <section id="Contact">
       <form onSubmit={onSubmit} >
-        <h1>Laissez moi un message</h1>
-        <input
-          type="text"
-          className="input"
-          placeholder="Votre nom / fonction"
-          onChange={(e) => setFromWho(e.target.value)}
-          value={fromWho}
-        />
+        <h2>Contactez-moi</h2>
         <input
           id="userContact"
           className="input"
-          type="text"
-          placeholder="Vous recontacter : tel / email"
-          onChange={(e) => setUserContact(e.target.value)}
-          value={userContact}
-        />
-        <input
-          id="sujet"
-          className="input"
-          type="text"
-          placeholder="Sujet "
-          onChange={(e) => setSujet(e.target.value)}
-          value={sujet}
+          type="email"
+          placeholder="Votre email"
+          onChange={(e) => setEmailContact(e.target.value)}
+          value={emailContact}
         />
         <textarea
           id="message"
@@ -65,8 +47,8 @@ export default function Contact() {
           value={message}
           className="input"
         ></textarea>
-        <button className="btn">Envoyer</button>
+        <MyButton titre="Envoyer" lien="#"/>
       </form>
-    </div>
+    </section>
   );
 }

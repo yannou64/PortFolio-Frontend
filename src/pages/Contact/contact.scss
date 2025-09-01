@@ -1,25 +1,26 @@
 @use "../../variables";
 
-.container_contact{
+#Contact{
     color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
-    height: calc(100vh - variables.$headerHeight);
+    width: 100%;
+    padding-top: variables.$padding_top_Section;
+    padding-bottom: variables.$padding_bottom_Section;
   
     form{
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 90vw;
-        max-width: 500px;
+        width: 90%;
         gap: 16px;
 
-        h1{
-            font-size: 2rem;
+        h2{
+            color: variables.$myBlack;
         }
         
         input {
@@ -32,8 +33,5 @@
             width: 100%;
         }
     
-        button {
-            width: 30%;
-        }
     }
 }
