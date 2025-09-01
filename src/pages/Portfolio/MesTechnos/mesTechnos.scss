@@ -1,0 +1,17 @@
+@use "../../../variables";
+
+#MesTechnos{
+    background-color: variables.$myGreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: variables.$gap_vignette_mobile;
+    width: 100%;
+    padding-bottom: variables.$padding_bottom_Section;
+    padding-top: variables.$padding_top_Section;
+
+    h2{
+        color: variables.$myWhite;
+    }
+}

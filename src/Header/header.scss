@@ -3,15 +3,14 @@
 // Détermine le temps de l'animation du Menu Burger
 $animationMenuTimer: 0.3s;
 
-
-
 // Style du header en mode User
 header {
   width: 100%;
   max-width: variables.$maxWidth;
   height: variables.$headerHeight;
   background-color: variables.$myOrange;
-  position: absolute;
+  position: sticky;
+  z-index: 5;
   top: 0;
   left: 0;
   display: flex;
@@ -21,20 +20,24 @@ header {
   color: variables.$myWhite;
   border-bottom: 10px solid variables.$myOrange;
   padding: 0px 40px;
-  
-  @media (max-width: 768px){
-    padding: 0px 0px 0px 16px;
+
+   @media (max-width: variables.$smallDevice) {
+      padding: 0px 16px;
+    }
+
+  @media (max-width: variables.$mobileDevice) {
+    padding: 0px 8px;
   }
 
   h1 {
     font-size: 2em;
     font-weight: bold;
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$smallDevice) {
       font-size: 1.8rem;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: variables.$mobileDevice) {
       font-size: 1.5rem;
     }
   }
@@ -90,7 +93,7 @@ header {
       &.open .burger-line:nth-child(2) {
         transform-origin: center;
         animation: secondeLineAnimation $animationMenuTimer ease-in-out forwards;
-        
+
         @keyframes secondeLineAnimation {
           0% {
             transform: translateY(0px) rotate(0deg) scale(1);
@@ -105,7 +108,7 @@ header {
       &.open .burger-line:nth-child(3) {
         transform-origin: center;
         animation: thirdLineAnimation $animationMenuTimer ease-in-out forwards;
-       
+
         @keyframes thirdLineAnimation {
           0% {
             transform: translateY(0px) rotate(0deg) scale(1);
@@ -128,7 +131,7 @@ header {
       &.close .burger-line:nth-child(1) {
         transform-origin: center;
         animation: firstLineAnimationClose $animationMenuTimer ease-in-out forwards;
-        
+
         @keyframes firstLineAnimationClose {
           0% {
             transform: translateY(12px) rotate(0deg) scale(0);
@@ -145,7 +148,7 @@ header {
       &.close .burger-line:nth-child(2) {
         transform-origin: center;
         animation: secondLineAnimationClose $animationMenuTimer ease-in-out forwards;
-        
+
         @keyframes secondLineAnimationClose {
           0% {
             transform: translateY(0px) rotate(0deg) scale(0);
@@ -162,7 +165,7 @@ header {
       &.close .burger-line:nth-child(3) {
         transform-origin: center;
         animation: thirdLineAnimationClose $animationMenuTimer ease-in-out forwards;
-       
+
         @keyframes thirdLineAnimationClose {
           0% {
             transform: translateY(-12px) rotate(0deg) scale(0);
@@ -257,6 +260,14 @@ header.adminStyle {
   h1 {
     font-size: 2em;
     font-weight: bold;
+
+    @media (max-width: variables.$smallDevice) {
+      font-size: 1.8rem;
+    }
+
+    @media (max-width: variables.$mobileDevice) {
+      font-size: 1.3rem;
+    }
   }
 
   #burger-menu .burger-icon .burger-line {

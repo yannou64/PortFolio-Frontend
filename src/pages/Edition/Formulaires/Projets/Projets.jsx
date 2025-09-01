@@ -86,7 +86,7 @@ export default function Projet() {
   // avec le bouton supprimé qui apparait (Sécurité)
   async function askingForDelete(id) {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${id}`);
       const data = await response.json();
       if (!response.ok) return console.log("Erreur de status dans askingForDelete : ", data.message);
       setEditorMode("Delete");
@@ -103,7 +103,7 @@ export default function Projet() {
   async function askingForUpdate(item) {
     const id = item._id;
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${id}`);
       const data = await response.json();
       if (!response.ok) return console.log("Erreur de status dans askingForUpdate : ", data.message);
       setEditorMode("Update");
@@ -143,7 +143,7 @@ export default function Projet() {
   // En appuyant sur le bouton_editor supprimer
   async function deleteProject() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${idProjectSelected}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${idProjectSelected}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -166,7 +166,7 @@ export default function Projet() {
     formdata.append("technos_projet", JSON.stringify(technos_projet));
     console.log(image_projet)
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet/${idProjectSelected}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${idProjectSelected}`, {
         method: "PUT",
         body: formdata,
         credentials: "include"
@@ -190,7 +190,7 @@ export default function Projet() {
     formdata.append("is_favoris_projet", is_favoris_projet);
     formdata.append("technos_projet", JSON.stringify(technos_projet));
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets`, {
         method: "POST",
         body: formdata,
         credentials: "include"
@@ -204,7 +204,7 @@ export default function Projet() {
 
   async function getAllProjet() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projet`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets`);
       const data = await response.json();
       if (!response.ok) return console.log("Erreur de status dans getAllProjet: ", data.message);
       setAllProject(data.data);
@@ -289,6 +289,7 @@ export default function Projet() {
       <form ref={formProjet} id="formulaire_Projet" onSubmit={handleSubmit}>
         <div id="formulaire_Projet_inputs">
           <div id="leftPart">
+            
             {/* champ Intitule */}
             <input
               type="text"
@@ -298,6 +299,7 @@ export default function Projet() {
               onChange={(e) => setTitre_projet(e.target.value)}
               required
             />
+            
             {/* champ image_projet */}
             <label htmlFor="input_img" className="container_img">
               <img
@@ -318,19 +320,28 @@ export default function Projet() {
                 }
               }}
             />
+            
             {/* champ alt_img_projet */}
             <input type="text" className="input" placeholder="Description de l'image" onChange={(e)=> setAlt_img_projet(e.target.value)} value={alt_img_projet}></input>
+            
             {/* champ description_projet */}
             <textarea
               id="description"
-              placeholder="synthèse du projet"
+              placeholder="Description du projet"
               value={description_projet}
               onChange={(e) => setDescription_projet(e.target.value)}
               className="input"
               required
             ></textarea>
+            
             {/* champ is_favoris_projet */}
-           <label><input type="checkbox" value={is_favoris_projet} onChange={(e)=>setIs_favoris_projet(e.target.value)}/>  Mettre en favoris </label>
+           <label>
+             <input
+               type="checkbox"
+               checked={is_favoris_projet}
+               onChange={(e) => setIs_favoris_projet(e.target.checked)}
+             />  Mettre en favoris
+           </label>
           </div>
           <div id="rightPart">
             <div id="liste_techno">

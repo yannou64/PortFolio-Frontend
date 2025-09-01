@@ -28,6 +28,21 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #f5f5f5;
-    padding-top: variables.$headerHeight;
+  }
+
+  h2 {
+    color: variables.$myOrange;
+    font-size: variables.$h2_size_mobile;
+    
+    @media (max-width: variables.$smallDevice) {
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 100%;
+    text-align: center;
+    color: variables.$myBlack;
   }
 }
