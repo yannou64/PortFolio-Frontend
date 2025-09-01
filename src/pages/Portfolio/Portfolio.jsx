@@ -2,6 +2,7 @@ import Hero from "./Hero/Hero.jsx";
 import ProjetsFavoris from "./ProjetsFavoris/ProjetsFavoris.jsx";
 import MesTechnos from "./MesTechnos/MesTechnos.jsx";
 import { useEffect, useState } from "react";
+import CTAParcours from "./CTAParcours/CTAParcours.jsx"
 
 export default function Portfolio() {
   // Centralisation des requêtes et distributions des données dans les composants via les props
@@ -38,6 +39,7 @@ export default function Portfolio() {
       <Hero />
       <ProjetsFavoris projets={projetsFavoris} />
       <MesTechnos technosByCategorie={technosByCategorie}/>
+      <CTAParcours />
     </>
   );
 }
