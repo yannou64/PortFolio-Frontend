@@ -1,0 +1,19 @@
+@use "../../../variables";
+
+.container_errorPage{
+    height: calc(100vh - variables.$headerHeight);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .box{
+        height: 150px;
+        padding: 32px;
+        border: solid 4px variables.$myOrange;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

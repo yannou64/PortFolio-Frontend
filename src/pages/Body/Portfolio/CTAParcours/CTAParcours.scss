@@ -1,0 +1,21 @@
+@use "../../../../variables";
+
+#CTAParcours{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 32px;
+    padding-top: 16px;
+    background-color: rgba(variables.$myOrange, 0.8);
+
+    h2{
+        color: variables.$myWhite;
+    }
+
+    .myButton{
+        background-color: variables.$myWhite;
+        color: variables.$myBlack
+    }
+}

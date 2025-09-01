@@ -1,0 +1,32 @@
+@use "../../../variables";
+
+#container_register {
+  height: calc(100vh - variables.$headerHeight);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: variables.$myOrange;
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background-color: variables.$myWhite;
+    border-radius: 30px;
+    height: 350px;
+    width: 300px;
+
+    input {
+      width: 75%;
+    }
+  }
+
+  .login_return{
+    color: variables.$myWhite;
+  }
+}

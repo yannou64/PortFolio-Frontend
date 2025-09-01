@@ -1,0 +1,94 @@
+@use "../../../variables";
+
+$btnHeigthCategory: 75px;
+$paddingTopBottomContenuCV: 16px;
+$cvBorderRadius: 10px;
+
+#cvContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 0.8em;
+  border: solid red;
+
+  #columnRight {
+    border-radius: $cvBorderRadius;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: $paddingTopBottomContenuCV 0;
+    gap: 40px;
+    font-size: 0.8em;
+    border: solid;
+    margin-top: variables.$headerHeight;
+
+    h2 {
+      margin-bottom: 8px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    #photoIdentite {
+      border: 5px solid variables.$myWhite;
+      width: 125px;
+      border-radius: 15px;
+    }
+
+    #coordonnees {
+      color: variables.$myOrange;
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: black;
+
+      .alignItemCoordonnees {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        div {
+          max-width: 90%;
+          text-align: end;
+          overflow-wrap: break-word;
+        }
+      }
+    }
+  }
+
+  #blocCenter {
+    width: 800px;
+    border: solid;
+    margin-top: variables.$headerHeight;
+    display: flex;
+    flex-direction: column;
+
+    #categories {
+      height: calc($btnHeigthCategory + $paddingTopBottomContenuCV*2);
+      border: solid;
+      display: flex;
+      justify-content: space-between;
+      margin-top: $paddingTopBottomContenuCV;
+
+      .btn_categorie{
+        width: 23%;
+        height: $btnHeigthCategory;
+      }
+    }
+
+    #infosCategorie{
+      border: solid red;
+      height: 100%;
+    }
+    
+  }
+
+  #columnLeft {
+    width: 400px;
+    border: solid;
+    margin-top: variables.$headerHeight;
+  }
+}

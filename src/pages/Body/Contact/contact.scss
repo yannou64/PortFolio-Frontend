@@ -1,0 +1,37 @@
+@use "../../../variables";
+
+#Contact{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding-top: variables.$padding_top_Section;
+    padding-bottom: variables.$padding_bottom_Section;
+  
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        gap: 16px;
+
+        h2{
+            color: variables.$myBlack;
+        }
+        
+        input {
+            background-color: white;
+            width: 100%;
+        }
+    
+        textarea {
+            background-color: white;
+            width: 100%;
+        }
+    
+    }
+}

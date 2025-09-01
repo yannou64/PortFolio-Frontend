@@ -1,0 +1,14 @@
+@use "../../../../../variables";
+
+.item {
+  display: flex;
+  justify-content: space-between;
+
+  &_element {
+  }
+
+  &_actions {
+    display: flex;
+    gap: 8px;
+  }
+}

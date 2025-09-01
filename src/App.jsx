@@ -1,15 +1,16 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./Header/Header";
-import Register from "./pages/Register/Register";
-import Login from "./pages/Login/Login";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import Logout from "./pages/Logout/Logout";
-import Portfolio from "./pages/Portfolio/Portfolio";
-import Cv from "./pages/Cv/Cv";
-import Edition from "./pages/Edition/Edition";
-import Contact from "./pages/Contact/Contact";
-import Remerciement from "./pages/Remerciement/Remerciement";
+import Header from "./pages/Header/Header";
+import Register from "./pages/Body/Register/Register";
+import Login from "./pages/Body/Login/Login";
+import ErrorPage from "./pages/Body/ErrorPage/ErrorPage";
+import Logout from "./pages/Body/Logout/Logout";
+import Portfolio from "./pages/Body/Portfolio/Portfolio";
+import Cv from "./pages/Body/Cv/Cv";
+import Edition from "./pages/Body/Edition/Edition";
+import Contact from "./pages/Body/Contact/Contact";
+import Remerciement from "./pages/Body/Remerciement/Remerciement";
+import Footer from "./pages/Footer/Footer.Jsx"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/contact/remerciement" element={<Remerciement />} />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }

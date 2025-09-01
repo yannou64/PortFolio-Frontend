@@ -1,0 +1,132 @@
+@use "../../../../../variables";
+
+#container_Projets {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #liste_projets {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    
+    &_display {
+      padding: 16px;
+      min-width: 350px;
+      min-height: 300px;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    .addButton {
+      width: 150px;
+    }
+  }
+
+  #formulaire_Projet {
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 2%;
+
+    &_inputs {
+      width: 100%;
+      display: flex;
+      height: 90%;
+
+      .input{
+        width: 90%;
+      }
+
+      #leftPart {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        align-items: center;
+        width: 100%;
+
+        .container_img{
+            width: 90%;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        textarea{
+            background-color: white;
+            width: 90%;
+            border: solid 1px lightgray;
+            border-radius: 5px;
+        }
+    }
+    
+    #rightPart {
+        width: 100%;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        
+        #liste_techno{
+          padding: 16px;
+            height: 250px;
+            width: 90%;
+            background-color: white;
+            border-radius: 5px;
+            border: solid 1px lightgray;
+
+            ul li {
+              display: flex;
+              justify-content: space-between;
+            }
+        }
+    
+        #select_row{
+            display: flex;
+            width: 90%;
+            gap: 32px;
+    
+            select{
+                width: 100%;
+                padding-left: 16px;
+                background-color: white;
+            }
+        }
+        
+        #alert_techno{
+          color: variables.$myOrange;
+        }
+      }
+    }
+
+    &_controle {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+
+      button {
+        width: 150px;
+      }
+
+      #btn_delete{
+        background-color: variables.$myOrange;
+        color: variables.$myWhite;
+      }
+
+      #btn_update{
+        background-color: variables.$myBlue;
+        color: variables.$myWhite;
+      }
+    }
+  }
+}
