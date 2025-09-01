@@ -1,8 +1,6 @@
 import avatar from "../../../../assets/avatar.png";
-import logoLinkedin from "../../../../assets/iconeLinkedin.png";
-import logoGithub from "../../../../assets/iconeGithub.png";
-import logoInsta from "../../../../assets/iconeInstagram.png";
 import "./hero.scss";
+import Reseaux from "../../../components/Reseaux/Reseaux";
 
 export default function Hero() {
   return (
@@ -20,17 +18,7 @@ export default function Hero() {
           <div className="animation"></div>
           <p>Prêt pour de nouvelles opportunitées</p>
         </div>
-        <div className="reseaux-sociaux">
-          <a href="#">
-            <img src={logoLinkedin} alt="logo pour le lien vers un compte linkedin" />
-          </a>
-          <a href="#">
-            <img src={logoGithub} alt="logo pour le lien vers un compte github" />
-          </a>
-          <a href="#">
-            <img src={logoInsta} alt="logo pour le lien vers un compte Instagram" />
-          </a>
-        </div>
+        <Reseaux />
       </div>
     </section>
   );
