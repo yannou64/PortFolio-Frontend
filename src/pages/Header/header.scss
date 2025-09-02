@@ -1,7 +1,7 @@
 @use "../../variables";
 
 // Détermine le temps de l'animation du Menu Burger
-$animationMenuTimer: 0.3s;
+$animationMenuTimer: 0.1s;
 
 // Style du header en mode User
 header {
@@ -21,9 +21,9 @@ header {
   border-bottom: 10px solid variables.$myOrange;
   padding: 0px 40px;
 
-   @media (max-width: variables.$smallDevice) {
-      padding: 0px 16px;
-    }
+  @media (max-width: variables.$smallDevice) {
+    padding: 0px 16px;
+  }
 
   @media (max-width: variables.$mobileDevice) {
     padding: 0px 8px;
@@ -185,10 +185,25 @@ header {
     display: flex;
     z-index: 2;
 
+    @media (max-width: 1200px) {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+      position: absolute;
+      padding-top: 3rem;
+      top: variables.$headerHeight;
+      left: 0;
+      padding-bottom: 2rem;
+      width: 100%;
+      background-color: variables.$myOrange;
+      font-size: 1.5rem;
+    }
     ul {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 40px;
       width: 100%;
 
       li {
@@ -198,6 +213,11 @@ header {
           @media (max-width: 768px) {
             width: 50px;
           }
+        }
+        a {
+          display: flex;
+          gap: 24px;
+          width: 100%;
         }
 
         p {
@@ -222,22 +242,6 @@ header {
       @media (max-width: 768px) {
         flex-direction: column;
       }
-    }
-
-    @media (max-width: 1200px) {
-      display: flex;
-    }
-
-    @media (max-width: 768px) {
-      display: none;
-      position: absolute;
-      padding-top: 3rem;
-      top: variables.$headerHeight;
-      left: 0;
-      padding-bottom: 2rem;
-      width: 100%;
-      background-color: variables.$myOrange;
-      font-size: 1.5rem;
     }
   }
 }

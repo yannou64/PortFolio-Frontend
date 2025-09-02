@@ -15,7 +15,7 @@ export default function ProjetsFavoris({ projets = []}) {
           technos={projet.ListeTechnos}
         />
       ))}
-      <p className="plusDeProjets">Voir tous mes projets</p>
+      {/* <p className="plusDeProjets">Voir tous mes projets</p> */}
     </section>
   );
 }
