@@ -12,7 +12,7 @@ import { getIsAdmin, subscribeToAuth } from "../../auth.js";
 
 export default function Header() {
   const navigate = useNavigate();
-  const iconeSize = 40;
+  const iconeSize = 35;
   const mobileDevice = 479;
   // constante d'identification
   const [isAdmin, setIsAdmin] = useState(getIsAdmin());

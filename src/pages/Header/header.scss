@@ -5,7 +5,6 @@ $animationMenuTimer: 0.1s;
 
 // Style du header en mode User
 header {
-  border: solid red;
   width: 100%;
   max-width: variables.$maxWidth;
   height: variables.$headerHeight;
@@ -13,12 +12,16 @@ header {
   position: sticky;
   z-index: 5;
   top: 0;
-  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: variables.$myWhite;
   padding: 0px 40px;
+  margin: 0 auto;
+
+  @media (max-width: variables.$maxWidth){
+
+  }
 
   @media (max-width: variables.$smallDevice) {
     padding: 0px 16px;
@@ -207,13 +210,17 @@ header {
       }
       
       @media (max-width: variables.$mobileDevice) {
-        gap: 40px;
+        gap: 32px;
         flex-direction: column;
       }
 
       li {
         .icone {
           color: variables.$myWhite;
+
+          @media(max-width: variables.$smallDevice){
+
+          }
 
           @media (max-width: variables.$mobileDevice) {
             width: 50px;
