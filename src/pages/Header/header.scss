@@ -5,6 +5,7 @@ $animationMenuTimer: 0.1s;
 
 // Style du header en mode User
 header {
+  border: solid red;
   width: 100%;
   max-width: variables.$maxWidth;
   height: variables.$headerHeight;
@@ -16,9 +17,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 72px;
   color: variables.$myWhite;
-  border-bottom: 10px solid variables.$myOrange;
   padding: 0px 40px;
 
   @media (max-width: variables.$smallDevice) {
@@ -32,6 +31,7 @@ header {
   h1 {
     font-size: 2em;
     font-weight: bold;
+    width: 50%;
 
     @media (max-width: variables.$smallDevice) {
       font-size: 1.8rem;
@@ -49,7 +49,7 @@ header {
     justify-content: center;
     align-items: center;
 
-    @media (max-width: 768px) {
+    @media (max-width: variables.$mobileDevice) {
       display: flex;
     }
 
@@ -185,11 +185,7 @@ header {
     display: flex;
     z-index: 2;
 
-    @media (max-width: 1200px) {
-      display: flex;
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: variables.$mobileDevice) {
       display: none;
       position: absolute;
       padding-top: 3rem;
@@ -203,14 +199,23 @@ header {
     ul {
       display: flex;
       align-items: center;
-      gap: 40px;
       width: 100%;
+      gap: 24px;
+
+      @media(max-width: variables.$smallDevice){
+        gap: 16px;
+      }
+      
+      @media (max-width: variables.$mobileDevice) {
+        gap: 40px;
+        flex-direction: column;
+      }
 
       li {
         .icone {
           color: variables.$myWhite;
 
-          @media (max-width: 768px) {
+          @media (max-width: variables.$mobileDevice) {
             width: 50px;
           }
         }
@@ -224,12 +229,12 @@ header {
           display: none;
           color: variables.$myWhite;
 
-          @media (max-width: 768px) {
+          @media (max-width: variables.$mobileDevice) {
             display: flex;
           }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: variables.$mobileDevice) {
           display: flex;
           align-items: center;
           gap: 24px;
@@ -239,9 +244,7 @@ header {
         }
       }
 
-      @media (max-width: 768px) {
-        flex-direction: column;
-      }
+      
     }
   }
 }

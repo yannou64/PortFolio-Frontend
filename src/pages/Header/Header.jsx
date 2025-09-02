@@ -13,6 +13,7 @@ import { getIsAdmin, subscribeToAuth } from "../../auth.js";
 export default function Header() {
   const navigate = useNavigate();
   const iconeSize = 40;
+  const mobileDevice = 479;
   // constante d'identification
   const [isAdmin, setIsAdmin] = useState(getIsAdmin());
   // constantes pour cibler des éléments du DOM
@@ -26,7 +27,7 @@ export default function Header() {
   function toggle_MenuBurger_NavVisibility() {
     const is_icone_burger_open = burger_icone.current.classList.contains("open");
     // vérifie d'abord si on est sur mobile ($mobileDevice), sinon aucune action
-    if (window.innerWidth < 479) {
+    if (window.innerWidth < mobileDevice) {
       if (!is_icone_burger_open) {
         burger_icone.current.classList.remove("close");
         burger_icone.current.classList.add("open");
@@ -48,7 +49,7 @@ export default function Header() {
   // Fonction de réinitialisation du navigateur si Resize détecté
   function checkDisplayNavigateur() {
     console.log("test");
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > mobileDevice) {
       document.querySelector("nav").style.display = "flex";
     } else {
       const burgerIcon = document.querySelector(".burger-icon");
