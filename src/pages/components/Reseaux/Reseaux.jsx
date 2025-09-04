@@ -2,9 +2,9 @@ import "./reseaux.scss";
 import logoLinkedin from "../../../assets/iconeLinkedin.png";
 import logoGithub from "../../../assets/iconeGithub.png";
 import logoInsta from "../../../assets/iconeInstagram.png";
-import logoGithubDarkMode from "../../../assets/githubDarkMode.png"
+import logoGithubDarkMode from "../../../assets/githubDarkMode.png";
 
-export default function Reseaux({dark = false}) {
+export default function Reseaux({ dark = false }) {
   return (
     <div className="reseaux-sociaux">
       <a href="#">
