@@ -10,7 +10,7 @@ import Cv from "./pages/Body/Cv/Cv";
 import Edition from "./pages/Body/Edition/Edition";
 import Contact from "./pages/Body/Contact/Contact";
 import Remerciement from "./pages/Body/Remerciement/Remerciement";
-import Footer from "./pages/Footer/Footer.Jsx"
+import Footer from "./pages/Footer/Footer";
 
 function App() {
   return (
