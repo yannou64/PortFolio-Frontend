@@ -262,7 +262,7 @@ header.adminStyle {
   width: 100%;
   height: variables.$headerHeight;
   background-color: variables.$myWhite;
-  position: absolute;
+  position: sticky;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -271,6 +271,7 @@ header.adminStyle {
   color: variables.$myOrange;
   border-bottom: 10px solid variables.$myOrange;
   padding: 0px 32px;
+  margin: 0px auto;
 
   h1 {
     font-size: 2em;

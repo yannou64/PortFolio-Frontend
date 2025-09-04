@@ -1,45 +1,68 @@
 @use "../../../variables";
 
-#EditDisplay {
-  height: calc(100vh - variables.$headerHeight);
+#container_edition {
   width: 100vw;
+}
+
+#editDisplay {
+  height: calc(100vh - variables.$headerHeight - variables.$footerHeight);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5vw;
-  padding-top: 80px;
-}
+  gap: 24px;
+  max-width: variables.$maxWidth;
 
-#collectionList {
-  height: 80vh;
-  border-radius: 16px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 16px;
-
-  button {
-    background-color: variables.$myWhite;
-    padding: 8px;
-    border-radius: 8px;
-    width: 200px;
-    box-shadow: 2px 2px 2px variables.$myLightGray;
-    
-    &.btn.selected {
-      color: variables.$myOrange;
-    }
-    
+  @media (max-width: variables.$smallDevice) {
+    display: none;
   }
-  
+
+  #collectionList {
+    height: 90%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    button {
+      background-color: variables.$myWhite;
+      padding: 8px;
+      border-radius: 8px;
+      width: 200px;
+      box-shadow: 2px 2px 2px variables.$myLightGray;
+
+      &.btn.selected {
+        color: variables.$myOrange;
+      }
+    }
+  }
+
+  #formDisplay {
+    height: 90%;
+    width: 60%;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: variables.$myWhite;
+    box-shadow: 5px 5px 10px variables.$myLightGray;
+  }
 }
 
-#formDisplay {
-  height: 80vh;
-  width: 60vw;
-  border-radius: 16px;
-  padding: 16px;
-  background-color: variables.$myWhite;
-  box-shadow: 5px 5px 10px variables.$myLightGray;
+#isNotDesktop {
+  display: none;
+  height: calc(100vh - variables.$headerHeight - variables.$footerHeight);
+  width: 100%;
+
+  @media (max-width: variables.$smallDevice) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .messageError {
+    font-size: 1.5rem;
+    @media (max-width: variables.$mobileDevice) {
+      font-size: 1rem;
+    }
+  }
 }
