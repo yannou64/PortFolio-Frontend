@@ -31,18 +31,19 @@ header {
     padding: 0px 8px;
   }
 
-  h1 {
-    font-size: 2em;
-    font-weight: bold;
-    width: 50%;
+  #logo {
+    font-family: "Playpen Sans";
+    font-size: 2.5rem;
 
-    @media (max-width: variables.$smallDevice) {
+    @media(max-width: variables.$smallDevice){
+      font-size: 2rem;
+    }
+
+    @media(max-width: variables.$mobileDevice){
       font-size: 1.8rem;
+      padding-left: 8px;
     }
-
-    @media (max-width: variables.$mobileDevice) {
-      font-size: 1.5rem;
-    }
+   
   }
 
   #burger-menu {

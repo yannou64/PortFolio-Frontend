@@ -1,44 +1,45 @@
 @use "../../../variables";
 
-#Contact{
-    color: black;
+#Contact {
+    width: 100%;
+    height: calc(100vh - variables.$footerHeight - variables.$headerHeight);
+    max-height: variables.$maxHeightPC;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 16px;
-    width: 100vw;
-    height: calc(100vh - variables.$footerHeight);
-    padding-top: variables.$padding_top_Section;
-    padding-bottom: variables.$padding_bottom_Section;
-  
-    form{
+    padding: 32px 0px;
+
+    color: variables.$myBlack;
+
+    form {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        max-width: 500px;
+        justify-content: space-between;
+        max-width: 400px;
+        height: 100%;
         width: 90%;
-        gap: 16px;
+      
 
-        h2{
+        h2 {
             color: variables.$myBlack;
         }
-        
+
         input {
             background-color: white;
             width: 100%;
         }
-    
+
         textarea {
             background-color: white;
             width: 100%;
+            height: 80%;
         }
-        button{
-            background-color: rgba(variables.$myOrange, 0.8);
-            color: variables.$myWhite;
-            margin-top: 16px
-        }
-    
+
+    }
+    button {
+        background-color: rgba(variables.$myOrange, 0.8);
+        color: variables.$myWhite;
     }
 }

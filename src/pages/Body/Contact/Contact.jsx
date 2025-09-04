@@ -30,8 +30,8 @@ export default function Contact() {
 
   return (
     <section id="Contact">
-      <form onSubmit={onSubmit} >
         <h2>Contactez-moi</h2>
+      <form id="contact_email" onSubmit={onSubmit} >
         <input
           id="userContact"
           className="input"
@@ -47,8 +47,8 @@ export default function Contact() {
           value={message}
           className="input"
         ></textarea>
-        <MyButton titre="Envoyer" lien="#"/>
       </form>
+        <MyButton id="contact_email" type="submit" titre="Envoyer" lien="#"/>
     </section>
   );
 }

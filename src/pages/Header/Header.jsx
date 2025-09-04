@@ -96,14 +96,17 @@ export default function Header() {
     // Si admin identifié on charge le style adminStyle
     <header className={isAdmin === true ? "adminStyle" : ""}>
       {/* Pour accéder à la page login, on double clique sur le h1 */}
-      <h1 onDoubleClick={() => navigate("/login")}>
+      <p id="logo" onDoubleClick={() => navigate("/login")}>
         <a
           href="#hero"
-          onClick={() => burger_icone.current.classList.contains("open") && toggle_MenuBurger_NavVisibility()}
+          onClick={() => {
+            burger_icone.current.classList.contains("open") && toggle_MenuBurger_NavVisibility();
+            return navigate('/');
+          }}
         >
           Yannick Biot
         </a>
-      </h1>
+      </p>
       {/* Le bouton burger est visible en dessous de 768 px */}
       <button ref={burger} id="burger-menu">
         <span ref={burger_icone} className="burger-icon close">
@@ -116,31 +119,37 @@ export default function Header() {
       <nav ref={nav}>
         <ul>
           {/* Projets */}
-          <li onClick={() => toggle_MenuBurger_NavVisibility()}>
-            <a href="#liste_projetsFavoris">
-              <GrProjects id="menu_portfolio" className="icone" size={iconeSize - 6} />
-              <p>Projets réalisés</p>
-            </a>
-          </li>
+          {!isAdmin && (
+            <li onClick={() => toggle_MenuBurger_NavVisibility()}>
+              <a href="#liste_projetsFavoris">
+                <GrProjects id="menu_portfolio" className="icone" size={iconeSize - 6} />
+                <p>Projets réalisés</p>
+              </a>
+            </li>
+          )}
           {/* Technos */}
-          <li onClick={() => toggle_MenuBurger_NavVisibility()}>
-            <a href="#MesTechnos">
-              <GiStarsStack id="menu_portfolio" className="icone" size={iconeSize - 6} />
-              <p>Stack technique</p>
-            </a>
-          </li>
+          {!isAdmin && (
+            <li onClick={() => toggle_MenuBurger_NavVisibility()}>
+              <a href="#MesTechnos">
+                <GiStarsStack id="menu_portfolio" className="icone" size={iconeSize - 6} />
+                <p>Stack technique</p>
+              </a>
+            </li>
+          )}
           {/* CV */}
-          <li onClick={() => toggle_MenuBurger_NavVisibility()}>
-            <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank">
-              <TbFileCv
-                id="menu_cv"
-                className="logo_cv icone"
-                alt="Lien vers le telechargement de CV"
-                size={iconeSize}
-              />
-              <p>Parcours</p>
-            </a>
-          </li>
+          {!isAdmin && (
+            <li onClick={() => toggle_MenuBurger_NavVisibility()}>
+              <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank">
+                <TbFileCv
+                  id="menu_cv"
+                  className="logo_cv icone"
+                  alt="Lien vers le telechargement de CV"
+                  size={iconeSize}
+                />
+                <p>Parcours</p>
+              </a>
+            </li>
+          )}
           {/* Edition */}
           {isAdmin === true && (
             <li onClick={() => navigate("/edition")}>

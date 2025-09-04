@@ -6,11 +6,24 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
-    background-color: gray;
+    height: calc(100vh - variables.$footerHeight);
+    background-color: variables.$myWhite;
+    
+    img{
+        width: 50%;
+    }
 
     h1{
         font-size: 3rem;
-        color: variables.$myWhite;
+        color: variables.$myBlack;
+        text-align: center;
+
+        @media(max-width: variables.$smallDevice){
+            font-size: 1.8rem;
+        }
+
+        @media(max-width: variables.$mobileDevice){
+            font-size: 1rem;
+        }
     }
 }

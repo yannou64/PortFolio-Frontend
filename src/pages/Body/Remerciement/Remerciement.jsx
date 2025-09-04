@@ -16,7 +16,7 @@ export default function Remerciement(){
     return (
         <div className="container_remerciement">
             <img src={myAvatar} alt="Avatar du propriétaire de l'application web" />
-            <h1>Merci beaucoup, je vous recontacte rapidement</h1>
+            <h1>Merci beaucoup, je vous recontacte rapidement.</h1>
         </div>
     )
 }

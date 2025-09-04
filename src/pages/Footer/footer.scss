@@ -9,4 +9,11 @@ footer{
     background-color: variables.$myBlack;
     color: variables.$myWhite;
     height: 150px;
+    
+    div{
+        font-size: 0.9rem;
+        @media(max-width: variables.$mobileDevice){
+            font-size: 0.7rem;
+        }
+    }
 }
