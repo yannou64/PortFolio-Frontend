@@ -39,9 +39,10 @@ export default function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // En fonction de widthDevice et de isAdmin, on défini le style du header et si on vérifie si on est sur mobile
+  // En fonction de widthDevice et de isAdmin, on défini le style du header et on vérifie si on est sur mobile
   const mobile = 479;
   const [isMobile, setIsMobile] = useState(widthDevice > mobile);
+  const myHeader = useRef();
 
   useEffect(() => {
     if (widthDevice > mobile) {
@@ -56,8 +57,6 @@ export default function Header() {
     }
   }, [widthDevice, isAdmin]);
 
-  // Fonction pour ajouter au supprimer la class "adminStyle" en fonction de isAdmin
-  const myHeader = useRef();
   function headerStyle(style) {
     const el = myHeader.current;
     if (!el) return; // Pour régler des problème avec classList quand les élements n'existe pas
