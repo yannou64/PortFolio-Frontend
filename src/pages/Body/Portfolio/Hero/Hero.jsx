@@ -1,4 +1,4 @@
-import avatar from "../../../../assets/avatar.png";
+import avatar from "../../../../assets/avatar.webp";
 import "./hero.scss";
 import Reseaux from "../../../components/Reseaux/Reseaux";
 
@@ -16,7 +16,7 @@ export default function Hero() {
         </p>
         <div className="alerte">
           <div className="animation"></div>
-          <div>Prêt pour de nouvelles opportunitées</div>
+          <div>Prêt pour de nouvelles opportunités</div>
         </div>
         <Reseaux />
       </div>

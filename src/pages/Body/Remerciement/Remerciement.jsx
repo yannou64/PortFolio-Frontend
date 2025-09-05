@@ -1,7 +1,7 @@
 import "./remerciement.scss"
 import {useNavigate} from "react-router-dom"
 import {useEffect} from "react"
-import myAvatar from "../../../assets/avatar.png"
+import myAvatar from "../../../assets/avatar.webp"
 
 
 export default function Remerciement(){

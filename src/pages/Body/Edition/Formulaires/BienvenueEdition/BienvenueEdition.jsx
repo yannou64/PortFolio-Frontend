@@ -1,4 +1,4 @@
-import logo from "../../../../../assets/avatar.png";
+import logo from "../../../../../assets/avatar.webp";
 import "./bienvenueEdition.scss";
 
 export default function BienvenueEdition() {

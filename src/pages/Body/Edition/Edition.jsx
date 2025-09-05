@@ -10,10 +10,13 @@ import Langues from "./Formulaires/Langues/Langues.jsx";
 import Projet from "./Formulaires/Projets/Projets.jsx";
 import BienvenueEdition from "./Formulaires/BienvenueEdition/BienvenueEdition.jsx";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { getIsAdmin } from "../../../auth.js";
 
 export default function EditCv() {
   const [formActif, setFormActif] = useState("");
-
+  const [isAdmin, setIsAdmin] = useState(()=>getIsAdmin())
+  console.log("edition isAdmin : ", isAdmin)
   // Quand on clique sur un des boutons de formulaire
   function selectForm(e) {
     // sélectionner tous les boutons et réinitialiser la class selected
@@ -26,6 +29,10 @@ export default function EditCv() {
     setFormActif(e.target.id);
     document.getElementById(e.target.id).classList.add("selected");
   }
+
+  if(!isAdmin){
+    return <Navigate to="/logout" replace />
+  }  
 
   return (
     <div id="container_edition">
