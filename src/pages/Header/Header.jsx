@@ -77,6 +77,7 @@ export default function Header() {
 
   // Initialisation du menuBurger et du navigateur à chaque changement d'état de isMobile
   useEffect(() => {
+     console.log("isMobile : ", isMobile);
     burger_icone.current.classList.remove("open");
     if (isMobile) {
       nav.current.style.display = "none";
@@ -87,7 +88,7 @@ export default function Header() {
 
   // Animation du menuBurger et gestion de l'affichage du navigateur à chaque clique sur le menu
   useEffect(() => {
-    console.log("isMobile : ", isMobile);
+   
     if (isMobile) {
       burger_icone.current.classList.toggle("open");
       if (burger_icone.current.classList.contains("open")) {
