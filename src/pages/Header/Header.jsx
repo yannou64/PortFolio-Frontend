@@ -10,7 +10,6 @@ import { GiStarsStack } from "react-icons/gi";
 import { GrProjects } from "react-icons/gr";
 import { getIsAdmin, subscribeToAuth } from "../../auth.js";
 
-
 export default function Header() {
   ////
   // Variables
@@ -41,11 +40,11 @@ export default function Header() {
 
   // En fonction de widthDevice et de isAdmin, on défini le style du header et on vérifie si on est sur mobile
   const mobile = 479;
-  const [isMobile, setIsMobile] = useState(widthDevice > mobile);
+  const [isMobile, setIsMobile] = useState(widthDevice < mobile);
   const myHeader = useRef();
 
   useEffect(() => {
-    if (widthDevice > mobile) {
+    if (widthDevice < mobile) {
       setIsMobile(true);
     } else {
       setIsMobile(false);
@@ -69,7 +68,6 @@ export default function Header() {
     }
   }
 
-
   ////
   // Gestion du MenuBurger et de l'affichage du navigateur
   ////
@@ -81,20 +79,22 @@ export default function Header() {
   useEffect(() => {
     burger_icone.current.classList.remove("open");
     if (isMobile) {
-      nav.current.style.display = "flex";
-    } else {
       nav.current.style.display = "none";
+    } else {
+      nav.current.style.display = "flex";
     }
   }, [isMobile]);
 
-
-  // Animation du menuBurger et gestion de l'affichage du navigateur à chaque clique sur le menu 
+  // Animation du menuBurger et gestion de l'affichage du navigateur à chaque clique sur le menu
   useEffect(() => {
-    burger_icone.current.classList.toggle("open");
-    if (burger_icone.current.classList.contains("open")) {
-      nav.current.style.display = "flex";
-    } else {
-      nav.current.style.display = "none";
+    console.log("isMobile : ", isMobile);
+    if (isMobile) {
+      burger_icone.current.classList.toggle("open");
+      if (burger_icone.current.classList.contains("open")) {
+        nav.current.style.display = "flex";
+      } else {
+        nav.current.style.display = "none";
+      }
     }
   }, [isMenuBurgerOpen]);
 
@@ -108,18 +108,18 @@ export default function Header() {
   }
 
   ////
-  // Rendu du composant 
+  // Rendu du composant
   ///
 
   return (
     // Si admin identifié on charge le style adminStyle
     <header ref={myHeader}>
       {/* Pour accéder à la page login, on double clique sur le h1 */}
-      <p id="logo" onDoubleClick={() => navigate("/login")}>
+      <button id="logo" onDoubleClick={() => !isMobile && navigate("/login")}>
         <a href="#hero" onClick={() => navigate("/")}>
           Yannick Biot
         </a>
-      </p>
+      </button>
       {/* Le bouton burger est visible en dessous de 768 px */}
       <button id="burger-menu" onClick={() => setIsMenuBurgerOpen(!isMenuBurgerOpen)}>
         <span ref={burger_icone} className="burger-icone">
