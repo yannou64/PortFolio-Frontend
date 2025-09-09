@@ -16,6 +16,7 @@ export default function Header() {
   ////
   const iconeSize = 40;
   const navigate = useNavigate();
+
   ////
   // Gestion isAdmin
   ////
@@ -87,7 +88,7 @@ export default function Header() {
   }, [isMobile]);
 
   // Animation du menuBurger et gestion de l'affichage du navigateur à chaque clique sur le menu
-  useEffect(() => {
+  function handleBurgerMenu(){
    
     if (isMobile) {
       burger_icone.current.classList.toggle("open");
@@ -97,7 +98,8 @@ export default function Header() {
         nav.current.style.display = "none";
       }
     }
-  }, [isMenuBurgerOpen]);
+    setIsMenuBurgerOpen(!isMenuBurgerOpen)
+  }
 
   ////
   // Gestion du cas ou un Admin n'est pas sur desktop
@@ -122,7 +124,7 @@ export default function Header() {
         </a>
       </button>
       {/* Le bouton burger est visible en dessous de 768 px */}
-      <button id="burger-menu" onClick={() => setIsMenuBurgerOpen(!isMenuBurgerOpen)}>
+      <button id="burger-menu" onClick={handleBurgerMenu}>
         <span ref={burger_icone} className="burger-icone">
           <div className="burger-line"></div>
           <div className="burger-line"></div>
@@ -134,7 +136,7 @@ export default function Header() {
         <ul>
           {/* Projets */}
           {!isAdmin && (
-            <li onClick={() => setIsMenuBurgerOpen(!isMenuBurgerOpen)}>
+            <li onClick={handleBurgerMenu}>
               <a href="#liste_projetsFavoris">
                 <GrProjects id="menu_portfolio" className="icone" size={iconeSize - 6} />
                 <p>Projets réalisés</p>
@@ -143,7 +145,7 @@ export default function Header() {
           )}
           {/* Technos */}
           {!isAdmin && (
-            <li onClick={() => setIsMenuBurgerOpen(!isMenuBurgerOpen)}>
+            <li onClick={handleBurgerMenu}>
               <a href="#MesTechnos">
                 <GiStarsStack id="menu_portfolio" className="icone" size={iconeSize - 6} />
                 <p>Stack technique</p>
@@ -152,7 +154,7 @@ export default function Header() {
           )}
           {/* CV */}
           {!isAdmin && (
-            <li onClick={() => setIsMenuBurgerOpen(!isMenuBurgerOpen)}>
+            <li onClick={handleBurgerMenu}>
               <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank">
                 <TbFileCv
                   id="menu_cv"
@@ -179,7 +181,7 @@ export default function Header() {
           )}
           {/* Contact */}
           {isAdmin !== true && (
-            <li onClick={() => setIsMenuBurgerOpen(!isMenuBurgerOpen)}>
+            <li onClick={handleBurgerMenu}>
               <a href="#Contact">
                 <TfiEmail id="menu_contact" className="icone" size={iconeSize} />
                 <p>Me contacter</p>
