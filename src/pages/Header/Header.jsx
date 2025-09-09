@@ -87,8 +87,7 @@ export default function Header() {
   }, [isMobile]);
 
   // Animation du menuBurger et gestion de l'affichage du navigateur à chaque clique sur le menu
-  function handleBurgerMenu(){
-   
+  function handleBurgerMenu() {
     if (isMobile) {
       burger_icone.current.classList.toggle("open");
       if (burger_icone.current.classList.contains("open")) {
@@ -97,7 +96,7 @@ export default function Header() {
         nav.current.style.display = "none";
       }
     }
-    setIsMenuBurgerOpen(!isMenuBurgerOpen)
+    setIsMenuBurgerOpen(!isMenuBurgerOpen);
   }
 
   ////
@@ -118,7 +117,13 @@ export default function Header() {
     <header ref={myHeader}>
       {/* Pour accéder à la page login, on double clique sur le h1 */}
       <button id="logo" onDoubleClick={() => !isMobile && navigate("/login")}>
-        <a href="#hero" onClick={() => navigate("/")}>
+        <a
+          href="#hero"
+          onClick={() => {
+            isMenuBurgerOpen && handleBurgerMenu()
+            navigate("/");
+          }}
+        >
           Yannick Biot
         </a>
       </button>
