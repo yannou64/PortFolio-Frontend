@@ -80,7 +80,17 @@ export default function Header() {
   useEffect(() => {
 <<<<<<< Updated upstream
 =======
+<<<<<<< HEAD
+     console.log("isMobile : ", isMobile);
+=======
+>>>>>>> Stashed changes
+<<<<<<< Updated upstream
+=======
     console.log("isMobile : ", isMobile);
+>>>>>>> Stashed changes
+<<<<<<< Updated upstream
+=======
+>>>>>>> dev
 >>>>>>> Stashed changes
     burger_icone.current.classList.remove("open");
     if (isMobile) {
