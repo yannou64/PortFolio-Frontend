@@ -9,6 +9,7 @@
 
 #editDisplay {
   height: calc(100vh - variables.$headerHeight - variables.$footerHeight);
+  min-height: 650px;
   width: 100%;
   display: flex;
   justify-content: center;

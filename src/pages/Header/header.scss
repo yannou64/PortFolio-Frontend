@@ -268,9 +268,11 @@ header.adminStyle {
   padding: 0px 32px;
   margin: 0px auto;
 
-  h1 {
+  #logo {
     font-size: 2em;
     font-weight: bold;
+    width: 100%;
+    text-align: start;
 
     @media (max-width: variables.$smallDevice) {
       font-size: 1.8rem;
