@@ -1,7 +1,7 @@
 import "./CTAParcours.scss";
 import MyButton from "../components/MyButton/MyButton.jsx";
 import photoId from "../../../../assets/photoIdentite.png";
-import cvUrl from "../../../../../public/Documents/cv-yannick-biot.pdf?url"
+import cvUrl from "../../../../public/Documents/cv-yannick-biot.pdf?url";
 
 export default function CTAParcours() {
   return (
