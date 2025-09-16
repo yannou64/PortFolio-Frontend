@@ -1,6 +1,7 @@
 import "./CTAParcours.scss";
 import MyButton from "../components/MyButton/MyButton.jsx";
 import photoId from "../../../../assets/photoIdentite.png";
+import cvUrl from "../../../../../public/Documents/cv-yannick-biot.pdf?url"
 
 export default function CTAParcours() {
   return (
@@ -22,7 +23,7 @@ export default function CTAParcours() {
           </li>
         </ul>
       </div>
-      <MyButton lien="../../../../public/Documents/cv-yannick-biot.pdf" titre="En savoir +" className="myButton" />
+      <MyButton lien={cvUrl} rel="noopener noreferrer" titre="En savoir +" className="myButton" />
     </section>
   );
 }
