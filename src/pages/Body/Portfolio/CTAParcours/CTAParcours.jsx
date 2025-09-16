@@ -2,7 +2,7 @@ import "./CTAParcours.scss";
 import MyButton from "../components/MyButton/MyButton.jsx";
 import photoId from "../../../../assets/photoIdentite.png";
 import cvUrl from "../../../../../public/Documents/cv-yannick-biot.pdf?url"
-
+// erratum
 export default function CTAParcours() {
   return (
     <section id="CTAParcours">
