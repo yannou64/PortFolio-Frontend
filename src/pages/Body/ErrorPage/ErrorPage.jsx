@@ -9,7 +9,7 @@ export default function ErrorPage() {
     <div className="container_errorPage">
       <div className="box">
         <div>Erreur : {message}</div>
-        <button className="btn btn-primary" onClick={() => navigate("/login")}>
+        <button className="btn" onClick={() => navigate("/login")}>
           Retour
         </button>
       </div>

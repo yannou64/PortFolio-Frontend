@@ -10,16 +10,20 @@
     background-color: variables.$myWhite;
     
     img{
-        width: 50%;
+        width: 40%;
+
+        @media(max-height: 500px){
+            display: none;
+        }
     }
 
     h1{
-        font-size: 3rem;
+        font-size: 2rem;
         color: variables.$myBlack;
         text-align: center;
 
         @media(max-width: variables.$smallDevice){
-            font-size: 1.8rem;
+            font-size: 1.3rem;
         }
 
         @media(max-width: variables.$mobileDevice){

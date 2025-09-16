@@ -39,7 +39,7 @@
       height: 90%;
 
       .input{
-        width: 90%;
+        width: 100%;
       }
 
       #leftPart {
@@ -51,7 +51,7 @@
         width: 100%;
 
         .container_img{
-            width: 90%;
+            width: 100%;
             height: 150px;
             display: flex;
             justify-content: center;
@@ -63,9 +63,10 @@
 
         textarea{
             background-color: white;
-            width: 90%;
+            width: 100%;
             border: solid 1px lightgray;
             border-radius: 5px;
+            height: 100%;
         }
     }
     

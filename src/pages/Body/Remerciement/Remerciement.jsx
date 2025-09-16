@@ -11,7 +11,7 @@ export default function Remerciement(){
         setTimeout(()=>{
             navigate("/")
         }, 3000)
-    }, [navigate])
+    }, [])
 
     return (
         <div className="container_remerciement">
