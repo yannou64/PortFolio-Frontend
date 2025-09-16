@@ -21,7 +21,6 @@ export default function Techno() {
       const data = await response.json();
       if (!response.ok) return console.log(`Erreur de Status de la réponse du fetch getAllTechno : ${data.message}`);
       setAllTechnos(data.data);
-      console.log("getAllTechnos success");
     } catch (e) {
       console.log(`CatchErreur front dans getAllTechno : ${e.message}`);
     }
