@@ -9,6 +9,7 @@ import { LuBriefcaseBusiness } from "react-icons/lu";
 import { FaCode } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 import { useContext } from "react";
+import cvUrl from "../../../public/Documents/cv-yannick-biot.pdf?url";
 
 export default function Header() {
   ////
@@ -20,7 +21,7 @@ export default function Header() {
   ////
   // Gestion isAdmin
   ////
-  const {isAdmin} = useContext(AuthContext)
+  const { isAdmin } = useContext(AuthContext);
 
   ////
   // Gestion comportement header
@@ -158,7 +159,7 @@ export default function Header() {
           {/* CV */}
           {!isAdmin && (
             <li onClick={handleBurgerMenu} title="Mon CV">
-              <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank">
+              <a href={cvUrl} target="_blank" rel="noopener noreferrer">
                 <TbFileCv
                   id="menu_cv"
                   className="logo_cv icone"
