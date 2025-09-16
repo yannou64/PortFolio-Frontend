@@ -1,14 +1,14 @@
 import "./header.scss";
 import { useEffect, useState, useRef } from "react";
-// Pour la certification je n'utiliserais pas les Link pour garder une sémantique html plus visible
 import { useNavigate, Navigate } from "react-router-dom";
 import { TbFileCv } from "react-icons/tb";
 import { IoMdLogOut } from "react-icons/io";
 import { MdEditSquare } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
-import { GiStarsStack } from "react-icons/gi";
-import { GrProjects } from "react-icons/gr";
-import { getIsAdmin, subscribeToAuth } from "../../auth.js";
+import { LuBriefcaseBusiness } from "react-icons/lu";
+import { FaCode } from "react-icons/fa";
+import AuthContext from "../../context/AuthContext";
+import { useContext } from "react";
 
 export default function Header() {
   ////
@@ -20,8 +20,7 @@ export default function Header() {
   ////
   // Gestion isAdmin
   ////
-  const [isAdmin, setIsAdmin] = useState(getIsAdmin);
-  subscribeToAuth(setIsAdmin);
+  const {isAdmin} = useContext(AuthContext)
 
   ////
   // Gestion comportement header
@@ -140,25 +139,25 @@ export default function Header() {
         <ul>
           {/* Projets */}
           {!isAdmin && (
-            <li onClick={handleBurgerMenu}>
+            <li onClick={handleBurgerMenu} title="Mes projets">
               <a href="#liste_projetsFavoris">
-                <GrProjects id="menu_portfolio" className="icone" size={iconeSize - 6} />
+                <LuBriefcaseBusiness id="menu_portfolio" className="icone" size={iconeSize} />
                 <p>Projets réalisés</p>
               </a>
             </li>
           )}
           {/* Technos */}
           {!isAdmin && (
-            <li onClick={handleBurgerMenu}>
+            <li onClick={handleBurgerMenu} title="Ma Stack">
               <a href="#MesTechnos">
-                <GiStarsStack id="menu_portfolio" className="icone" size={iconeSize - 6} />
+                <FaCode id="menu_portfolio" className="icone" size={iconeSize - 6} />
                 <p>Stack technique</p>
               </a>
             </li>
           )}
           {/* CV */}
           {!isAdmin && (
-            <li onClick={handleBurgerMenu}>
+            <li onClick={handleBurgerMenu} title="Mon CV">
               <a href="../../public/Documents/cv-yannick-biot.pdf" target="_blank">
                 <TbFileCv
                   id="menu_cv"
@@ -185,7 +184,7 @@ export default function Header() {
           )}
           {/* Contact */}
           {isAdmin !== true && (
-            <li onClick={handleBurgerMenu}>
+            <li onClick={handleBurgerMenu} title="Me Contacter">
               <a href="#Contact">
                 <TfiEmail id="menu_contact" className="icone" size={iconeSize} />
                 <p>Me contacter</p>

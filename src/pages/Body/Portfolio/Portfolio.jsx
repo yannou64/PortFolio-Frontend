@@ -13,7 +13,6 @@ export default function Portfolio() {
   async function getProjetsFavoris() {
     const response = await fetch(import.meta.env.VITE_API_URL + `/api/edition/projets/favoris`);
     const data = await response.json();
-    console.log(data.data);
     if (!response.ok) return console.log(data.message);
     setProjetsFavoris(data.data);
   }

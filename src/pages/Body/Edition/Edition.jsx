@@ -2,13 +2,14 @@ import "./edition.scss";
 import Techno from "./Formulaires/Technos/Techno.jsx";
 import Projet from "./Formulaires/Projets/Projets.jsx";
 import BienvenueEdition from "./Formulaires/BienvenueEdition/BienvenueEdition.jsx";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { getIsAdmin } from "../../../auth.js";
+import AuthContext from "../../../context/AuthContext.jsx";
+
 
 export default function Edition() {
   const [formActif, setFormActif] = useState("");
-  const [isAdmin, setIsAdmin] = useState(() => getIsAdmin());
+  const {isAdmin} = useContext(AuthContext)
 
   // Quand on clique sur un des boutons de formulaire
   function selectForm(e) {

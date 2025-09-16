@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../../../context/AuthContext.jsx";
 import "./login.scss";
-import { setAdmin } from "../../../auth.js";
+
 
 export default function Register() {
   const [identifiant, setIdentifiant] = useState("");
   const [mdp, setMdp] = useState("");
   const navigate = useNavigate();
+  const {setIsAdmin} = useContext(AuthContext)
 
   async function submitAction(e) {
     e.preventDefault();
@@ -25,7 +27,7 @@ export default function Register() {
       });
       const data = await response.json()
       if (response.ok) {
-        setAdmin(true);
+        setIsAdmin(true);
         navigate("/edition");
       } else {
         return navigate(`/error/${data.message}`);

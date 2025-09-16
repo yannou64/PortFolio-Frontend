@@ -24,12 +24,11 @@
             width: 75%;
         }
     }
+    .btn{
+        background-color: variables.$myWhite;
+        color: variables.$myBlack;
+        padding: 0 16px;
+        margin-top: 24px;
+    }
 }
 
-
-.btn{
-    background-color: variables.$myWhite;
-    color: variables.$myBlack;
-    padding: 0 16px;
-    margin-top: 24px;
-}

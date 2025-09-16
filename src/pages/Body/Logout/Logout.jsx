@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
-import { setAdmin } from "../../../auth";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import AuthContext from "../../../context/AuthContext";
 
 export default function Logout() {
-  setAdmin(false);
+  const { setIsAdmin } = useContext(AuthContext);
 
   // effacer le cookie depuis le backend
   async function eraseCookie() {
@@ -19,6 +19,7 @@ export default function Logout() {
   }
 
   useEffect(() => {
+    setIsAdmin(false);
     eraseCookie();
   }, []);
 
