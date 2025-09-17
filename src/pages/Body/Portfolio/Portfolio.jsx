@@ -4,12 +4,13 @@ import MesTechnos from "./MesTechnos/MesTechnos.jsx";
 import { useEffect, useState } from "react";
 import Parcours_Contact from "./Parcours_Contact/Parcours_Contact.jsx";
 
+
 export default function Portfolio() {
   // Centralisation des requêtes et distributions des données dans les composants via les props
+
+
   // Récupérer tous les projets
   const [projetsFavoris, setProjetsFavoris] = useState([]);
-
-  // Récupération des projets
   async function getProjetsFavoris() {
     const response = await fetch(import.meta.env.VITE_API_URL + `/api/edition/projets/favoris`);
     const data = await response.json();
@@ -19,7 +20,6 @@ export default function Portfolio() {
 
   // Récupérer toutes les technos
   const [technosByCategorie, setTechnosByCategorie] = useState([]);
-
   async function getTechnosByCategorie() {
     const response = await fetch(import.meta.env.VITE_API_URL + `/api/edition/technos/byCategories`);
     const data = await response.json();

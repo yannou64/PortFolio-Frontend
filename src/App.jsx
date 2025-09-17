@@ -11,10 +11,34 @@ import Edition from "./pages/Body/Edition/Edition";
 import Remerciement from "./pages/Body/Remerciement/Remerciement";
 import Footer from "./pages/Footer/Footer";
 import AuthContext from "./context/AuthContext";
+import { useEffect } from "react";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false)
   const value = {isAdmin, setIsAdmin}
+
+  // Vérification si un token admin existe et si il n'est pas expiré
+  async function isAlreadyAdmin(){
+    try{
+      const response = await fetch(import.meta.env.VITE_API_URL + "/api/auth/checkIfAdmin", {
+        method: "GET",
+        credentials: "include"
+      })
+      const data = await response.json()
+      if(response.ok){
+        if(data.auth) setIsAdmin(true)
+        console.log(data.message)
+      } else {
+        console.log("Error : ", data.message)
+      }
+    } catch (e) {
+      console.log("Error : ", e.message)
+    }
+  }
+  
+  useEffect(()=>{
+    isAlreadyAdmin()
+  }, [])
 
   return (
     <AuthContext.Provider value={value}>
