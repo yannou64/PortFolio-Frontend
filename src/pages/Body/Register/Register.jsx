@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import alerteSonore from "../../../utils/alerteSonore";
+import modelMdp from "../../../utils/confirmMdp";
 import "./register.scss";
 
 export default function Register() {
@@ -9,6 +11,13 @@ export default function Register() {
 
   async function submitAction(e) {
     e.preventDefault();
+
+    // validation du mdp
+    if(!modelMdp.test(mdp)){
+      alerteSonore()
+      return
+    }
+
     try {
       const bodycontent = JSON.stringify({ identifiant, mdp });
       const response = await fetch(import.meta.env.VITE_API_URL + "/api/auth/register", {
@@ -46,6 +55,7 @@ export default function Register() {
           placeholder="mot de passe"
           required
         />
+        <div className="mdp_message"><p>Au moins 8 caractères avec au moins un chiffre et un caractère spécial</p></div>
         <button className="btn" type="submit">
           S'enregistrer
         </button>

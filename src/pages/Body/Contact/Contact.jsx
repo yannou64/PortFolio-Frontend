@@ -35,6 +35,7 @@ export default function Contact() {
         <input
           id="userContact"
           className="input"
+          required
           type="email"
           placeholder="Votre email"
           onChange={(e) => setEmailContact(e.target.value)}
@@ -46,6 +47,7 @@ export default function Contact() {
           onChange={(e) => setMessage(e.target.value)}
           value={message}
           className="input"
+          required
         ></textarea>
       </form>
         <MyButton id="contact_email" type="submit" titre="Envoyer" lien="#"/>

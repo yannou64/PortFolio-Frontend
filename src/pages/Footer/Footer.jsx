@@ -10,7 +10,7 @@ export default function Footer() {
   useEffect(() => {
      // défilement en douceur vers le haut
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [navigate]);
 
   return (
     <footer>

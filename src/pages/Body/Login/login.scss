@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-   height: calc(100vh - variables.$headerHeight);
+    height: calc(100vh - variables.$headerHeight);
     padding: 40px;
     
     form{
@@ -29,6 +29,16 @@
         color: variables.$myBlack;
         padding: 0 16px;
         margin-top: 24px;
+    }
+
+    .message_error{
+        font-size: 0.5rem;
+        color: variables.$myWhite;
+        width: 75%;
+
+        &-hidden{
+            visibility: hidden;
+        }
     }
 }
 
