@@ -8,7 +8,8 @@ export default function Footer() {
   const [year, setYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    // setYear(new Date().getFullYear())
+     // défilement en douceur vers le haut
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
