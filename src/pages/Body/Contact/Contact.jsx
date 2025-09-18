@@ -1,16 +1,20 @@
 import "./contact.scss";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "../Portfolio/components/MyButton/MyButton";
+import confirmEmail from "../../../utils/confirmEmail";
 
 export default function Contact() {
   const [emailContact, setEmailContact] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const dialogModal = useRef(null);
 
   async function onSubmit(e) {
     e.preventDefault();
-    console.log("test");
+
+    if (!confirmEmail.test(emailContact) || !emailContact) return dialogModal.current.showModal();
+
     const response = await fetch(`${import.meta.env.VITE_API_URL}/priseDeContact`, {
       method: "POST",
       headers: {
@@ -30,8 +34,8 @@ export default function Contact() {
 
   return (
     <section id="Contact">
-        <h2>Contactez-moi</h2>
-      <form id="contact_email" onSubmit={onSubmit} >
+      <h2>Contactez-moi</h2>
+      <form id="contact_email" onSubmit={onSubmit}>
         <input
           id="userContact"
           className="input"
@@ -50,7 +54,17 @@ export default function Contact() {
           required
         ></textarea>
       </form>
-        <MyButton id="contact_email" type="submit" titre="Envoyer" lien="#"/>
+      <MyButton id="contact_email" type="submit" titre="Envoyer" lien="#" />
+      <dialog ref={dialogModal}>
+        <h3>Petite maladraisse</h3>
+        <p>Vérifiez votre <strong>email</strong></p>
+  
+        <div>
+          <button onClick={() => dialogModal.current.close()} id="button_modal">
+            OK
+          </button>
+        </div>
+      </dialog>
     </section>
   );
 }

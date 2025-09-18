@@ -28,6 +28,7 @@ export default function Techno() {
 
   async function updateTechno(e) {
     e.preventDefault(e);
+
     const formData = new FormData();
     formData.append("titre", titre);
     formData.append("categorie", categorie);
@@ -126,7 +127,7 @@ export default function Techno() {
   }, []);
 
   return (
-    <div id="technoContainer">
+    <section id="technoContainer">
       <form onSubmit={updateMode ? updateTechno : addSubmit} id="technoForm">
         {/* Champ titre */}
         <input
@@ -194,7 +195,7 @@ export default function Techno() {
       </form>
 
       {/* Listing des compétences déjà enregistré dans la bdd */}
-      <div id="technoList">
+      <section id="technoList">
         {allTechnos.map((item) => (
           <Item
             key={item._id}
@@ -204,7 +205,7 @@ export default function Techno() {
             deleteElement={deleteTechno}
           />
         ))}
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }

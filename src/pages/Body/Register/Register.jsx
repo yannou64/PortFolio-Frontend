@@ -52,6 +52,7 @@ export default function Register() {
           onChange={(e) => setMdp(e.target.value)}
           className="input"
           type="password"
+          minLength={8}
           placeholder="mot de passe"
           required
         />
