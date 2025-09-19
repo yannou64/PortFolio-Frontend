@@ -11,8 +11,10 @@ export default function Techno() {
   const [niveau, setNiveau] = useState("");
   const [allTechnos, setAllTechnos] = useState([]);
   const [technoIdToUpdate, setTechnoIdToUpdate] = useState("");
+
   const [imageFile, setImageFile] = useState(null);
   const [imageApercuUrl, setImageApercuUrl] = useState("");
+
   const [alt_img, setAlt_img] = useState("");
   const modal = useRef(null);
   const modal_button = useRef(null);

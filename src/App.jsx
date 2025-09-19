@@ -18,7 +18,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const value = { isAdmin, setIsAdmin };
 
-  // Vérification si un token admin existe et si il n'est pas expiré
+  // Vérification si un token admin existe et si il n'est pas expiré, renvoie auth: true ou false
   async function isAlreadyAdmin() {
     try {
       const response = await fetch(import.meta.env.VITE_API_URL + "/api/auth/checkIfAdmin", {
@@ -28,7 +28,6 @@ function App() {
       const data = await response.json();
       if (response.ok) {
         if (data.auth) setIsAdmin(true);
-        console.log(data.message);
       } else {
         console.log("Error : ", data.message);
       }

@@ -11,13 +11,14 @@ export default function Projet() {
   const alertDoublonTechno = useRef();
   // Constante des champs
   const [titre_projet, setTitre_projet] = useState("");
-  const [image_projet, setImage_projet] = useState(null);
   const [alt_img_projet, setAlt_img_projet] = useState("");
   const [description_projet, setDescription_projet] = useState("");
   const [is_favoris_projet, setIs_favoris_projet] = useState(false);
   const [technos_projet, setTechnos_projet] = useState([]);
   //
   const [imgApercuUrl, setImgApercuUrl] = useState("");
+  const [image_projet, setImage_projet] = useState(null);
+  
   const [allTechno, setAllTechno] = useState([]);
   const [allProject, setAllProject] = useState([]);
   const [editorMode, setEditorMode] = useState("Add");
