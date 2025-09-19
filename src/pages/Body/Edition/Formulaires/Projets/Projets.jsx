@@ -12,9 +12,9 @@ export default function Projet() {
   // Constante des champs
   const [titre_projet, setTitre_projet] = useState("");
   const [image_projet, setImage_projet] = useState(null);
-  const [alt_img_projet, setAlt_img_projet] = useState("")
+  const [alt_img_projet, setAlt_img_projet] = useState("");
   const [description_projet, setDescription_projet] = useState("");
-  const [is_favoris_projet, setIs_favoris_projet] = useState(false)
+  const [is_favoris_projet, setIs_favoris_projet] = useState(false);
   const [technos_projet, setTechnos_projet] = useState([]);
   //
   const [imgApercuUrl, setImgApercuUrl] = useState("");
@@ -24,6 +24,9 @@ export default function Projet() {
   const [idProjectSelected, setIdProjectSelected] = useState("");
   const [technoDoublonAlert, setTechnoDoublonAlert] = useState(false);
   const technoSelect = useRef();
+  const modal = useRef(null);
+  const modal_button = useRef(null);
+  const [error, setError] = useState(null);
 
   // Initialisation des inputs
   function initInput() {
@@ -31,7 +34,7 @@ export default function Projet() {
     setImage_projet(null);
     setAlt_img_projet("");
     setDescription_projet("");
-    setIs_favoris_projet(false)
+    setIs_favoris_projet(false);
     setIdProjectSelected("");
     setTechnos_projet([]);
     setEditorMode("Add");
@@ -41,9 +44,9 @@ export default function Projet() {
   function hydrateInputs(projet) {
     setTitre_projet(projet.titre_projet);
     setImage_projet(projet.image_projet);
-    setAlt_img_projet(projet.alt_img_projet)
+    setAlt_img_projet(projet.alt_img_projet);
     setDescription_projet(projet.description_projet);
-    setIs_favoris_projet(projet.is_favoris_projet)
+    setIs_favoris_projet(projet.is_favoris_projet);
     setTechnos_projet(projet.technos_projet);
   }
 
@@ -87,14 +90,21 @@ export default function Projet() {
   async function askingForDelete(id) {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${id}`);
+      if (!response.ok) {
+        setError("Status : " + response.status);
+        modal.current.showModal();
+        return console.error("Error status in askingForDelete : ", response.status);
+      }
+      
       const data = await response.json();
-      if (!response.ok) return console.log("Erreur de status dans askingForDelete : ", data.message);
       setEditorMode("Delete");
       displayForm("Delete");
       hydrateInputs(data.data);
       setIdProjectSelected(id);
     } catch (e) {
-      console.log(`Erreur dans askinForDelete : ${e.message}`);
+      setError("Erreur réseau");
+      modal.current.showModal();
+      console.error(`Network error in askinForDelete : ${e.message}`);
     }
   }
 
@@ -104,14 +114,21 @@ export default function Projet() {
     const id = item._id;
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${id}`);
+      if (!response.ok) {
+        setError("Status : " + response.status);
+        modal.current.showModal();
+        return console.error("Error status in askingForUpdate : ", response.status);
+      }
+
       const data = await response.json();
-      if (!response.ok) return console.log("Erreur de status dans askingForUpdate : ", data.message);
       setEditorMode("Update");
       displayForm("Update");
       hydrateInputs(data.data);
       setIdProjectSelected(id);
     } catch (e) {
-      console.log(`Erreur dans askinForDelete : ${e.message}`);
+      setError("Erreur réseau");
+      modal.current.showModal();
+      console.error(`Network error in askinForUpdate : ${e.message}`);
     }
   }
 
@@ -145,13 +162,17 @@ export default function Projet() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${idProjectSelected}`, {
         method: "DELETE",
-        credentials: "include"
+        credentials: "include",
       });
-      const data = await response.json();
-      if (!response.ok) return console.log(`Erreur de status du fetch de deleteProject : ${data.message}`);
-      console.log("projet delete");
+      if (!response.ok) {
+        setError("Status : " + response.status);
+        modal.current.showModal();
+        return console.error(`Error status in deleteProject : ${response.status}`);
+      }
     } catch (e) {
-      console.log(`Erreur dans deleteProjet : ${e.message}`);
+      setError("Erreur réseau");
+      modal.current.showModal();
+      console.error(`Network error in deleteProjet : ${e.message}`);
     }
   }
 
@@ -164,18 +185,21 @@ export default function Projet() {
     formdata.append("description_projet", description_projet);
     formdata.append("is_favoris_projet", is_favoris_projet);
     formdata.append("technos_projet", JSON.stringify(technos_projet));
-    console.log(image_projet)
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets/${idProjectSelected}`, {
         method: "PUT",
         body: formdata,
-        credentials: "include"
+        credentials: "include",
       });
-      const data = await response.json();
-      if (!response.ok) return console.log(`Erreur de status dans le fetch de updateProject : ${data.message}`);
-      console.log("update ok");
+      if (!response.ok) {
+        setError("Status : " + response.status);
+        modal.current.showModal();
+        return console.error(`Error status in updateProject : ${response.status}`);
+      }
     } catch (e) {
-      console.log(`Erreur dans updateProject : ${e.message}`);
+      setError("Erreur réseau");
+      modal.current.showModal();
+      console.error(`Network error in updateProject : ${e.message}`);
     }
   }
 
@@ -193,38 +217,57 @@ export default function Projet() {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets`, {
         method: "POST",
         body: formdata,
-        credentials: "include"
+        credentials: "include",
       });
-      const data = await response.json();
-      console.log(data.message);
+      if (!response.ok) {
+        setError("Status : " + response.status);
+        modal.current.showModal();
+        return console.error(`Error Status in createProject : ${response.status}`);
+      }
     } catch (e) {
-      console.log(`Erreur pendant le createProjet : ${e.message}`);
+      setError("Erreur réseau");
+      modal.current.showModal();
+      console.error(`Error network in createProject : ${e}`);
     }
   }
 
   async function getAllProjet() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/projets`);
+      if (!response.ok) {
+        setError("Status : " + response.status);
+        modal.current.showModal();
+        return console.error(`Error Status in getAllProjet : ${response.status}`);
+      }
+
       const data = await response.json();
-      if (!response.ok) return console.log("Erreur de status dans getAllProjet: ", data.message);
       setAllProject(data.data);
     } catch (e) {
-      console.log(`Erreur dans getAllProjet : ${e.message}`);
+      setError("Erreur réseau");
+      modal.current.showModal();
+      console.error(`Error network in getAllProjet: ${e}`);
     }
   }
 
   async function getAllTechno() {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/edition/technos`);
+      if (!response.ok) {
+        setError("Status : " + response.status);
+        modal.current.showModal();
+        return console.error(`Error Status in getAllTechno: ${response.status}`);
+      }
+
       const data = await response.json();
-      if (!response.ok) return console.log(`problème de status dans getAllTechno : ${response.status}`);
       setAllTechno(data.data);
     } catch (e) {
-      console.log(`Erreur pendant le getAllTechno : ${e.message}`);
+      setError("Erreur réseau");
+      modal.current.showModal();
+      console.error(`Error network in getAllTechno: ${e}`);
     }
   }
 
-  async function deleteTechno(id) {
+  function deleteTechno(id) {
     console.log(id);
     setTechnos_projet((oldArray) => oldArray.filter((value) => value !== id));
   }
@@ -289,7 +332,6 @@ export default function Projet() {
       <form ref={formProjet} id="formulaire_Projet" onSubmit={handleSubmit}>
         <div id="formulaire_Projet_inputs">
           <div id="leftPart">
-            
             {/* champ Intitule */}
             <input
               type="text"
@@ -299,7 +341,7 @@ export default function Projet() {
               onChange={(e) => setTitre_projet(e.target.value)}
               required
             />
-            
+
             {/* champ image_projet */}
             <label htmlFor="input_img" className="container_img">
               <img
@@ -320,10 +362,17 @@ export default function Projet() {
                 }
               }}
             />
-            
+
             {/* champ alt_img_projet */}
-            <input type="text" className="input" placeholder="Description de l'image" onChange={(e)=> setAlt_img_projet(e.target.value)} value={alt_img_projet}></input>
-            
+            <input
+              required
+              type="text"
+              className="input"
+              placeholder="Description de l'image"
+              onChange={(e) => setAlt_img_projet(e.target.value)}
+              value={alt_img_projet}
+            ></input>
+
             {/* champ description_projet */}
             <textarea
               id="description"
@@ -333,15 +382,16 @@ export default function Projet() {
               className="input"
               required
             ></textarea>
-            
+
             {/* champ is_favoris_projet */}
-           <label>
-             <input
-               type="checkbox"
-               checked={is_favoris_projet}
-               onChange={(e) => setIs_favoris_projet(e.target.checked)}
-             />  Mettre en favoris
-           </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={is_favoris_projet}
+                onChange={(e) => setIs_favoris_projet(e.target.checked)}
+              />{" "}
+              Mettre en favoris
+            </label>
           </div>
           <div id="rightPart">
             <div id="liste_techno">
@@ -359,7 +409,7 @@ export default function Projet() {
             </div>
             <div id="select_row">
               {/* champ Techno */}
-              <select ref={technoSelect} className="input">
+              <select ref={technoSelect} className="input" defaultValue="">
                 <option value="" disabled>
                   --techno--
                 </option>
@@ -393,6 +443,20 @@ export default function Projet() {
           </button>
         </div>
       </form>
+
+      {/* Modal dans le cas ou mauvais format de données envoyés */}
+      <dialog ref={modal}>
+        <h3>Erreur détectée</h3>
+        <p>Un problème est survenue :</p>
+        <p>
+          <strong>{error}</strong>
+        </p>
+        <div>
+          <button className="btn" onClick={() => modal.current.close()} ref={modal_button}>
+            OK
+          </button>
+        </div>
+      </dialog>
     </div>
   );
 }
