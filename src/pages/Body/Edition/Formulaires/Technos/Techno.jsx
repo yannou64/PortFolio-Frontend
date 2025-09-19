@@ -158,22 +158,23 @@ export default function Techno() {
         {/* Champ image */}
         <div id="image_row">
           <label htmlFor="image">
-            <FaFileDownload size={40} color="gray" />
+            <img
+              className="image_container"
+              src={imageApercuUrl && imageApercuUrl !== "" ? imageApercuUrl : apercuDefault}
+              alt="Image représentant le projet"
+            />
           </label>
           <input
+            hidden
             id="image"
             type="file"
             accept="image/*"
-            hidden
             onChange={(e) => {
               setImageFile(e.target.files[0]);
               const objectUrl = URL.createObjectURL(e.target.files[0]);
               setImageApercuUrl(objectUrl);
             }}
           />
-          <div id="image_container">
-            <img src={imageApercuUrl ? imageApercuUrl : apercuDefault} alt="Image représentant la techno" />
-          </div>
         </div>
         {/* Champ alt_img */}
         <input
