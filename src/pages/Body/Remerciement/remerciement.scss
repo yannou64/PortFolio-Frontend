@@ -6,14 +6,14 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: calc(100vh - variables.$footerHeight - variables.$headerHeight);
+    height: calc(100vh - variables.$headerHeight - variables.$footerHeight);
     background-color: variables.$myWhite;
     
-    img{
-        width: 40%;
-
-        @media(max-height: 500px){
-            display: none;
+    .image_container{
+        width: 45%;
+        max-width: 460px;
+        img{
+            width: 100%;
         }
     }
 
