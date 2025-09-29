@@ -18,6 +18,7 @@ export default function VignetteCategorieTechnos({ categorie, listeTechnos = [] 
       const logo = document.createElement("img");
       logo.setAttribute("src", `${import.meta.env.VITE_API_URL}/${techno.image}`);
       logo.setAttribute("alt", techno.alt_img);
+      logo.setAttribute("loading", "lazy");
       const titre = document.createElement("p");
       titre.textContent = techno.titre;
       const niveau = document.createElement("p");

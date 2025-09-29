@@ -3,6 +3,8 @@ import "./CG.scss";
 export default function CG() {
   return (
     <section aria-labelledby="policy-title" id="cg_container">
+      <title>Conditions générales du site de portfolio - yannick biot</title>
+      <meta name="description" content="Conditions générales pour le site du portfolio de yannick biot" />
       <h1 id="policy-title">Politique de confidentialité et gestion des cookies</h1>
 
       <p>
@@ -113,7 +115,7 @@ export default function CG() {
         <h2 id="updates">Modifications de la politique</h2>
         <p>
           Nous pouvons actualiser cette politique.{" "}
-          <time datetime="2025-09-15">Version publiée le 15 septembre 2025</time>. En cas de modification substantielle,
+          <time dateTime="2025-09-15">Version publiée le 15 septembre 2025</time>. En cas de modification substantielle,
           nous informerons les utilisateurs et, si nécessaire, recueillerons de nouveau leur consentement.
         </p>
       </section>

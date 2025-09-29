@@ -1,12 +1,12 @@
 import "./header.scss";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
-import { TbFileCv } from "react-icons/tb";
-import { IoMdLogOut } from "react-icons/io";
-import { MdEditSquare } from "react-icons/md";
-import { TfiEmail } from "react-icons/tfi";
-import { LuBriefcaseBusiness } from "react-icons/lu";
-import { FaCode } from "react-icons/fa";
+import iconeAboutMe from "../../assets/iconeAboutMe.svg";
+import iconeCommuniquer from "../../assets/iconeCommuniquer.svg";
+import iconeProjet from "../../assets/iconeProjet.svg";
+import iconeStack from "../../assets/iconeStack.svg";
+import iconeLogout from "../../assets/iconeLogout.svg";
+import iconeEdition from "../../assets/iconeEdition.svg";
 import AuthContext from "../../context/AuthContext";
 import { useContext } from "react";
 import cvUrl from "../../../public/Documents/cv-yannick-biot.pdf?url";
@@ -128,7 +128,7 @@ export default function Header() {
         </a>
       </button>
       {/* Le bouton burger est visible en dessous de 768 px */}
-      <button id="burger-menu" onClick={handleBurgerMenu}>
+      <button name="menu burger" id="burger-menu" onClick={handleBurgerMenu}>
         <span ref={burger_icone} className="burger-icone">
           <div className="burger-line"></div>
           <div className="burger-line"></div>
@@ -142,7 +142,7 @@ export default function Header() {
           {!isAdmin && (
             <li onClick={handleBurgerMenu} title="Mes projets">
               <a href="#liste_projetsFavoris">
-                <LuBriefcaseBusiness id="menu_portfolio" className="icone" size={iconeSize} />
+                <img src={iconeProjet} alt="lien vers les projets du portfolio" id="menu_portfolio" className="icone" />
                 <p>Projets réalisés</p>
               </a>
             </li>
@@ -151,7 +151,12 @@ export default function Header() {
           {!isAdmin && (
             <li onClick={handleBurgerMenu} title="Ma Stack">
               <a href="#MesTechnos">
-                <FaCode id="menu_portfolio" className="icone" size={iconeSize - 6} />
+                <img
+                  src={iconeStack}
+                  alt="lien vers les compétences technique du propriétaire du portfolio"
+                  id="menu_portfolio"
+                  className="icone"
+                />
                 <p>Stack technique</p>
               </a>
             </li>
@@ -160,12 +165,12 @@ export default function Header() {
           {!isAdmin && (
             <li onClick={handleBurgerMenu} title="Mon CV">
               <a href={cvUrl} target="_blank" rel="noopener noreferrer">
-                <TbFileCv
+                <img
+                  src={iconeAboutMe}
                   id="menu_cv"
                   className="logo_cv icone"
                   alt="Lien vers le telechargement de CV"
-                  size={iconeSize}
-                />
+                ></img>
                 <p>Parcours</p>
               </a>
             </li>
@@ -173,21 +178,30 @@ export default function Header() {
           {/* Edition */}
           {isAdmin === true && (
             <li onClick={() => navigate("/edition")}>
-              <a href=""></a>
-              <MdEditSquare id="menu_edit" className="icone" size={iconeSize} />
+              <img
+                src={iconeEdition}
+                alt="lien vers la page d'édition du portfolio "
+                id="menu_edit"
+                className="icone"
+              />
             </li>
           )}
           {/* Logout */}
           {isAdmin === true && (
             <li onClick={() => navigate("/logout")}>
-              <IoMdLogOut id="menu_logout" className="icone" size={iconeSize} />
+              <img src={iconeLogout} alt="lien pour logout" id="menu_logout" className="icone" />
             </li>
           )}
           {/* Contact */}
           {isAdmin !== true && (
             <li onClick={handleBurgerMenu} title="Me Contacter">
               <a href="#Contact">
-                <TfiEmail id="menu_contact" className="icone" size={iconeSize} />
+                <img
+                  src={iconeCommuniquer}
+                  alt="lien pour contacter le propriétaire du portfolio"
+                  id="menu_contact"
+                  className="icone"
+                />
                 <p>Me contacter</p>
               </a>
             </li>

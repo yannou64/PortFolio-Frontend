@@ -12,6 +12,7 @@ export default function ProjetsFavoris({ projets = [] }) {
             titre={projet.titre_projet}
             description={projet.description_projet}
             image={import.meta.env.VITE_API_URL + "/" + projet.image_projet}
+            alt={projet.alt_img_projet}
             technos={projet.ListeTechnos}
           />
         ))}

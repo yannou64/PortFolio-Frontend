@@ -11,7 +11,7 @@ export default function CTAParcours() {
       <h2>Mon parcours</h2>
       <div className="Description_parcours">
         <div className="photoId">
-          <img src={photoId} alt="Photo d'identité de yannick biot" />
+          <img src={photoId} alt="Photo d'identité de yannick biot" loading="lazy"/>
         </div>
         <ul>
           <li>

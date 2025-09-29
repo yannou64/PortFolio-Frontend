@@ -1,4 +1,3 @@
-import avatar from "../../../../assets/avatar.webp";
 import "./hero.scss";
 import Reseaux from "../../../components/Reseaux/Reseaux";
 
@@ -6,7 +5,7 @@ export default function Hero() {
   return (
     <section id="hero">
       <div className="containerImage">
-        <img src={avatar} alt="Mon avatar" />
+        <img src="/avatar.webp" alt="Mon avatar pour le hero du portfolio" fetchPriority="high" />
       </div>
       <div id="accroche">
         <h1 className="titre">Développeur web</h1>

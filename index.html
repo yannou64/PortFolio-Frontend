@@ -2,12 +2,14 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/avatar.webp" />
+    <link rel="icon" type="image/svg+xml" href="/avatarmin.webp" />
+    <link rel="preload" as="image" href="/avatar.webp" type="image/webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio de Yannick Biot – Développeur Web Full Stack</title>
     <meta name="description" content="Découvrez mes projets en React, Node.js et MongoDB. Développeur web full stack spécialisé dans la création d’applications modernes.">
   </head>
   <body>
+    <img src="/avatar.webp" alt="Mon avatar" style="display:none" fetchpriority="high">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

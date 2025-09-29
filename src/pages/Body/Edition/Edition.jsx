@@ -31,6 +31,8 @@ export default function Edition() {
 
   return (
     <div id="container_edition">
+      <title>Page d'édition du portfolio - yannick biot</title>
+      <meta name="description" content="A partir de cette page le contenu du portfolio de yannick biot peut être mis à jours dynamiquement"/>
       <section id="editDisplay">
         <div id="collectionList">
           <button id="Techno" className="btn" onClick={selectForm}>
