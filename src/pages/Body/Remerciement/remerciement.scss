@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
+    max-width: variables.$maxWidth;
     height: calc(100vh - variables.$headerHeight - variables.$footerHeight);
     background-color: variables.$myWhite;
     

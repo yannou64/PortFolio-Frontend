@@ -53,6 +53,7 @@ export default function Register() {
           className="input"
           type="password"
           minLength={8}
+          autoComplete="new-password"
           placeholder="mot de passe"
           required
         />

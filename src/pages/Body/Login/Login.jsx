@@ -60,7 +60,7 @@ export default function Register() {
           type="text"
           placeholder="identifiant"
           required
-          autoComplete="off"
+          autoComplete="username"
         />
         <input
           onChange={(e) => setMdp(e.target.value)}
@@ -68,6 +68,7 @@ export default function Register() {
           type="password"
           minLength={8}
           placeholder="mot de passe"
+          autoComplete="current-password"
           required
         />
         <div className="message_error message_error-hidden">

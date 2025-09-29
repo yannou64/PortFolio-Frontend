@@ -2,6 +2,7 @@
 
 #cg_container{
     width: 80%;
+    max-width: calc(variables.$maxWidth * 0.8);
     margin-top: 64px;
     h1{
         font-size: 2rem;
