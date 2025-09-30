@@ -7,17 +7,17 @@ import logoGithubDarkMode from "../../../assets/githubDarkMode.png";
 export default function Reseaux({ dark = false }) {
   return (
     <ul className="reseaux-sociaux">
-      <li>
+      <li title="Mon linkedin">
         <a href="https://www.linkedin.com/in/yannick-64-biot/" target="_blank">
           <img src={logoLinkedin} alt="logo pour le lien vers un compte linkedin" />
         </a>
       </li>
-      <li>
+      <li title="Mon github">
         <a href="https://github.com/yannou64" target="_blank">
           <img src={dark ? logoGithubDarkMode : logoGithub} alt="logo pour le lien vers un compte github" />
         </a>
       </li>
-      <li>
+      <li title="Mon instagram">
         <a href="https://www.instagram.com/yannick.b64/" target="_blank">
           <img src={logoInsta} alt="logo pour le lien vers un compte Instagram" />
         </a>
