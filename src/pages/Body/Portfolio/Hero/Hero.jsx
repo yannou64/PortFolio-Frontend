@@ -1,11 +1,23 @@
 import "./hero.scss";
 import Reseaux from "../../../components/Reseaux/Reseaux";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [widthWisdom, setWidthWisdom] = useState(null);
+
+  useEffect(() => {
+    setWidthWisdom(window.innerWidth);
+    console.log(window.innerWidth);
+  }, []);
+
   return (
     <section id="hero">
       <div className="containerImage">
-        <img src="/avatar.webp" alt="Mon avatar pour le hero du portfolio" fetchPriority="high" />
+        {widthWisdom < 480 ? (
+          <img src="/avatar.webp" alt="Mon avatar pour le hero du portfolio" fetchPriority="high" />
+        ) : (
+          <img src="/avatarDesktop.webp" alt="Mon avatar pour le hero du portfolio" fetchPriority="high" />
+        )}
       </div>
       <div id="accroche">
         <h1 className="titre">Développeur web</h1>
