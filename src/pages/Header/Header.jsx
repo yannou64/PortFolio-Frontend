@@ -15,7 +15,6 @@ export default function Header() {
   ////
   // Variables
   ////
-  const iconeSize = 40;
   const navigate = useNavigate();
 
   ////
@@ -116,27 +115,33 @@ export default function Header() {
     // Si admin identifié on charge le style adminStyle
     <header ref={myHeader}>
       {/* Pour accéder à la page login, on double clique sur le h1 */}
-      <button id="logo" onDoubleClick={() => !isMobile && navigate("/login")}>
-        <a
-          href="#hero"
-          onClick={() => {
-            isMenuBurgerOpen && handleBurgerMenu();
-            navigate("/");
-          }}
-        >
-          Yannick Biot
-        </a>
-      </button>
+      <a
+        href="#hero"
+        onClick={() => {
+          isMenuBurgerOpen && handleBurgerMenu();
+          navigate("/");
+        }}
+        id="logo"
+        onDoubleClick={() => !isMobile && navigate("/login")}
+      >
+        Yannick Biot
+      </a>
       {/* Le bouton burger est visible en dessous de 768 px */}
-      <button name="menu burger" id="burger-menu" onClick={handleBurgerMenu}>
-        <span ref={burger_icone} className="burger-icone">
+      <button
+        id="burger-menu"
+        aria-label={isMenuBurgerOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        aria-expanded={isMenuBurgerOpen}
+        aria-controls="menu"
+        onClick={handleBurgerMenu}
+      >
+        <span ref={burger_icone} className="burger-icone" aria-hidden="true">
           <div className="burger-line"></div>
           <div className="burger-line"></div>
           <div className="burger-line"></div>
         </span>
       </button>
       {/* En cliquant sur les icones on va appeler la fonction menuChoice qui va render le composant associé à l'id de l'icone */}
-      <nav ref={nav}>
+      <nav id="menu" ref={nav}>
         <ul>
           {/* Projets */}
           {!isAdmin && (
