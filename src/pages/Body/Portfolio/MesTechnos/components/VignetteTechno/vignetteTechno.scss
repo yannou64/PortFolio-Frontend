@@ -23,7 +23,7 @@
     .technos{
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
         width: 100%;
         gap: 16px;
@@ -33,7 +33,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 45%;
+            width: 150px;
+
+            @media(max-width: 1250px){
+                width: 45%;
+            }
 
             .logo_container{
               width: 100%;

@@ -142,7 +142,14 @@ export default function Header() {
           {!isAdmin && (
             <li onClick={handleBurgerMenu} title="Mes projets">
               <a href="#liste_projetsFavoris">
-                <img src={iconeProjet} alt="lien vers les projets du portfolio" id="menu_portfolio" className="icone" />
+                <div>
+                  <img
+                    src={iconeProjet}
+                    alt="lien vers les projets du portfolio"
+                    id="menu_portfolio"
+                    className="icone"
+                  />
+                </div>
                 <p>Projets réalisés</p>
               </a>
             </li>
@@ -151,12 +158,14 @@ export default function Header() {
           {!isAdmin && (
             <li onClick={handleBurgerMenu} title="Ma Stack">
               <a href="#MesTechnos">
-                <img
-                  src={iconeStack}
-                  alt="lien vers les compétences technique du propriétaire du portfolio"
-                  id="menu_portfolio"
-                  className="icone"
-                />
+                <div>
+                  <img
+                    src={iconeStack}
+                    alt="lien vers les compétences technique du propriétaire du portfolio"
+                    id="menu_portfolio"
+                    className="icone"
+                  />
+                </div>
                 <p>Stack technique</p>
               </a>
             </li>
@@ -165,12 +174,14 @@ export default function Header() {
           {!isAdmin && (
             <li onClick={handleBurgerMenu} title="Mon CV">
               <a href={cvUrl} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={iconeAboutMe}
-                  id="menu_cv"
-                  className="logo_cv icone"
-                  alt="Lien vers le telechargement de CV"
-                ></img>
+                <div>
+                  <img
+                    src={iconeAboutMe}
+                    id="menu_cv"
+                    className="logo_cv icone"
+                    alt="Lien vers le telechargement de CV"
+                  ></img>
+                </div>
                 <p>Parcours</p>
               </a>
             </li>
@@ -196,12 +207,14 @@ export default function Header() {
           {isAdmin !== true && (
             <li onClick={handleBurgerMenu} title="Me Contacter">
               <a href="#Contact">
-                <img
-                  src={iconeCommuniquer}
-                  alt="lien pour contacter le propriétaire du portfolio"
-                  id="menu_contact"
-                  className="icone"
-                />
+                <div>
+                  <img
+                    src={iconeCommuniquer}
+                    alt="lien pour contacter le propriétaire du portfolio"
+                    id="menu_contact"
+                    className="icone"
+                  />
+                </div>
                 <p>Me contacter</p>
               </a>
             </li>

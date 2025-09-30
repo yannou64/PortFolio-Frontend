@@ -15,7 +15,7 @@ export default function VignetteProjet({ titre, description, image, technos = []
         </div>
       </div>
       <a className="image_lien_projet" href="#">
-        <img alt={alt} src={image} loading="lazy" />
+        <img alt={alt} src={image} loading="lazy"/>
       </a>
       {/* Pour le responsive  */}
       <div className="listeTechno_second_view">

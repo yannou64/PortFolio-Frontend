@@ -214,20 +214,19 @@ header {
       }
 
       li {
-        .icone {
-          color: variables.$myWhite;
-
-          @media (max-width: variables.$smallDevice) {
-          }
-
-          @media (max-width: variables.$mobileDevice) {
-            width: 50px;
-          }
-        }
         a {
           display: flex;
           gap: 24px;
           width: 100%;
+          align-items: center;
+
+          div{
+            width: 50px;
+
+            .icone {
+              width: 100%;
+            }
+          }
         }
 
         p {
