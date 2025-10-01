@@ -336,6 +336,7 @@ export default function Projet() {
             {/* champ Intitule */}
             <input
               type="text"
+              aria-label="Intitule"
               className="input"
               placeholder="Intitulé de projet"
               value={titre_projet}
@@ -366,6 +367,7 @@ export default function Projet() {
 
             {/* champ alt_img_projet */}
             <input
+              aria-label="Alt_image"
               required
               type="text"
               className="input"
@@ -376,6 +378,7 @@ export default function Projet() {
 
             {/* champ description_projet */}
             <textarea
+              aria-label="Description"
               id="description"
               placeholder="Description du projet"
               value={description_projet}
@@ -387,6 +390,7 @@ export default function Projet() {
             {/* champ is_favoris_projet */}
             <label>
               <input
+                aria-label="Favoris"
                 type="checkbox"
                 checked={is_favoris_projet}
                 onChange={(e) => setIs_favoris_projet(e.target.checked)}
@@ -410,7 +414,7 @@ export default function Projet() {
             </div>
             <div id="select_row">
               {/* champ Techno */}
-              <select ref={technoSelect} className="input" defaultValue="">
+              <select aria-label="Techonologies" ref={technoSelect} className="input" defaultValue="">
                 <option value="" disabled>
                   --techno--
                 </option>

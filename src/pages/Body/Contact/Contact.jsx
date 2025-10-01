@@ -39,6 +39,7 @@ export default function Contact() {
         <input
           id="userContact"
           className="input"
+          aria-label="Email"
           required
           type="email"
           placeholder="Votre email"
@@ -47,6 +48,7 @@ export default function Contact() {
         />
         <textarea
           id="message"
+          aria-label="Message"
           placeholder="Votre message"
           onChange={(e) => setMessage(e.target.value)}
           value={message}

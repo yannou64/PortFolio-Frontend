@@ -149,6 +149,7 @@ export default function Techno() {
         {/* Champ titre */}
         <input
           value={titre}
+          aria-label="Titre"
           onChange={(e) => setTitre(e.target.value)}
           className="input w-full"
           type="text"
@@ -178,6 +179,7 @@ export default function Techno() {
         </div>
         {/* Champ alt_img */}
         <input
+          aria-label="Alt_Image"
           type="text"
           value={alt_img}
           onChange={(e) => setAlt_img(e.target.value)}
@@ -186,7 +188,7 @@ export default function Techno() {
           required
         />
         {/* Champ categorie */}
-        <select required onChange={(e) => setCategorie(e.target.value)} value={categorie}>
+        <select aria-label="Categorie" required onChange={(e) => setCategorie(e.target.value)} value={categorie}>
           <option value="" disabled>
             --Categorie--
           </option>
@@ -195,7 +197,7 @@ export default function Techno() {
           <option value="Design / Organisation">Organisation / Design</option>
         </select>
         {/* Champ niveau */}
-        <select required onChange={(e) => setNiveau(e.target.value)} value={niveau}>
+        <select aria-label="Niveau" required onChange={(e) => setNiveau(e.target.value)} value={niveau}>
           <option value="" disabled>
             --Niveau--
           </option>
