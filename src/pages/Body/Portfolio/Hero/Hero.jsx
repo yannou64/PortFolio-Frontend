@@ -7,7 +7,6 @@ export default function Hero() {
 
   useEffect(() => {
     setWidthWisdom(window.innerWidth);
-    console.log(window.innerWidth);
   }, []);
 
   return (

@@ -26,10 +26,11 @@ export default function Contact() {
       }),
     });
     if (!response.ok) {
-      const data = response.json();
-      console.log(data.message);
+      const data = await response.json();
+      console.error(data.message);
+    } else {
+      navigate("/contact/remerciement");
     }
-    navigate("/contact/remerciement");
   }
 
   return (
@@ -60,8 +61,10 @@ export default function Contact() {
       <MyButton id="contact_email" type="submit" titre="Envoyer" lien="#" />
       <dialog ref={dialogModal}>
         <h3>Petite maladraisse</h3>
-        <p>Vérifiez votre <strong>email</strong></p>
-  
+        <p>
+          Vérifiez votre <strong>email</strong>
+        </p>
+
         <div>
           <button onClick={() => dialogModal.current.close()} id="button_modal">
             OK
