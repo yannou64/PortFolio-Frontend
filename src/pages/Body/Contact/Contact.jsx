@@ -38,6 +38,7 @@ export default function Contact() {
       <form id="contact_email" onSubmit={onSubmit}>
         <input
           id="userContact"
+          autoFocus
           className="input"
           aria-label="Email"
           required

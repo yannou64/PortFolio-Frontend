@@ -35,12 +35,17 @@
     }
 
     .photoId {
-      width: 45%;
+      width: 33%;
+      display: flex;
 
       img {
         border: 5px solid variables.$myWhite;
         border-radius: 16px;
         width: 100%;
+      }
+
+      @media(max-height: 670px){
+        display: none;
       }
     }
 

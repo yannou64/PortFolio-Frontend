@@ -336,6 +336,7 @@ export default function Projet() {
             {/* champ Intitule */}
             <input
               type="text"
+              autofocus
               aria-label="Intitule"
               className="input"
               placeholder="Intitulé de projet"
