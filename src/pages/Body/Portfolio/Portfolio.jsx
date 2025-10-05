@@ -7,8 +7,6 @@ import Parcours_Contact from "./Parcours_Contact/Parcours_Contact.jsx";
 
 export default function Portfolio() {
   // Centralisation des requêtes et distributions des données dans les composants via les props
-
-
   // Récupérer tous les projets
   const [projetsFavoris, setProjetsFavoris] = useState([]);
   async function getProjetsFavoris() {

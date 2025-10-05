@@ -12,14 +12,12 @@ import { useContext } from "react";
 import cvUrl from "../../../public/Documents/cv-yannick-biot.pdf?url";
 
 export default function Header() {
-  ////
+
   // Variables
-  ////
   const navigate = useNavigate();
 
-  ////
+
   // Gestion isAdmin
-  ////
   const { isAdmin } = useContext(AuthContext);
 
   ////
@@ -31,6 +29,7 @@ export default function Header() {
 
   // On garde un oeil sur la taille de l'écran avec widhDevice
   const [widthDevice, setWidthDevice] = useState(() => window.innerWidth);
+
   // Listener : met à jour widthDevice au resize
   useEffect(() => {
     const onResize = () => setWidthDevice(window.innerWidth);
@@ -68,9 +67,7 @@ export default function Header() {
     }
   }
 
-  ////
   // Gestion du MenuBurger et de l'affichage du navigateur
-  ////
   const [isMenuBurgerOpen, setIsMenuBurgerOpen] = useState(false);
   const burger_icone = useRef();
   const nav = useRef();
@@ -98,19 +95,14 @@ export default function Header() {
     }
   }
 
-  ////
   // Gestion du cas ou un Admin n'est pas sur desktop
-  ////
   const desktop = 1000;
-
   if (widthDevice < desktop && isAdmin) {
     return <Navigate to="/logout" replace />;
   }
 
-  ////
+ 
   // Rendu du composant
-  ///
-
   return (
     // Si admin identifié on charge le style adminStyle
     <header ref={myHeader}>

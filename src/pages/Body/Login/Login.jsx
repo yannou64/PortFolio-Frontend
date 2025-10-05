@@ -16,15 +16,14 @@ export default function Register() {
     e.preventDefault();
 
     // Validation mdp
-    
     const messageError = document.querySelector(".message_error");
     if (!modelMdp.test(mdp)) {
       messageError.classList.remove("message_error-hidden");
       alerteSonore();
       return;
     }
-
     try {
+
       // Envoyer les donnée à l'api pour vérifier les données d'identification
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: "POST",
@@ -61,6 +60,8 @@ export default function Register() {
           placeholder="identifiant"
           required
           autoComplete="username"
+          autoFocus
+          aria-label="Identifiant"
         />
         <input
           onChange={(e) => setMdp(e.target.value)}
@@ -70,6 +71,7 @@ export default function Register() {
           placeholder="mot de passe"
           autoComplete="current-password"
           required
+          aria-label="Mot de passe"
         />
         <div className="message_error message_error-hidden">
           <strong>Erreur : </strong>Le mot de passe doit faire au moins 8 caractères, contenir au moins 1 chiffre et 1

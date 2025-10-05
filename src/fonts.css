@@ -8,17 +8,3 @@
   src: url("./assets/fonts/Playpen Sans.woff2") format("woff2");
 }
 
-@font-face {
-  font-family: "Playpen Sans SemiBold";
-  src: url("./assets/fonts/Playpen Sans SemiBold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Patrick Hand";
-  src: url("./assets/fonts/patrickHand.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Kalam";
-  src: url("./assets/fonts/kalam.woff2") format("woff2");
-}

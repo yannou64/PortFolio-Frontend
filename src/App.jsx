@@ -15,6 +15,7 @@ import AuthContext from "./context/AuthContext";
 import { useEffect } from "react";
 
 function App() {
+  // isAdmin fonctionne avec AuthContext pour re-render Header et Edition
   const [isAdmin, setIsAdmin] = useState(false);
   const value = { isAdmin, setIsAdmin };
 
