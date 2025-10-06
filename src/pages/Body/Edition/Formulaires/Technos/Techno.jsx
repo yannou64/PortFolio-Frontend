@@ -149,7 +149,6 @@ export default function Techno() {
         {/* Champ titre */}
         <input
           value={titre}
-          autoFocus
           aria-label="Titre"
           onChange={(e) => setTitre(e.target.value)}
           className="input w-full"
