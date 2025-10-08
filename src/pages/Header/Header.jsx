@@ -16,7 +16,6 @@ export default function Header() {
   // Variables
   const navigate = useNavigate();
 
-
   // Gestion isAdmin
   const { isAdmin } = useContext(AuthContext);
 

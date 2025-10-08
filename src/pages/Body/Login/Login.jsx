@@ -5,12 +5,11 @@ import alerteSonore from "../../../utils/alerteSonore.js";
 import modelMdp from "../../../utils/confirmMdp.js";
 import "./login.scss";
 
-export default function Register() {
+export default function Login() {
   const [identifiant, setIdentifiant] = useState("");
   const [mdp, setMdp] = useState("");
   const navigate = useNavigate();
   const { setIsAdmin } = useContext(AuthContext);
-
 
   async function submitAction(e) {
     e.preventDefault();
@@ -23,7 +22,6 @@ export default function Register() {
       return;
     }
     try {
-
       // Envoyer les donnée à l'api pour vérifier les données d'identification
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: "POST",

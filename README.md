@@ -1,6 +1,7 @@
 # Description
 
 Application frontend développée en React (avec Vite) permettant de présenter mon portfolio : projets et compétences.
+[Lien vers le backend](https://github.com/yannou64/PortFolio-Backend.git)
 
 # Stack technique
 
