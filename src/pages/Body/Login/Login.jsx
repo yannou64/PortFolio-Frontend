@@ -52,6 +52,11 @@ export default function Register() {
 
   return (
     <section id="container_login">
+      <title>Page de login - yannick biot</title>
+      <meta
+        name="description"
+        content="Page pour s'authentifier"
+      />
       <form onSubmit={submitAction}>
         <input
           onChange={(e) => setIdentifiant(e.target.value)}

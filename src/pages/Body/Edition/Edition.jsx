@@ -6,10 +6,9 @@ import { useState, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext.jsx";
 
-
 export default function Edition() {
   const [formActif, setFormActif] = useState("");
-  const {isAdmin} = useContext(AuthContext)
+  const { isAdmin } = useContext(AuthContext);
 
   // Quand on clique sur un des boutons de formulaire
   function selectForm(e) {
@@ -30,9 +29,12 @@ export default function Edition() {
   }
 
   return (
-    <div id="container_edition">
+    <section id="container_edition">
       <title>Page d'édition du portfolio - yannick biot</title>
-      <meta name="description" content="A partir de cette page le contenu du portfolio de yannick biot peut être mis à jours dynamiquement"/>
+      <meta
+        name="description"
+        content="A partir de cette page le contenu du portfolio de yannick biot peut être mis à jours dynamiquement"
+      />
       <section id="editDisplay">
         <div id="collectionList">
           <button id="Techno" className="btn" onClick={selectForm}>
@@ -51,6 +53,6 @@ export default function Edition() {
       <section id="isNotDesktop">
         <h2 className="messageError">- Mode Edition uniquement sur Desktop -</h2>
       </section>
-    </div>
+    </section>
   );
 }
