@@ -16,7 +16,6 @@ export default function Header() {
   // Variables
   const navigate = useNavigate();
 
-
   // Gestion isAdmin
   const { isAdmin } = useContext(AuthContext);
 
@@ -108,12 +107,12 @@ export default function Header() {
     <header ref={myHeader}>
       {/* Pour accéder à la page login, on double clique sur le h1 */}
       <a
+        id="logo"
         href="#hero"
         onClick={() => {
           isMenuBurgerOpen && handleBurgerMenu();
           navigate("/");
         }}
-        id="logo"
         onDoubleClick={() => !isMobile && navigate("/login")}
       >
         Yannick Biot
